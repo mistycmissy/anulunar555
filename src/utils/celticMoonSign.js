@@ -24,15 +24,23 @@ export const calculateCelticMoonSign = (birthDate) => {
     const [startMonth, startDay] = sign.start
     const [endMonth, endDay] = sign.end
 
-    // Handle year transition
+    // Handle year-crossing signs (Birch)
     if (startMonth > endMonth) {
       if ((month === startMonth && day >= startDay) || (month === endMonth && day <= endDay)) {
         return sign
       }
+    } else if (startMonth === endMonth) {
+      // Handle signs within the same month (Vine)
+      if (month === startMonth && day >= startDay && day <= endDay) {
+        return sign
+      }
     } else {
-      if ((month === startMonth && day >= startDay) || 
-          (month === endMonth && day <= endDay) ||
-          (month > startMonth && month < endMonth)) {
+      // Handle signs spanning multiple months
+      if (month === startMonth && day >= startDay) {
+        return sign
+      } else if (month === endMonth && day <= endDay) {
+        return sign
+      } else if (month > startMonth && month < endMonth) {
         return sign
       }
     }

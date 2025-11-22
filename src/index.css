@@ -24,11 +24,19 @@
   --color-lunar-800: #41477c;
   --color-lunar-900: #383d63;
   --color-lunar-950: #25283d;
+
+  /* Font families */
+  --font-display: 'Cinzel', serif;
 }
 
 @layer base {
   body {
     @apply bg-gradient-to-br from-cosmic-950 via-lunar-900 to-cosmic-900 min-h-screen text-gray-100;
+    font-family: 'Inter', system-ui, sans-serif;
+  }
+
+  .font-display {
+    font-family: var(--font-display);
   }
 }
 

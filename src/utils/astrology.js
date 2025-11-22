@@ -23,20 +23,27 @@ export const calculateZodiacSign = (birthDate) => {
     const [startMonth, startDay] = sign.start
     const [endMonth, endDay] = sign.end
 
+    // Handle year-crossing signs (Capricorn)
     if (startMonth > endMonth) {
-      // Year transition
       if ((month === startMonth && day >= startDay) || (month === endMonth && day <= endDay)) {
         return sign
       }
     } else {
-      if ((month === startMonth && day >= startDay && month === endMonth && day <= endDay) ||
-          (month === startMonth && day >= startDay && endMonth > startMonth) ||
-          (month === endMonth && day <= endDay && endMonth > startMonth) ||
-          (month > startMonth && month < endMonth)) {
+      // Handle signs within the same year
+      if (month === startMonth && month === endMonth) {
+        // Same month sign (doesn't happen in zodiac but good for safety)
+        if (day >= startDay && day <= endDay) {
+          return sign
+        }
+      } else if (month === startMonth && day >= startDay) {
+        return sign
+      } else if (month === endMonth && day <= endDay) {
+        return sign
+      } else if (month > startMonth && month < endMonth) {
         return sign
       }
     }
   }
 
-  return zodiacSigns[0]
+  return zodiacSigns[0] // Default to Capricorn
 }
