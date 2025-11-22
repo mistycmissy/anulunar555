@@ -1,0 +1,52 @@
+@import "tailwindcss";
+
+@theme {
+  --color-cosmic-50: #f0f4ff;
+  --color-cosmic-100: #e0e7ff;
+  --color-cosmic-200: #c7d2fe;
+  --color-cosmic-300: #a5b4fc;
+  --color-cosmic-400: #818cf8;
+  --color-cosmic-500: #6366f1;
+  --color-cosmic-600: #4f46e5;
+  --color-cosmic-700: #4338ca;
+  --color-cosmic-800: #3730a3;
+  --color-cosmic-900: #312e81;
+  --color-cosmic-950: #1e1b4b;
+
+  --color-lunar-50: #f7f8fc;
+  --color-lunar-100: #eef0f8;
+  --color-lunar-200: #d9ddf0;
+  --color-lunar-300: #b8c0e0;
+  --color-lunar-400: #919dcc;
+  --color-lunar-500: #7180ba;
+  --color-lunar-600: #5a66a7;
+  --color-lunar-700: #4c5496;
+  --color-lunar-800: #41477c;
+  --color-lunar-900: #383d63;
+  --color-lunar-950: #25283d;
+}
+
+@layer base {
+  body {
+    @apply bg-gradient-to-br from-cosmic-950 via-lunar-900 to-cosmic-900 min-h-screen text-gray-100;
+  }
+}
+
+@layer utilities {
+  .btn-primary {
+    @apply bg-cosmic-600 hover:bg-cosmic-700 text-white font-semibold py-2 px-6 rounded-lg transition-colors duration-200 shadow-lg hover:shadow-cosmic-500/50;
+  }
+  
+  .btn-secondary {
+    @apply bg-lunar-600 hover:bg-lunar-700 text-white font-semibold py-2 px-6 rounded-lg transition-colors duration-200;
+  }
+  
+  .card {
+    @apply bg-white/10 backdrop-blur-md rounded-xl p-6 shadow-xl border border-white/20;
+  }
+  
+  .input-field {
+    @apply w-full px-4 py-2 bg-white/5 border border-white/20 rounded-lg text-gray-100 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-cosmic-500 focus:border-transparent;
+  }
+}
+
