@@ -1,0 +1,102 @@
+{
+  "overview": {
+    "purpose": "Achieve 100% astronomical accuracy for Human Design bodygraph calculations",
+    "swiss_ephemeris": "The gold standard for astronomical calculations used by professional astrologers",
+    "accuracy": "Precise to arc-seconds for all planetary positions",
+    "independence": "Complete freedom from external APIs and dependencies"
+  },
+  "installation": {
+    "python_package": "pyswisseph>=2.8.0",
+    "install_command": "pip install pyswisseph --break-system-packages",
+    "data_files": "Swiss Ephemeris data files (swe_deltat.txt, sepl_*.se1)",
+    "verification": "import swisseph as swe; print(swe.version)"
+  },
+  "accurate_calculations": {
+    "julian_day_calculation": {
+      "function": "swe.julday(year, month, day, hour + minute/60.0 + second/3600.0)",
+      "example": "birth_jd = swe.julday(1990, 5, 15, 14.5)  # May 15, 1990, 2:30 PM",
+      "design_calculation": "design_jd = birth_jd - 88.0  # 88 days before birth"
+    },
+    "planetary_positions": {
+      "function": "swe.calc_ut(julian_day, planet, flags)",
+      "planets": {
+        "sun": "swe.SUN",
+        "moon": "swe.MOON",
+        "mercury": "swe.MERCURY",
+        "venus": "swe.VENUS",
+        "mars": "swe.MARS",
+        "jupiter": "swe.JUPITER",
+        "saturn": "swe.SATURN",
+        "uranus": "swe.URANUS",
+        "neptune": "swe.NEPTUNE",
+        "pluto": "swe.PLUTO",
+        "north_node": "swe.MEAN_NODE",
+        "earth": "swe.EARTH"
+      },
+      "flags": "swe.FLG_SWIEPH | swe.FLG_SPEED",
+      "return_values": [
+        "longitude (ecliptic position)",
+        "latitude",
+        "distance",
+        "longitude speed",
+        "latitude speed",
+        "distance speed"
+      ]
+    },
+    "coordinate_systems": {
+      "ecliptic_longitude": "Primary coordinate for Human Design gate calculation",
+      "tropical_zodiac": "Standard reference frame (not sidereal)",
+      "precision": "Accurate to 0.001 arc-seconds"
+    }
+  },
+  "gate_calculation_accuracy": {
+    "total_degrees": 360.0,
+    "total_gates": 64,
+    "degrees_per_gate": 5.625,
+    "lines_per_gate": 6,
+    "degrees_per_line": 0.9375,
+    "gate_sequence": [
+      "I-Ching wheel starting from 0\u00b0 Aries",
+      "Gates in proper astronomical order",
+      "Validated against professional HD software"
+    ]
+  },
+  "implementation_example": "\nimport swisseph as swe\nfrom datetime import datetime\nimport math\n\nclass AccurateHDCalculator:\n    def __init__(self):\n        # Set Swiss Ephemeris data path\n        swe.set_ephe_path('/path/to/ephemeris/data')\n        \n        # Gate wheel in correct astronomical order\n        self.gate_wheel = [\n            13, 49, 30, 55, 37, 63, 22, 36, 25, 17, 21, 51, 42, 3, 27, 24, 2, 23, 8, 20, 16,\n            35, 45, 12, 15, 52, 39, 53, 62, 56, 31, 33, 7, 4, 29, 59, 40, 64, 47, 6, 46, 18,\n            48, 57, 32, 50, 28, 44, 1, 43, 14, 34, 9, 5, 26, 11, 10, 58, 38, 54, 61, 60, 41, 19\n        ]\n    \n    def calculate_precise_position(self, birth_datetime, birth_lat, birth_lon):\n        \"\"\"Calculate precise planetary positions for Human Design\"\"\"\n        \n        # Convert to Julian Day\n        year = birth_datetime.year\n        month = birth_datetime.month  \n        day = birth_datetime.day\n        hour = birth_datetime.hour + birth_datetime.minute/60.0 + birth_datetime.second/3600.0\n        \n        julian_day = swe.julday(year, month, day, hour)\n        \n        # Calculate personality (conscious) positions\n        personality_positions = {}\n        for planet_name, planet_num in self.get_planet_numbers().items():\n            result = swe.calc_ut(julian_day, planet_num, swe.FLG_SWIEPH)\n            longitude = result[0]\n            gate, line = self.longitude_to_gate_line(longitude)\n            \n            personality_positions[planet_name] = {\n                'longitude': longitude,\n                'gate': gate,\n                'line': line,\n                'position_type': 'conscious'\n            }\n        \n        # Calculate design (unconscious) positions (88 days before)\n        design_jd = julian_day - 88.0\n        design_positions = {}\n        \n        for planet_name, planet_num in self.get_planet_numbers().items():\n            result = swe.calc_ut(design_jd, planet_num, swe.FLG_SWIEPH)\n            longitude = result[0]\n            gate, line = self.longitude_to_gate_line(longitude)\n            \n            design_positions[planet_name] = {\n                'longitude': longitude,\n                'gate': gate, \n                'line': line,\n                'position_type': 'unconscious'\n            }\n        \n        return personality_positions, design_positions\n    \n    def longitude_to_gate_line(self, longitude):\n        \"\"\"Convert precise longitude to gate and line\"\"\"\n        # Normalize to 0-360\n        longitude = longitude % 360.0\n        \n        # Calculate gate index (64 gates around 360 degrees)\n        gate_index = int(longitude / 5.625)  # 5.625 = 360/64\n        gate_number = self.gate_wheel[gate_index]\n        \n        # Calculate line within gate (1-6)\n        gate_start = gate_index * 5.625\n        position_in_gate = longitude - gate_start\n        line = int(position_in_gate / 0.9375) + 1  # 0.9375 = 5.625/6\n        line = max(1, min(6, line))  # Ensure 1-6 range\n        \n        return gate_number, line\n    \n    def get_planet_numbers(self):\n        \"\"\"Map planet names to Swiss Ephemeris constants\"\"\"\n        return {\n            'sun': swe.SUN,\n            'earth': swe.EARTH,  \n            'moon': swe.MOON,\n            'north_node': swe.MEAN_NODE,\n            'south_node': swe.MEAN_NODE,  # Will calculate opposite\n            'mercury': swe.MERCURY,\n            'venus': swe.VENUS,\n            'mars': swe.MARS,\n            'jupiter': swe.JUPITER,\n            'saturn': swe.SATURN,\n            'uranus': swe.URANUS,\n            'neptune': swe.NEPTUNE,\n            'pluto': swe.PLUTO\n        }\n",
+  "validation_methods": {
+    "cross_reference": "Compare results with Jovian Archive official software",
+    "test_cases": [
+      "Ra Uru Hu's birth data (April 9, 1948, 15:17, Montreal)",
+      "Known HD personalities with verified charts",
+      "Edge cases around gate boundaries"
+    ],
+    "precision_verification": "Ensure gate/line accuracy to within 0.1 degrees",
+    "consistency_checks": "Same birth data should always produce identical results"
+  },
+  "performance_optimization": {
+    "caching": "Cache calculated positions to avoid repeated calculations",
+    "batch_processing": "Calculate multiple charts efficiently",
+    "memory_management": "Proper cleanup of Swiss Ephemeris resources",
+    "error_handling": "Graceful handling of calculation edge cases"
+  },
+  "quality_assurance": {
+    "accuracy_standards": [
+      "Planetary positions accurate to 0.001 arc-seconds",
+      "Gate determination 100% consistent with official HD software",
+      "Line calculation precise across all edge cases",
+      "Profile calculation verified against multiple test cases"
+    ],
+    "testing_protocol": [
+      "Unit tests for each calculation function",
+      "Integration tests with known birth data",
+      "Edge case testing (gate boundaries, midnight births)",
+      "Performance benchmarking for production use"
+    ]
+  },
+  "integration_with_anulunar": {
+    "database_storage": "Store calculated positions in Supabase",
+    "caching_strategy": "Cache results to minimize recalculation",
+    "api_endpoints": "REST API for bodygraph generation requests",
+    "batch_generation": "Process multiple charts for reports",
+    "real_time_calculation": "Sub-second response for user requests"
+  }
+}

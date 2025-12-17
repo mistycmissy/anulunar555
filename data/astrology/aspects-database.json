@@ -1,0 +1,42 @@
+{
+  "conjunction": {
+    "name": "Sacred Union",
+    "orb": 8,
+    "energy": "Fusion and integration",
+    "spiritual_meaning": "Two energies become one unified force",
+    "anulunar_wisdom": "Conjunctions are cosmic marriages - honor the union",
+    "interpretation_guide": "These planets work as one integrated energy in your spiritual development"
+  },
+  "opposition": {
+    "name": "Divine Tension",
+    "orb": 8,
+    "energy": "Balance and polarity",
+    "spiritual_meaning": "Learning to hold both ends of the cosmic spectrum",
+    "anulunar_wisdom": "Opposition creates the tension needed for spiritual growth",
+    "interpretation_guide": "These planets represent opposite poles seeking integration and balance"
+  },
+  "trine": {
+    "name": "Flowing Grace",
+    "orb": 8,
+    "energy": "Harmony and natural flow",
+    "spiritual_meaning": "Gifts that flow easily when aligned with soul purpose",
+    "anulunar_wisdom": "Trines are gifts - but remember to unwrap them",
+    "interpretation_guide": "These planets work together effortlessly, offering natural talents and ease"
+  },
+  "square": {
+    "name": "Sacred Challenge",
+    "orb": 8,
+    "energy": "Dynamic tension and growth",
+    "spiritual_meaning": "Friction that creates diamonds in the soul",
+    "anulunar_wisdom": "Squares are your spiritual gym - they make you stronger",
+    "interpretation_guide": "These planets create productive tension that motivates growth and achievement"
+  },
+  "sextile": {
+    "name": "Opportunity Portal",
+    "orb": 6,
+    "energy": "Cooperative potential",
+    "spiritual_meaning": "Doorways of possibility requiring conscious activation",
+    "anulunar_wisdom": "Sextiles whisper 'yes, you can' - listen closely",
+    "interpretation_guide": "These planets offer supportive energy and opportunities when actively engaged"
+  }
+}

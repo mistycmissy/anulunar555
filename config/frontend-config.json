@@ -1,0 +1,109 @@
+{
+  "app": {
+    "name": "AnuLunar Spiritual Intelligence™",
+    "version": "1.0.0",
+    "description": "Where Infinite Intelligence & Stardust Collide",
+    "url": "https://anulunar.com",
+    "logo": "/assets/images/anulunar-logo.svg"
+  },
+  
+  "theme": {
+    "cosmic_aesthetic": true,
+    "colors": {
+      "primary": "#00E7FF",
+      "secondary": "#FF00CC", 
+      "accent": "#FFCB47",
+      "background": "#09071F",
+      "card": "#1B1140",
+      "text": "#FFFBF8"
+    },
+    "fonts": {
+      "primary": "Inter",
+      "display": "Space Grotesk",
+      "mono": "JetBrains Mono"
+    },
+    "animations": {
+      "floating_stars": true,
+      "cosmic_gradients": true,
+      "smooth_transitions": true
+    }
+  },
+  
+  "features": {
+    "quiz_system": {
+      "enabled": true,
+      "floating_stars": true,
+      "progress_tracking": true,
+      "data_validation": true
+    },
+    "bodygraph_generation": {
+      "enabled": true,
+      "swiss_ephemeris": true,
+      "cosmic_styling": true,
+      "svg_export": true
+    },
+    "report_generation": {
+      "enabled": true,
+      "lunaris_synthesis": true,
+      "pdf_export": true,
+      "sacred_pricing": true
+    },
+    "celtic_moon_signs": {
+      "enabled": true,
+      "traditional_details": true,
+      "ogham_letters": true,
+      "seasonal_wisdom": true
+    }
+  },
+  
+  "api": {
+    "base_url": "${VITE_API_BASE_URL}",
+    "timeout": 10000,
+    "retry_attempts": 3
+  },
+  
+  "authentication": {
+    "supabase_enabled": true,
+    "google_oauth": false,
+    "email_verification": true
+  },
+  
+  "pricing": {
+    "sacred_numbers": true,
+    "tiers": [
+      {
+        "name": "Cosmic Blueprint Foundation",
+        "price": 8.88,
+        "cycle": "monthly"
+      },
+      {
+        "name": "Lunar Transmutation", 
+        "price": 18.88,
+        "cycle": "monthly"
+      },
+      {
+        "name": "Crystal Clarity",
+        "price": 44.44,
+        "cycle": "monthly"
+      },
+      {
+        "name": "Full Spectrum Circle",
+        "price": 99.99,
+        "cycle": "monthly"
+      }
+    ]
+  },
+  
+  "analytics": {
+    "enabled": true,
+    "track_quiz_completion": true,
+    "track_report_generation": true,
+    "track_user_journey": true
+  },
+  
+  "development": {
+    "debug_mode": "${NODE_ENV === 'development'}",
+    "console_logs": "${NODE_ENV === 'development'}",
+    "test_mode": false
+  }
+}

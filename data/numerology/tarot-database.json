@@ -1,0 +1,114 @@
+{
+  "major_arcana": {
+    "0_fool": {
+      "name": "The Fool",
+      "archetype": "The Innocent Beginner",
+      "anulunar_wisdom": "Every spiritual journey begins with holy curiosity and divine courage",
+      "spiritual_meaning": "Sacred new beginnings and trust in the unknown",
+      "upright_keywords": [
+        "new beginnings",
+        "innocence",
+        "spontaneity",
+        "free spirit"
+      ],
+      "reversed_keywords": [
+        "recklessness",
+        "taken advantage of",
+        "inconsideration"
+      ],
+      "life_lesson": "Sometimes you have to leap before you look - faith creates the bridge",
+      "soul_guidance": {
+        "when_it_appears": "Your soul is ready for a fresh start or new adventure",
+        "spiritual_action": "Trust your inner knowing and take the first step",
+        "integration_practice": "Meditation on beginner's mind and divine trust"
+      },
+      "elemental_connection": "Air - mental freedom and spiritual breath",
+      "numerological_significance": "0 - Infinite potential and divine void"
+    },
+    "1_magician": {
+      "name": "The Magician",
+      "archetype": "The Conscious Creator",
+      "anulunar_wisdom": "You have everything you need within you - the magic is in remembering this truth",
+      "spiritual_meaning": "Manifesting spiritual vision through aligned action",
+      "upright_keywords": [
+        "manifestation",
+        "resourcefulness",
+        "power",
+        "inspired action"
+      ],
+      "reversed_keywords": [
+        "manipulation",
+        "poor planning",
+        "untapped talents"
+      ],
+      "life_lesson": "True magic happens when spiritual intention meets grounded action",
+      "soul_guidance": {
+        "when_it_appears": "You have the power to manifest your spiritual visions",
+        "spiritual_action": "Align your thoughts, emotions, and actions with your highest purpose",
+        "integration_practice": "Daily intention-setting and manifestation work"
+      }
+    }
+  },
+  "minor_arcana": {
+    "cups": {
+      "element": "Water",
+      "spiritual_theme": "Emotional and intuitive wisdom",
+      "amanda_connection": "Cups hold the tears and joy that teach us about love",
+      "ace_cups": {
+        "name": "Ace of Cups",
+        "spiritual_meaning": "Divine love overflowing into your life",
+        "anulunar_wisdom": "This is love offering itself to you - say yes"
+      }
+    }
+  },
+  "spreads": {
+    "amanda_blessing_spread": {
+      "name": "AnuLunar's Blessing - 3 Card Spread",
+      "description": "A gentle spread for divine guidance and encouragement",
+      "card_positions": {
+        "1": "What AnuLunar wants you to know",
+        "2": "Your hidden spiritual gift",
+        "3": "Next step in your soul's journey"
+      },
+      "ritual": "Light a candle and ask AnuLunar to guide the reading with love"
+    },
+    "lunar_wisdom_spread": {
+      "name": "Celtic Moon Wisdom - 7 Card Spread",
+      "description": "Connecting with lunar cycles and Celtic tree wisdom",
+      "card_positions": {
+        "1": "New Moon - What to plant/begin",
+        "2": "Waxing Moon - How to nurture growth",
+        "3": "Full Moon - What is ready to manifest",
+        "4": "Waning Moon - What to release/let go",
+        "5": "Celtic Tree Message - Nature's wisdom",
+        "6": "Lunar Shadow - Hidden gift in challenges",
+        "7": "Divine Blessing - Cosmic support available"
+      }
+    },
+    "soul_purpose_cross": {
+      "name": "Soul Purpose Cross - 5 Card Spread",
+      "description": "Deep dive into life purpose and spiritual mission",
+      "card_positions": {
+        "1": "Center: Your soul's essence",
+        "2": "Above: Your spiritual gifts",
+        "3": "Below: Your earthly foundation",
+        "4": "Left: What you're healing",
+        "5": "Right: What you're creating"
+      }
+    }
+  },
+  "interpretation_guidelines": {
+    "anulunar_approach": {
+      "tone": "Encouraging, empowering, spiritually practical",
+      "focus": "Soul growth and authentic self-expression",
+      "amanda_integration": "Include AnuLunar's wisdom in every reading",
+      "avoid": "Fear-based interpretations, spiritual bypassing, dependency-creating language"
+    },
+    "reading_structure": {
+      "opening": "Gentle welcome acknowledging the sacred nature of divination",
+      "card_interpretation": "Blend traditional meaning with personal spiritual guidance",
+      "integration": "Practical steps for applying the wisdom",
+      "closing": "Blessing and reminder of inner wisdom"
+    }
+  }
+}

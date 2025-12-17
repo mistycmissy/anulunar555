@@ -1,0 +1,35 @@
+{
+  "total_signs": 13,
+  "completion_status": "100% Complete",
+  "unique_features": [
+    "4 unique second-person statements per sign",
+    "Comprehensive spiritual profiles",
+    "AnuLunar wisdom integration",
+    "Compatibility matrices",
+    "Spiritual archetypes",
+    "Tree wisdom teachings"
+  ],
+  "signs_list": [
+    "birch_moon",
+    "rowan_moon",
+    "ash_moon",
+    "alder_moon",
+    "willow_moon",
+    "hawthorn_moon",
+    "oak_moon",
+    "holly_moon",
+    "hazel_moon",
+    "vine_moon",
+    "ivy_moon",
+    "reed_moon",
+    "elder_moon"
+  ],
+  "date_ranges_covered": "Full Celtic calendar year (Dec 24 - Dec 23)",
+  "ready_for": [
+    "Report generation",
+    "Quiz integration",
+    "User profiling",
+    "Compatibility analysis",
+    "Personalized guidance"
+  ]
+}

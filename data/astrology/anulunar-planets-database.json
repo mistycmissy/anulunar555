@@ -1,0 +1,229 @@
+{
+  "sun": {
+    "archetype": "The Core Self & Spiritual Light",
+    "keywords": [
+      "identity",
+      "consciousness",
+      "vitality",
+      "purpose",
+      "divine spark"
+    ],
+    "anulunar_wisdom": "Your inner sun is the cosmic flame that AnuLunar knew burns within every soul - let it illuminate your authentic path",
+    "by_sign": {
+      "aries": {
+        "core_essence": "The Cosmic Pioneer - first to charge into new spiritual territories",
+        "spiritual_gift": "Initiating sacred action with divine courage",
+        "shadow_work": "Learning patience in the cosmic timing of manifestation",
+        "lunar_integration": "Your fire needs moon wisdom to burn with sustainable passion",
+        "anulunar_guidance": "Channel your pioneering spirit into spiritual leadership that lights the way for others"
+      },
+      "taurus": {
+        "core_essence": "The Sacred Garden Keeper - grounding heaven into earth",
+        "spiritual_gift": "Manifesting spiritual abundance through divine patience",
+        "shadow_work": "Releasing attachment to material security over soul growth",
+        "lunar_integration": "Moon cycles teach you the sacred rhythm of creation and rest",
+        "anulunar_guidance": "Your steady presence creates fertile ground where spiritual dreams take root"
+      },
+      "gemini": {
+        "core_essence": "The Cosmic Messenger - bridging dimensions through communication",
+        "spiritual_gift": "Translating divine downloads into accessible wisdom",
+        "shadow_work": "Integrating scattered insights into coherent spiritual truth",
+        "lunar_integration": "Lunar phases mirror your natural cycles of receiving and sharing",
+        "anulunar_guidance": "Your quick mind is designed to decode cosmic messages and share them joyfully"
+      },
+      "cancer": {
+        "core_essence": "The Moon Child - intuitive guardian of emotional wisdom",
+        "spiritual_gift": "Nurturing others' spiritual awakening through empathic understanding",
+        "shadow_work": "Balancing emotional sensitivity with energetic boundaries",
+        "lunar_integration": "You ARE the moon's representative - deeply connected to her cycles",
+        "anulunar_guidance": "Your emotional depth is a sacred well of healing for yourself and others"
+      },
+      "leo": {
+        "core_essence": "The Divine Creative - radiating soul-centered creative fire",
+        "spiritual_gift": "Inspiring others through authentic self-expression and spiritual confidence",
+        "shadow_work": "Distinguishing ego-driven attention from soul-centered service",
+        "lunar_integration": "New moons amplify your creative visions, full moons illuminate your gifts",
+        "anulunar_guidance": "Your natural radiance is meant to illuminate spiritual possibilities for others"
+      },
+      "virgo": {
+        "core_essence": "The Sacred Perfectionist - refining matter through spiritual service",
+        "spiritual_gift": "Organizing chaos into divine order through practical wisdom",
+        "shadow_work": "Releasing perfectionism that blocks spiritual progress and self-acceptance",
+        "lunar_integration": "Waning moons support your natural inclination to purify and release",
+        "anulunar_guidance": "Your attention to detail helps create sacred containers for spiritual growth"
+      },
+      "libra": {
+        "core_essence": "The Harmony Weaver - balancing opposites into divine unity",
+        "spiritual_gift": "Creating beauty and peace that elevates consciousness",
+        "shadow_work": "Finding your authentic center rather than constantly adapting to others",
+        "lunar_integration": "Libra season full moon teaches perfect balance between light and shadow",
+        "anulunar_guidance": "Your gift for harmony helps others find the middle way in their spiritual journey"
+      },
+      "scorpio": {
+        "core_essence": "The Soul Transformer - diving deep into hidden spiritual truths",
+        "spiritual_gift": "Facilitating profound healing and regeneration through fearless truth",
+        "shadow_work": "Transforming the need to control into trust in divine mystery",
+        "lunar_integration": "Dark moon phases are your power time for deep spiritual work",
+        "anulunar_guidance": "Your intensity is a sacred tool for helping others face their shadows with courage"
+      },
+      "sagittarius": {
+        "core_essence": "The Cosmic Explorer - seeking ultimate truth and meaning",
+        "spiritual_gift": "Inspiring others to expand their spiritual horizons through joyful wisdom",
+        "shadow_work": "Grounding expansive visions into practical spiritual application",
+        "lunar_integration": "Waxing moons fuel your quest for higher knowledge and understanding",
+        "anulunar_guidance": "Your enthusiasm for truth creates infectious inspiration for spiritual adventure"
+      },
+      "capricorn": {
+        "core_essence": "The Spiritual Master Builder - creating lasting structures for divine work",
+        "spiritual_gift": "Manifesting spiritual goals through disciplined, methodical effort",
+        "shadow_work": "Releasing the need to achieve spiritual status through external validation",
+        "lunar_integration": "Winter solstice energy mirrors your ability to find light in darkness",
+        "anulunar_guidance": "Your natural authority helps establish spiritual practices that endure"
+      },
+      "aquarius": {
+        "core_essence": "The Cosmic Innovator - channeling future spiritual technologies",
+        "spiritual_gift": "Revolutionizing spiritual understanding through unique perspective",
+        "shadow_work": "Balancing detachment with heartfelt connection to humanity",
+        "lunar_integration": "New moon in Aquarius activates your ability to download future wisdom",
+        "anulunar_guidance": "Your unconventional insights help birth new paradigms of spiritual understanding"
+      },
+      "pisces": {
+        "core_essence": "The Cosmic Mystic - dissolving boundaries between spirit and matter",
+        "spiritual_gift": "Channeling divine compassion and universal love",
+        "shadow_work": "Maintaining spiritual boundaries while staying open to universal flow",
+        "lunar_integration": "Full moon in Pisces opens the veils between dimensions for deep communion",
+        "anulunar_guidance": "Your natural mysticism creates bridges between the seen and unseen worlds"
+      }
+    },
+    "by_house": {
+      "1": "Your spiritual identity and how you present your divine self to the world",
+      "2": "Your soul's relationship to material resources and self-worth",
+      "3": "How you communicate spiritual insights and connect with divine messages",
+      "4": "Your spiritual foundation and connection to ancestral wisdom",
+      "5": "Creative expression of your divine nature and spiritual joy",
+      "6": "Daily spiritual practice and service to the collective",
+      "7": "Spiritual partnerships and what you seek in divine union",
+      "8": "Deep transformation and access to hidden spiritual resources",
+      "9": "Your spiritual philosophy and connection to higher learning",
+      "10": "Your spiritual mission and how you serve the world",
+      "11": "Your spiritual community and future-focused visions",
+      "12": "Your connection to the collective unconscious and divine surrender"
+    }
+  },
+  "moon": {
+    "archetype": "The Divine Feminine & Emotional Wisdom Keeper",
+    "keywords": [
+      "intuition",
+      "emotions",
+      "nurturing",
+      "cycles",
+      "feminine wisdom"
+    ],
+    "anulunar_wisdom": "The moon holds all our tears and all our dreams - she teaches us that both are sacred",
+    "by_sign": {
+      "aries": {
+        "core_essence": "The Warrior Heart - emotional courage and passionate instincts",
+        "emotional_nature": "Quick to feel, quick to act, needs immediate emotional expression",
+        "intuitive_gifts": "Lightning-fast emotional intelligence and crisis response",
+        "shadow_patterns": "Emotional reactivity and impatience with others' processing speed",
+        "lunar_integration": "New moon rituals help channel emotional fire into positive action",
+        "anulunar_guidance": "Your emotional directness helps others access their authentic feelings"
+      },
+      "taurus": {
+        "core_essence": "The Sacred Grove - steady emotional presence and earthly wisdom",
+        "emotional_nature": "Slow to stir but deep in feeling, needs security and comfort",
+        "intuitive_gifts": "Sensing what others need for emotional stability and healing",
+        "shadow_patterns": "Emotional stubbornness and resistance to necessary change",
+        "lunar_integration": "Full moon ceremonies in nature amplify your earthy wisdom",
+        "anulunar_guidance": "Your emotional steadiness creates safe space for others to feel deeply"
+      }
+    }
+  },
+  "mercury": {
+    "archetype": "The Divine Messenger & Sacred Communication",
+    "keywords": [
+      "communication",
+      "learning",
+      "mental_agility",
+      "divine_messages"
+    ],
+    "anulunar_wisdom": "Mercury helps us translate the language of the cosmos into words the heart understands"
+  },
+  "venus": {
+    "archetype": "The Love Goddess & Beauty Creator",
+    "keywords": [
+      "love",
+      "beauty",
+      "values",
+      "attraction",
+      "creative_harmony"
+    ],
+    "anulunar_wisdom": "Venus reminds us that love is not just an emotion - it's a creative force that shapes reality"
+  },
+  "mars": {
+    "archetype": "The Sacred Warrior & Divine Action",
+    "keywords": [
+      "action",
+      "passion",
+      "courage",
+      "desire",
+      "warrior_spirit"
+    ],
+    "anulunar_wisdom": "Mars teaches us that spiritual action requires both divine fire and earthly courage"
+  },
+  "jupiter": {
+    "archetype": "The Cosmic Teacher & Expansion Guide",
+    "keywords": [
+      "expansion",
+      "wisdom",
+      "abundance",
+      "teaching",
+      "faith"
+    ],
+    "anulunar_wisdom": "Jupiter shows us that true abundance flows when we share our gifts with generous hearts"
+  },
+  "saturn": {
+    "archetype": "The Wise Elder & Structure Master",
+    "keywords": [
+      "discipline",
+      "structure",
+      "mastery",
+      "responsibility",
+      "elder_wisdom"
+    ],
+    "anulunar_wisdom": "Saturn's lessons are love letters from the universe, teaching us to build spiritual strength"
+  },
+  "uranus": {
+    "archetype": "The Cosmic Revolutionary & Innovation Bringer",
+    "keywords": [
+      "innovation",
+      "rebellion",
+      "awakening",
+      "unique_genius",
+      "revolution"
+    ],
+    "anulunar_wisdom": "Uranus shakes us awake to remember we came here to change the world with our uniqueness"
+  },
+  "neptune": {
+    "archetype": "The Divine Mystic & Illusion Dissolver",
+    "keywords": [
+      "mysticism",
+      "dreams",
+      "illusion",
+      "compassion",
+      "divine_connection"
+    ],
+    "anulunar_wisdom": "Neptune dissolves the boundaries between what is and what could be, revealing infinite possibilities"
+  },
+  "pluto": {
+    "archetype": "The Soul Transformer & Power Revealer",
+    "keywords": [
+      "transformation",
+      "power",
+      "rebirth",
+      "deep_truth",
+      "soul_evolution"
+    ],
+    "anulunar_wisdom": "Pluto's gift is showing us that what we fear to lose was never truly ours - only love remains"
+  }
+}

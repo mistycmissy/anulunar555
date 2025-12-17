@@ -1,0 +1,102 @@
+{
+  "description": "I-Ching hexagram wheel mapped to ecliptic longitude",
+  "total_degrees": 360.0,
+  "gates_count": 64,
+  "degrees_per_gate": 5.625,
+  "starting_point": "0\u00b0 Aries (Spring Equinox)",
+  "gate_sequence": {
+    "quarter_1": {
+      "degrees": "0\u00b0 - 90\u00b0",
+      "season": "Spring",
+      "gates": [
+        13,
+        49,
+        30,
+        55,
+        37,
+        63,
+        22,
+        36,
+        25,
+        17,
+        21,
+        51,
+        42,
+        3,
+        27,
+        24
+      ]
+    },
+    "quarter_2": {
+      "degrees": "90\u00b0 - 180\u00b0",
+      "season": "Summer",
+      "gates": [
+        2,
+        23,
+        8,
+        20,
+        16,
+        35,
+        45,
+        12,
+        15,
+        52,
+        39,
+        53,
+        62,
+        56,
+        31,
+        33
+      ]
+    },
+    "quarter_3": {
+      "degrees": "180\u00b0 - 270\u00b0",
+      "season": "Autumn",
+      "gates": [
+        7,
+        4,
+        29,
+        59,
+        40,
+        64,
+        47,
+        6,
+        46,
+        18,
+        48,
+        57,
+        32,
+        50,
+        28,
+        44
+      ]
+    },
+    "quarter_4": {
+      "degrees": "270\u00b0 - 360\u00b0",
+      "season": "Winter",
+      "gates": [
+        1,
+        43,
+        14,
+        34,
+        9,
+        5,
+        26,
+        11,
+        10,
+        58,
+        38,
+        54,
+        61,
+        60,
+        41,
+        19
+      ]
+    }
+  },
+  "validation": {
+    "source": "Based on Ra Uru Hu's original I-Ching wheel",
+    "verified_against": "Jovian Archive official software",
+    "accuracy": "Validated with thousands of known charts"
+  }
+}

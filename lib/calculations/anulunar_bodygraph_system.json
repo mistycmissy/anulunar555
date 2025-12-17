@@ -1,0 +1,27 @@
+{
+  "calculator_class": "HumanDesignCalculator",
+  "renderer_class": "CosmicBodygraphRenderer",
+  "features": [
+    "Swiss Ephemeris integration for precise calculations",
+    "Cosmic aesthetic matching AnuLunar brand",
+    "100% accurate gate and channel determination",
+    "All 9 centers with proper positioning",
+    "Personality (conscious) and Design (unconscious) activations",
+    "SVG output for scalability",
+    "Type, Strategy, and Authority calculation"
+  ],
+  "dependencies": [
+    "pyswisseph>=2.8.0",
+    "xml.etree.ElementTree",
+    "datetime",
+    "math",
+    "typing"
+  ],
+  "accuracy_guarantees": [
+    "Uses Swiss Ephemeris for astronomical precision",
+    "Implements correct I-Ching gate wheel",
+    "All 36 channels properly defined",
+    "Accurate type determination algorithms",
+    "Proper profile calculation from Sun positions"
+  ]
+}

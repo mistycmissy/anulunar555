@@ -1,0 +1,52 @@
+{
+  "celtic_tree_calendar_overview": {
+    "system": "Modern Celtic Tree Calendar (13 Moon Months)",
+    "structure": "Fixed dates aligned with Gregorian year",
+    "total_months": 13,
+    "cultural_source": "Ancient Celtic wisdom adapted for modern spiritual practice"
+  },
+  "ogham_alphabet": {
+    "description": "Ancient Irish alphabet where each letter corresponds to a sacred tree",
+    "usage": "Each moon month has corresponding Ogham letter for meditation and ritual",
+    "letters": {
+      "Beth": "\u1681 (Birch)",
+      "Luis": "\u1682 (Rowan)",
+      "Nion": "\u1685 (Ash)",
+      "Fearn": "\u1683 (Alder)",
+      "Saille": "\u1684 (Willow)",
+      "Huath": "\u1686 (Hawthorn)",
+      "Duir": "\u1687 (Oak)",
+      "Tinne": "\u1688 (Holly)",
+      "Coll": "\u1689 (Hazel)",
+      "Muin": "\u168b (Vine)",
+      "Gort": "\u168c (Ivy)",
+      "Negetal": "\u1685\u168c (Reed)",
+      "Ruis": "\u168f (Elder)"
+    }
+  },
+  "seasonal_cycles": {
+    "winter_solstice": "Birch Moon - Rebirth & Beginnings",
+    "imbolc": "Rowan Moon - Vision & Protection (Brighid)",
+    "spring_equinox": "Alder Moon - Decisiveness & Divination",
+    "beltane": "Hawthorn Moon - Fertility & Fae Connection",
+    "summer_solstice": "Oak Moon - Strength & Protection",
+    "lughnasadh": "Holly Moon - Masculinity & Immortality",
+    "autumn_equinox": "Vine Moon - Balance & Harvest",
+    "samhain": "Reed Moon - Spirit Connections & Underworld"
+  },
+  "traditional_themes_summary": [
+    "Rebirth & Beginnings (Birch)",
+    "Vision & Protection (Rowan)",
+    "Intuition (Ash)",
+    "Decisiveness (Alder)",
+    "Healing (Willow)",
+    "Fertility (Hawthorn)",
+    "Strength (Oak)",
+    "Masculinity (Holly)",
+    "Wisdom (Hazel)",
+    "Balance (Vine)",
+    "Survival (Ivy)",
+    "Spiritual Connections (Reed)",
+    "Renewal (Elder)"
+  ]
+}

@@ -1,0 +1,259 @@
+{
+  "anulunar_directory_setup": {
+    "recommended_structure": {
+      "description": "Organize all proprietary content for easy development and deployment",
+      "base_path": "C:\\Users\\MM222\\Desktop\\AnuLunar555\\",
+      "directories_to_create": {
+        "src/": {
+          "description": "Source code and main application files",
+          "subdirectories": {
+            "components/": "React components",
+            "pages/": "Page components",
+            "hooks/": "Custom React hooks",
+            "utils/": "Utility functions",
+            "types/": "TypeScript type definitions"
+          }
+        },
+        "data/": {
+          "description": "All proprietary spiritual databases and content",
+          "subdirectories": {
+            "astrology/": "Astrological interpretation databases",
+            "celtic/": "Celtic Moon Signs system",
+            "human-design/": "Human Design bodygraph system",
+            "numerology/": "Numerology and gematria databases",
+            "tarot/": "Tarot interpretations and spreads",
+            "lunaris/": "LUNARIS\u2122 framework files"
+          }
+        },
+        "components/quiz/": {
+          "description": "Interactive quiz system components",
+          "files": [
+            "CosmicQuiz.tsx",
+            "QuizQuestion.tsx",
+            "QuizProgress.tsx",
+            "QuizCompletion.tsx"
+          ]
+        },
+        "components/reports/": {
+          "description": "Report generation and display components",
+          "files": [
+            "ReportGenerator.tsx",
+            "CosmicBlueprint.tsx",
+            "CelticMoonReport.tsx",
+            "BodygraphDisplay.tsx"
+          ]
+        },
+        "lib/": {
+          "description": "Core calculation and processing libraries",
+          "subdirectories": {
+            "calculations/": "Astrological and spiritual calculations",
+            "processors/": "Data processing for LUNARIS\u2122",
+            "generators/": "Report and bodygraph generation"
+          }
+        },
+        "public/assets/": {
+          "description": "Static assets for cosmic aesthetic",
+          "subdirectories": {
+            "images/": "Cosmic backgrounds, icons, symbols",
+            "fonts/": "Custom fonts for spiritual branding"
+          }
+        },
+        "docs/": {
+          "description": "Documentation and guides",
+          "files": [
+            "API.md",
+            "DEPLOYMENT.md",
+            "CONTENT_GUIDE.md"
+          ]
+        }
+      }
+    },
+    "specific_file_placements": {
+      "quiz_system": {
+        "main_component": "src/components/quiz/CosmicQuiz.tsx",
+        "quiz_data": "data/quiz-templates/cosmic-blueprint-quiz.json",
+        "styles": "src/styles/cosmic-quiz.css",
+        "html_demo": "public/demo/cosmic-quiz-demo.html"
+      },
+      "proprietary_databases": {
+        "astrology": {
+          "houses": "data/astrology/houses-interpretations.json",
+          "planets": "data/astrology/planetary-meanings.json",
+          "aspects": "data/astrology/aspects-database.json",
+          "moon_signs": "data/astrology/moon-signs-profiles.json"
+        },
+        "celtic": {
+          "moon_signs": "data/celtic/celtic-moon-signs.json",
+          "traditional_reference": "data/celtic/traditional-celtic-reference.json",
+          "ogham_letters": "data/celtic/ogham-alphabet.json"
+        },
+        "human_design": {
+          "bodygraph_system": "data/human-design/bodygraph-generator.js",
+          "gate_wheel": "data/human-design/accurate-gate-wheel.json",
+          "swiss_ephemeris": "lib/calculations/swiss-ephemeris-integration.js"
+        },
+        "lunaris_framework": {
+          "core": "data/lunaris/lunaris-framework.json",
+          "synthesis": "lib/processors/lunaris-synthesis.js",
+          "report_templates": "data/lunaris/report-templates.json"
+        }
+      },
+      "report_generation": {
+        "engine": "lib/generators/report-engine.js",
+        "templates": "data/reports/",
+        "pdf_generator": "lib/generators/cosmic-pdf-generator.js"
+      }
+    },
+    "command_line_setup": [
+      "# Navigate to your AnuLunar555 directory",
+      "cd C:\\Users\\MM222\\Desktop\\AnuLunar555",
+      "",
+      "# Create the directory structure",
+      "mkdir src\\components\\quiz",
+      "mkdir src\\components\\reports",
+      "mkdir src\\pages",
+      "mkdir src\\utils",
+      "mkdir src\\types",
+      "mkdir data\\astrology",
+      "mkdir data\\celtic",
+      "mkdir data\\human-design",
+      "mkdir data\\numerology",
+      "mkdir data\\tarot",
+      "mkdir data\\lunaris",
+      "mkdir data\\quiz-templates",
+      "mkdir data\\reports",
+      "mkdir lib\\calculations",
+      "mkdir lib\\processors",
+      "mkdir lib\\generators",
+      "mkdir public\\demo",
+      "mkdir docs",
+      "",
+      "# Copy files from our development session",
+      "# (You'll copy the files we created into these directories)"
+    ]
+  },
+  "file_mapping": {
+    "files_to_copy": {
+      "quiz_system": {
+        "source": "anulunar_fixed_quiz.html",
+        "destination": "public/demo/cosmic-quiz-demo.html",
+        "description": "Working quiz demo for testing"
+      },
+      "proprietary_databases": {
+        "astrology_houses": {
+          "source": "anulunar_complete_houses.json",
+          "destination": "data/astrology/houses-interpretations.json"
+        },
+        "astrology_planets": {
+          "source": "anulunar_planets_database.json",
+          "destination": "data/astrology/planetary-meanings.json"
+        },
+        "astrology_aspects": {
+          "source": "anulunar_aspects_database.json",
+          "destination": "data/astrology/aspects-database.json"
+        },
+        "astrology_moon_signs": {
+          "source": "anulunar_complete_moon_signs.json",
+          "destination": "data/astrology/moon-signs-profiles.json"
+        },
+        "celtic_moon_signs": {
+          "source": "anulunar_complete_traditional_celtic_moon_signs.json",
+          "destination": "data/celtic/celtic-moon-signs.json"
+        },
+        "celtic_reference": {
+          "source": "traditional_celtic_reference.json",
+          "destination": "data/celtic/traditional-reference.json"
+        },
+        "human_design_system": {
+          "source": "anulunar_bodygraph_system.json",
+          "destination": "data/human-design/bodygraph-system.json"
+        },
+        "gate_wheel": {
+          "source": "accurate_gate_wheel.json",
+          "destination": "data/human-design/gate-wheel.json"
+        },
+        "swiss_ephemeris": {
+          "source": "swiss_ephemeris_integration.json",
+          "destination": "lib/calculations/swiss-ephemeris-guide.json"
+        },
+        "lunaris_framework": {
+          "source": "lunaris_framework.json",
+          "destination": "data/lunaris/lunaris-framework.json"
+        },
+        "quiz_templates": {
+          "source": "anulunar_quiz_templates.json",
+          "destination": "data/quiz-templates/all-quiz-templates.json"
+        },
+        "tarot_system": {
+          "source": "anulunar_tarot_database.json",
+          "destination": "data/tarot/tarot-interpretations.json"
+        }
+      },
+      "system_documentation": {
+        "platform_readiness": {
+          "source": "anulunar_platform_readiness_assessment.json",
+          "destination": "docs/platform-status.json"
+        },
+        "project_structure": {
+          "source": "anulunar_project_structure.md",
+          "destination": "docs/PROJECT_STRUCTURE.md"
+        }
+      }
+    },
+    "next_development_priorities": [
+      "1. Copy all proprietary databases to data/ directories",
+      "2. Convert quiz HTML to React component in src/components/quiz/",
+      "3. Build report generation engine in lib/generators/",
+      "4. Create API endpoints in backend/ for data access",
+      "5. Integrate with your existing frontend/ structure"
+    ]
+  },
+  "setup_steps": [
+    {
+      "step": 1,
+      "action": "Create directory structure",
+      "commands": [
+        "# Navigate to your AnuLunar555 directory",
+        "cd C:\\Users\\MM222\\Desktop\\AnuLunar555",
+        "",
+        "# Create the directory structure",
+        "mkdir src\\components\\quiz",
+        "mkdir src\\components\\reports",
+        "mkdir src\\pages",
+        "mkdir src\\utils",
+        "mkdir src\\types",
+        "mkdir data\\astrology",
+        "mkdir data\\celtic",
+        "mkdir data\\human-design",
+        "mkdir data\\numerology",
+        "mkdir data\\tarot",
+        "mkdir data\\lunaris",
+        "mkdir data\\quiz-templates",
+        "mkdir data\\reports",
+        "mkdir lib\\calculations",
+        "mkdir lib\\processors",
+        "mkdir lib\\generators",
+        "mkdir public\\demo",
+        "mkdir docs",
+        "",
+        "# Copy files from our development session",
+        "# (You'll copy the files we created into these directories)"
+      ]
+    },
+    {
+      "step": 2,
+      "action": "Copy proprietary databases",
+      "note": "Copy all JSON files from our development session to data/ subdirectories"
+    },
+    {
+      "step": 3,
+      "action": "Integrate quiz system",
+      "note": "Convert HTML demo to React component for your frontend"
+    },
+    {
+      "step": 4,
+      "action": "Build report generation",
+      "note": "Create the engine that synthesizes all proprietary data"
+    }
+  ]
+}

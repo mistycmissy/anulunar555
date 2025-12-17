@@ -1,0 +1,151 @@
+{
+  "platform_configuration": {
+    "name": "AnuLunar Spiritual Intelligence\u2122",
+    "version": "1.0.0",
+    "license": "GNU GPL v3.0",
+    "environment": {
+      "development": {
+        "database_url": "postgresql://localhost:5432/anulunar_dev",
+        "supabase_url": "https://your-project.supabase.co",
+        "supabase_anon_key": "your-anon-key",
+        "swiss_ephemeris_path": "./lib/calculations/swiss_ephemeris/"
+      },
+      "production": {
+        "database_url": "postgresql://production-url",
+        "supabase_url": "https://your-production-project.supabase.co",
+        "supabase_service_key": "your-service-key",
+        "cdn_url": "https://cdn.anulunar.com"
+      }
+    }
+  },
+  "database_schema": {
+    "users": {
+      "fields": [
+        "id",
+        "email",
+        "subscription_tier",
+        "birth_data",
+        "quiz_responses",
+        "created_at"
+      ],
+      "relationships": [
+        "has_many_reports",
+        "has_many_quiz_sessions"
+      ]
+    },
+    "birth_profiles": {
+      "fields": [
+        "user_id",
+        "birth_date",
+        "birth_time",
+        "birth_location",
+        "coordinates",
+        "timezone"
+      ],
+      "calculations": [
+        "sun_sign",
+        "moon_sign",
+        "rising_sign",
+        "celtic_moon_sign",
+        "life_path_number"
+      ]
+    },
+    "quiz_sessions": {
+      "fields": [
+        "user_id",
+        "quiz_type",
+        "responses",
+        "processed_data",
+        "completion_date"
+      ],
+      "types": [
+        "onboarding",
+        "relationship",
+        "career",
+        "spiritual_development"
+      ]
+    },
+    "generated_reports": {
+      "fields": [
+        "user_id",
+        "report_type",
+        "report_data",
+        "pdf_url",
+        "generation_date",
+        "tier_level"
+      ],
+      "storage": "Supabase Storage for PDF files"
+    }
+  },
+  "api_endpoints": {
+    "authentication": {
+      "POST /auth/signup": "User registration",
+      "POST /auth/login": "User authentication",
+      "POST /auth/logout": "User logout"
+    },
+    "quiz_system": {
+      "GET /api/quiz/templates": "Get quiz templates",
+      "POST /api/quiz/submit": "Submit quiz responses",
+      "GET /api/quiz/progress/:sessionId": "Get quiz progress"
+    },
+    "calculations": {
+      "POST /api/calculate/birth-chart": "Generate birth chart",
+      "POST /api/calculate/bodygraph": "Generate Human Design chart",
+      "POST /api/calculate/numerology": "Calculate numerological profile",
+      "POST /api/calculate/celtic-moon": "Determine Celtic Moon Sign"
+    },
+    "report_generation": {
+      "POST /api/reports/generate": "Generate new report",
+      "GET /api/reports/:reportId": "Get existing report",
+      "GET /api/reports/user/:userId": "Get user's reports"
+    },
+    "subscription_management": {
+      "POST /api/subscriptions/create": "Create Stripe subscription",
+      "POST /api/subscriptions/update": "Update subscription tier",
+      "POST /api/subscriptions/cancel": "Cancel subscription"
+    }
+  },
+  "calculation_services": {
+    "swiss_ephemeris": {
+      "library": "pyswisseph",
+      "accuracy": "0.001 arc-seconds",
+      "supported_bodies": [
+        "Sun",
+        "Moon",
+        "Mercury",
+        "Venus",
+        "Mars",
+        "Jupiter",
+        "Saturn",
+        "Uranus",
+        "Neptune",
+        "Pluto",
+        "North Node",
+        "South Node",
+        "Chiron"
+      ]
+    },
+    "lunaris_synthesis": {
+      "input_data": [
+        "birth_chart",
+        "quiz_responses",
+        "celtic_moon_sign",
+        "numerology_profile"
+      ],
+      "processing": "Multi-modal spiritual interpretation synthesis",
+      "output": "Personalized spiritual guidance and insights"
+    }
+  },
+  "security_configuration": {
+    "cors_origins": [
+      "https://anulunar.com",
+      "https://app.anulunar.com"
+    ],
+    "rate_limiting": {
+      "quiz_submissions": "10 per hour per user",
+      "report_generation": "5 per day per user",
+      "api_calls": "1000 per hour per user"
+    },
+    "data_encryption": "AES-256 for sensitive birth data"
+  }
+}

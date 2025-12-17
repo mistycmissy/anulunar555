@@ -1,0 +1,378 @@
+{
+  "type": "Reflector",
+  "strategy": "Wait a lunar cycle",
+  "authority": "Mental Authority",
+  "activated_gates": [
+    {
+      "gate_number": 25,
+      "line": 1,
+      "planet": "sun",
+      "position_type": "conscious",
+      "color": "#FF0066",
+      "tone": 1
+    },
+    {
+      "gate_number": 25,
+      "line": 1,
+      "planet": "earth",
+      "position_type": "conscious",
+      "color": "#FF0066",
+      "tone": 1
+    },
+    {
+      "gate_number": 25,
+      "line": 1,
+      "planet": "moon",
+      "position_type": "conscious",
+      "color": "#FF0066",
+      "tone": 1
+    },
+    {
+      "gate_number": 25,
+      "line": 1,
+      "planet": "north_node",
+      "position_type": "conscious",
+      "color": "#FF0066",
+      "tone": 1
+    },
+    {
+      "gate_number": 25,
+      "line": 1,
+      "planet": "south_node",
+      "position_type": "conscious",
+      "color": "#FF0066",
+      "tone": 1
+    },
+    {
+      "gate_number": 25,
+      "line": 1,
+      "planet": "mercury",
+      "position_type": "conscious",
+      "color": "#FF0066",
+      "tone": 1
+    },
+    {
+      "gate_number": 25,
+      "line": 1,
+      "planet": "venus",
+      "position_type": "conscious",
+      "color": "#FF0066",
+      "tone": 1
+    },
+    {
+      "gate_number": 25,
+      "line": 1,
+      "planet": "mars",
+      "position_type": "conscious",
+      "color": "#FF0066",
+      "tone": 1
+    },
+    {
+      "gate_number": 25,
+      "line": 1,
+      "planet": "jupiter",
+      "position_type": "conscious",
+      "color": "#FF0066",
+      "tone": 1
+    },
+    {
+      "gate_number": 25,
+      "line": 1,
+      "planet": "saturn",
+      "position_type": "conscious",
+      "color": "#FF0066",
+      "tone": 1
+    },
+    {
+      "gate_number": 25,
+      "line": 1,
+      "planet": "uranus",
+      "position_type": "conscious",
+      "color": "#FF0066",
+      "tone": 1
+    },
+    {
+      "gate_number": 25,
+      "line": 1,
+      "planet": "neptune",
+      "position_type": "conscious",
+      "color": "#FF0066",
+      "tone": 1
+    },
+    {
+      "gate_number": 25,
+      "line": 1,
+      "planet": "pluto",
+      "position_type": "conscious",
+      "color": "#FF0066",
+      "tone": 1
+    },
+    {
+      "gate_number": 25,
+      "line": 1,
+      "planet": "sun",
+      "position_type": "unconscious",
+      "color": "#000000",
+      "tone": 1
+    },
+    {
+      "gate_number": 25,
+      "line": 1,
+      "planet": "earth",
+      "position_type": "unconscious",
+      "color": "#000000",
+      "tone": 1
+    },
+    {
+      "gate_number": 25,
+      "line": 1,
+      "planet": "moon",
+      "position_type": "unconscious",
+      "color": "#000000",
+      "tone": 1
+    },
+    {
+      "gate_number": 25,
+      "line": 1,
+      "planet": "north_node",
+      "position_type": "unconscious",
+      "color": "#000000",
+      "tone": 1
+    },
+    {
+      "gate_number": 25,
+      "line": 1,
+      "planet": "south_node",
+      "position_type": "unconscious",
+      "color": "#000000",
+      "tone": 1
+    },
+    {
+      "gate_number": 25,
+      "line": 1,
+      "planet": "mercury",
+      "position_type": "unconscious",
+      "color": "#000000",
+      "tone": 1
+    },
+    {
+      "gate_number": 25,
+      "line": 1,
+      "planet": "venus",
+      "position_type": "unconscious",
+      "color": "#000000",
+      "tone": 1
+    },
+    {
+      "gate_number": 25,
+      "line": 1,
+      "planet": "mars",
+      "position_type": "unconscious",
+      "color": "#000000",
+      "tone": 1
+    },
+    {
+      "gate_number": 25,
+      "line": 1,
+      "planet": "jupiter",
+      "position_type": "unconscious",
+      "color": "#000000",
+      "tone": 1
+    },
+    {
+      "gate_number": 25,
+      "line": 1,
+      "planet": "saturn",
+      "position_type": "unconscious",
+      "color": "#000000",
+      "tone": 1
+    },
+    {
+      "gate_number": 25,
+      "line": 1,
+      "planet": "uranus",
+      "position_type": "unconscious",
+      "color": "#000000",
+      "tone": 1
+    },
+    {
+      "gate_number": 25,
+      "line": 1,
+      "planet": "neptune",
+      "position_type": "unconscious",
+      "color": "#000000",
+      "tone": 1
+    },
+    {
+      "gate_number": 25,
+      "line": 1,
+      "planet": "pluto",
+      "position_type": "unconscious",
+      "color": "#000000",
+      "tone": 1
+    }
+  ],
+  "activated_channels": [],
+  "defined_centers": {},
+  "personality_positions": {
+    "sun": {
+      "longitude": 45.0,
+      "gate": 25,
+      "line": 1,
+      "planet": "sun"
+    },
+    "earth": {
+      "longitude": 45.0,
+      "gate": 25,
+      "line": 1,
+      "planet": "earth"
+    },
+    "moon": {
+      "longitude": 45.0,
+      "gate": 25,
+      "line": 1,
+      "planet": "moon"
+    },
+    "north_node": {
+      "longitude": 45.0,
+      "gate": 25,
+      "line": 1,
+      "planet": "north_node"
+    },
+    "south_node": {
+      "longitude": 45.0,
+      "gate": 25,
+      "line": 1,
+      "planet": "south_node"
+    },
+    "mercury": {
+      "longitude": 45.0,
+      "gate": 25,
+      "line": 1,
+      "planet": "mercury"
+    },
+    "venus": {
+      "longitude": 45.0,
+      "gate": 25,
+      "line": 1,
+      "planet": "venus"
+    },
+    "mars": {
+      "longitude": 45.0,
+      "gate": 25,
+      "line": 1,
+      "planet": "mars"
+    },
+    "jupiter": {
+      "longitude": 45.0,
+      "gate": 25,
+      "line": 1,
+      "planet": "jupiter"
+    },
+    "saturn": {
+      "longitude": 45.0,
+      "gate": 25,
+      "line": 1,
+      "planet": "saturn"
+    },
+    "uranus": {
+      "longitude": 45.0,
+      "gate": 25,
+      "line": 1,
+      "planet": "uranus"
+    },
+    "neptune": {
+      "longitude": 45.0,
+      "gate": 25,
+      "line": 1,
+      "planet": "neptune"
+    },
+    "pluto": {
+      "longitude": 45.0,
+      "gate": 25,
+      "line": 1,
+      "planet": "pluto"
+    }
+  },
+  "design_positions": {
+    "sun": {
+      "longitude": 45.0,
+      "gate": 25,
+      "line": 1,
+      "planet": "sun"
+    },
+    "earth": {
+      "longitude": 45.0,
+      "gate": 25,
+      "line": 1,
+      "planet": "earth"
+    },
+    "moon": {
+      "longitude": 45.0,
+      "gate": 25,
+      "line": 1,
+      "planet": "moon"
+    },
+    "north_node": {
+      "longitude": 45.0,
+      "gate": 25,
+      "line": 1,
+      "planet": "north_node"
+    },
+    "south_node": {
+      "longitude": 45.0,
+      "gate": 25,
+      "line": 1,
+      "planet": "south_node"
+    },
+    "mercury": {
+      "longitude": 45.0,
+      "gate": 25,
+      "line": 1,
+      "planet": "mercury"
+    },
+    "venus": {
+      "longitude": 45.0,
+      "gate": 25,
+      "line": 1,
+      "planet": "venus"
+    },
+    "mars": {
+      "longitude": 45.0,
+      "gate": 25,
+      "line": 1,
+      "planet": "mars"
+    },
+    "jupiter": {
+      "longitude": 45.0,
+      "gate": 25,
+      "line": 1,
+      "planet": "jupiter"
+    },
+    "saturn": {
+      "longitude": 45.0,
+      "gate": 25,
+      "line": 1,
+      "planet": "saturn"
+    },
+    "uranus": {
+      "longitude": 45.0,
+      "gate": 25,
+      "line": 1,
+      "planet": "uranus"
+    },
+    "neptune": {
+      "longitude": 45.0,
+      "gate": 25,
+      "line": 1,
+      "planet": "neptune"
+    },
+    "pluto": {
+      "longitude": 45.0,
+      "gate": 25,
+      "line": 1,
+      "planet": "pluto"
+    }
+  },
+  "profile": "1/1"
+}

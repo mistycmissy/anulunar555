@@ -1,0 +1,124 @@
+{
+  "report_system_overview": {
+    "total_reports": 13,
+    "pricing_alignment": "Sacred number pricing from $8.88 to $2,255",
+    "generation_engine": "LUNARIS\u2122 framework synthesis",
+    "personalization": "Based on birth data, quiz responses, and proprietary databases"
+  },
+  "tier_1_cosmic_blueprint_foundation": {
+    "report_id": "cosmic_blueprint_foundation",
+    "price_point": "$8.88/month",
+    "report_length": "15-20 pages",
+    "data_sources": [
+      "Birth chart analysis (sun, moon, rising)",
+      "Celtic Moon Sign interpretation",
+      "Basic numerology (life path number)",
+      "Spiritual archetype identification"
+    ],
+    "template_structure": {
+      "cover_page": "Cosmic blueprint title with birth details",
+      "section_1_solar_identity": "Sun sign spiritual interpretation",
+      "section_2_lunar_emotions": "Moon sign emotional landscape",
+      "section_3_rising_persona": "Ascendant spiritual presentation",
+      "section_4_celtic_moon": "Celtic Moon Sign wisdom and tree connection",
+      "section_5_life_path": "Numerological life path guidance",
+      "section_6_spiritual_archetype": "Core spiritual identity and gifts",
+      "section_7_guidance": "Monthly cosmic guidance and practices"
+    }
+  },
+  "tier_2_lunar_transmutation": {
+    "report_id": "lunar_transmutation",
+    "price_point": "$18.88/month",
+    "report_length": "25-30 pages",
+    "data_sources": [
+      "Complete birth chart with houses",
+      "Celtic Moon Sign with seasonal connections",
+      "Numerology (life path, expression, soul urge)",
+      "Tarot birth card analysis",
+      "Moon phase sensitivity"
+    ],
+    "additional_features": [
+      "House-by-house spiritual interpretation",
+      "Celtic seasonal rituals and practices",
+      "Lunar cycle optimization guide",
+      "Tarot spread recommendations"
+    ]
+  },
+  "tier_3_crystal_clarity": {
+    "report_id": "crystal_clarity",
+    "price_point": "$44.44/month",
+    "includes_previous_tiers": true,
+    "additional_content": [
+      "Complete aspect analysis",
+      "Human Design basic overview",
+      "Advanced Celtic wisdom (Ogham connections)",
+      "Karmic pattern recognition",
+      "Crystal and herb recommendations"
+    ]
+  },
+  "tier_4_full_spectrum_circle": {
+    "report_id": "full_spectrum_circle",
+    "price_point": "$99.99/month",
+    "report_length": "50-60 pages",
+    "premium_features": [
+      "Complete Human Design bodygraph analysis",
+      "Advanced relationship compatibility",
+      "Career dharma path illumination",
+      "Spiritual gift activation guide",
+      "Monthly cosmic weather forecasting"
+    ]
+  },
+  "tier_5_high_magick_council": {
+    "report_id": "high_magick_council",
+    "price_point": "$555/month",
+    "exclusive_content": [
+      "Advanced soul contract analysis",
+      "Karmic pattern liberation techniques",
+      "Ascension timeline mapping",
+      "Past life influence integration",
+      "Custom ritual creation"
+    ]
+  },
+  "tier_6_ascension_patron_order": {
+    "report_id": "ascension_patron_order",
+    "price_point": "$2,255/month",
+    "vip_features": [
+      "Complete cosmic blueprint (all modalities)",
+      "Personal consultation integration",
+      "Custom spiritual practices design",
+      "Priority cosmic weather alerts",
+      "Sacred geometry personal mandala"
+    ]
+  },
+  "specialized_reports": {
+    "twin_flame_recognition": {
+      "trigger": "Relationship quiz completion",
+      "data_required": [
+        "Both partners' birth data",
+        "Relationship patterns"
+      ],
+      "analysis": "Composite chart + Celtic compatibility + karmic connections"
+    },
+    "dharma_path_illumination": {
+      "trigger": "Career purpose quiz",
+      "content": "Vocational astrology + life purpose numerology + spiritual gifts"
+    },
+    "abundance_activation_blueprint": {
+      "focus": "Financial and spiritual abundance alignment",
+      "includes": "2nd/8th house analysis + Jupiter transits + abundance blocks"
+    },
+    "karmic_pattern_liberation": {
+      "advanced_content": "South Node analysis + Saturn lessons + karmic debt numbers"
+    },
+    "ascension_timeline_mapping": {
+      "spiritual_evolution": "Progressive spiritual development phases",
+      "timing": "Based on major transits and numerological cycles"
+    },
+    "cosmic_compatibility_matrix": {
+      "relationship_analysis": "Synastry + Celtic compatibility + Human Design interactions"
+    },
+    "soul_contract_revelation": {
+      "deep_analysis": "North Node purpose + karmic relationships + soul agreements"
+    }
+  }
+}

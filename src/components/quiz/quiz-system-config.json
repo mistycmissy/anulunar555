@@ -1,0 +1,59 @@
+{
+  "system_overview": {
+    "purpose": "Collect comprehensive spiritual data for LUNARIS\u2122 synthesis",
+    "aesthetic": "Cosmic neon spiritual technology design",
+    "integration": "Feeds directly into report generation system",
+    "user_experience": "Engaging, beautiful, spiritually meaningful"
+  },
+  "quiz_types": {
+    "onboarding_cosmic_blueprint": {
+      "purpose": "Essential data for basic cosmic blueprint",
+      "estimated_time": "10-15 minutes",
+      "questions": "Birth data + spiritual background + energy sensitivity",
+      "triggers_reports": [
+        "Cosmic Blueprint Foundation"
+      ]
+    },
+    "relationship_deep_dive": {
+      "purpose": "Comprehensive relationship pattern analysis",
+      "estimated_time": "15-20 minutes",
+      "questions": "Relationship history + patterns + ideal partnership",
+      "triggers_reports": [
+        "Cosmic Compatibility Matrix",
+        "Twin Flame Recognition"
+      ]
+    },
+    "career_purpose_exploration": {
+      "purpose": "Career and dharma path guidance",
+      "estimated_time": "12-18 minutes",
+      "questions": "Work satisfaction + soul calling + skills + challenges",
+      "triggers_reports": [
+        "Dharma Path Illumination",
+        "Abundance Activation Blueprint"
+      ]
+    },
+    "spiritual_development_assessment": {
+      "purpose": "Advanced spiritual growth guidance",
+      "estimated_time": "20-25 minutes",
+      "questions": "Spiritual practices + psychic abilities + growth edges",
+      "triggers_reports": [
+        "Karmic Pattern Liberation",
+        "Ascension Timeline Mapping"
+      ]
+    }
+  },
+  "technical_features": {
+    "cosmic_aesthetic": "Dark space background with floating stars and cosmic gradients",
+    "smooth_transitions": "Slide animations between questions with cosmic effects",
+    "progress_tracking": "Gradient progress bar with cosmic coloring",
+    "responsive_design": "Mobile-optimized for spiritual seekers on all devices",
+    "data_validation": "Real-time validation with spiritual context",
+    "local_storage": "Save progress in case of interruption"
+  },
+  "data_integration": {
+    "immediate_processing": "Quiz responses immediately feed LUNARIS\u2122 framework",
+    "insight_generation": "Real-time cosmic insights based on response patterns",
+    "report_triggering": "Completion automatically starts report generation process",
+    "subscription_gating": "Advanced quizzes require appropriate subscription tier"
+  }
+}

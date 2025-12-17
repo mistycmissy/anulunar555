@@ -1,0 +1,59 @@
+{
+  "types": {
+    "manifestor": {
+      "aura_type": "The Sacred Initiator",
+      "strategy": "Inform and Act",
+      "signature": "Peace through Authentic Action",
+      "not_self": "Anger from Being Controlled",
+      "anulunar_wisdom": "Manifestors are here to start things that others will complete",
+      "spiritual_role": "Divine catalysts who initiate new cycles of collective growth",
+      "energy_dynamics": {
+        "percentage": "9% of population",
+        "aura_quality": "Closed and repelling - creates space for independent action",
+        "impact_on_others": "Powerful presence that can intimidate or inspire"
+      },
+      "life_theme": "Creating impact through aligned action and authentic self-expression",
+      "relationship_style": "Need partners who respect their autonomy while offering emotional support",
+      "career_guidance": "Excel in roles requiring independence, innovation, and leadership"
+    },
+    "generator": {
+      "aura_type": "The Sacred Life Force",
+      "strategy": "Wait to Respond",
+      "signature": "Satisfaction from Right Work",
+      "not_self": "Frustration from Wrong Choices",
+      "anulunar_wisdom": "Generators are the life force of humanity - honor your energy as sacred",
+      "spiritual_role": "Divine builders who create sustainable structures for collective thriving",
+      "energy_dynamics": {
+        "percentage": "37% of population",
+        "aura_quality": "Open and enveloping - draws others in",
+        "impact_on_others": "Magnetic presence that energizes and attracts"
+      }
+    }
+  },
+  "centers": {
+    "head": {
+      "name": "Crown/Head Center",
+      "theme": "Divine Inspiration and Mental Pressure",
+      "spiritual_function": "Receiving cosmic downloads and universal questions",
+      "when_defined": "Consistent access to mental inspiration and curiosity",
+      "when_undefined": "Amplifies and filters mental pressures from environment",
+      "anulunar_wisdom": "An open head center is like a cosmic radio - tune into the right frequency",
+      "gates": [
+        64,
+        61,
+        63
+      ]
+    }
+  },
+  "gates": {
+    "1": {
+      "name": "The Creative",
+      "center": "G/Identity",
+      "theme": "Self-Expression and Creative Power",
+      "gift": "Authentic creative expression that inspires others",
+      "shadow": "Attempting to be different for attention rather than authenticity",
+      "siddhi": "Pure creative force aligned with divine will",
+      "anulunar_wisdom": "Gate 1 is about being yourself so fully that you give others permission to do the same"
+    }
+  }
+}

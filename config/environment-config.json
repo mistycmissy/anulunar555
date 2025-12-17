@@ -1,0 +1,12 @@
+{
+  "development": {
+    "VITE_SUPABASE_URL": "your-development-url",
+    "VITE_SUPABASE_ANON_KEY": "your-development-key",
+    "VITE_STRIPE_PUBLISHABLE_KEY": "pk_test_your-stripe-key"
+  },
+  "production": {
+    "VITE_SUPABASE_URL": "your-production-url",
+    "VITE_SUPABASE_ANON_KEY": "your-production-key",
+    "VITE_STRIPE_PUBLISHABLE_KEY": "pk_live_your-stripe-key"
+  }
+}

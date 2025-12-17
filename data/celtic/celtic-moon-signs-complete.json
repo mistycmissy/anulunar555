@@ -1,0 +1,664 @@
+{
+  "system_info": {
+    "name": "AnuLunar\u2122 Celtic Moon Signs System",
+    "version": "1.0.0",
+    "total_signs": 13,
+    "calendar_type": "Modern Celtic Tree Calendar",
+    "creator": "AnuLunar Spiritual Intelligence\u2122",
+    "memorial": "Dedicated to Amanda Panda - her vision lives on through accessible spiritual wisdom",
+    "date_created": "2025-12-16",
+    "licensing": "Proprietary to AnuLunar\u2122"
+  },
+  "signs": {
+    "birch_moon": {
+      "name": "Birch Moon - The Achiever",
+      "dates": "December 24 - January 20",
+      "ogham_symbol": "\u1681 (Beth)",
+      "tree_wisdom": "The pioneer tree, first to grow in disturbed soil, symbol of renewal and fresh starts",
+      "spiritual_archetype": "The Sacred Initiator",
+      "anulunar_connection": "Birch represents new beginnings emerging from apparent endings, teaching that every conclusion contains the seeds of transformation",
+      "seasonal_wisdom": "Winter Solstice energy - the return of light after deepest darkness",
+      "healing_herbs": [
+        "White Sage",
+        "Frankincense",
+        "Pine"
+      ],
+      "power_animals": [
+        "White Wolf",
+        "Snow Owl",
+        "Polar Bear"
+      ],
+      "celtic_deities": [
+        "Brighid",
+        "Cernunnos"
+      ],
+      "core_traits": [
+        "Natural leadership with humble service",
+        "Ambitious but spiritually motivated",
+        "Resilient through life's storms",
+        "Intuitive problem-solving gifts"
+      ],
+      "unique_second_person_statements": [
+        "You possess an extraordinary ability to see potential where others see only problems or obstacles.",
+        "Your natural leadership style inspires others to believe in themselves rather than simply follow you.",
+        "You have an innate gift for transforming challenging situations into opportunities for collective growth.",
+        "Your ambitious nature is always tempered by a deep desire to serve something greater than yourself.",
+        "You instinctively know when to push forward and when to wait for the right timing."
+      ],
+      "compatibility": {
+        "highest": [
+          "Oak Moon",
+          "Holly Moon"
+        ],
+        "challenging": [
+          "Willow Moon",
+          "Ivy Moon"
+        ],
+        "growth_partnerships": [
+          "Rowan Moon",
+          "Elder Moon"
+        ]
+      }
+    },
+    "rowan_moon": {
+      "name": "Rowan Moon - The Thinker",
+      "dates": "January 21 - February 17",
+      "ogham_symbol": "\u1682 (Luis)",
+      "tree_wisdom": "The protective tree, guardian against negative energies, symbol of vision and insight",
+      "spiritual_archetype": "The Sacred Visionary",
+      "anulunar_connection": "Rowan teaches the power of clear sight and protective wisdom in navigating life's complexities",
+      "seasonal_wisdom": "Imbolc energy - Brighid's blessing of inspiration and creativity",
+      "healing_herbs": [
+        "Rosemary",
+        "Lavender",
+        "Cedar"
+      ],
+      "power_animals": [
+        "Red Hawk",
+        "Fox",
+        "Raven"
+      ],
+      "celtic_deities": [
+        "Brighid",
+        "Lugh"
+      ],
+      "core_traits": [
+        "Deep analytical mind with intuitive insight",
+        "Natural protector of vulnerable people",
+        "Philosophical approach to life's challenges",
+        "Gift for seeing through deception"
+      ],
+      "unique_second_person_statements": [
+        "Your analytical mind operates on multiple levels simultaneously, processing both logical and intuitive information with equal precision.",
+        "You have a remarkable ability to protect others from negative influences without them even realizing the danger they were in.",
+        "Your philosophical approach to life helps others find meaning in their struggles rather than just solutions to their problems.",
+        "You possess an uncanny ability to see through deception and illusion, yet you share this insight with gentle compassion.",
+        "Your presence alone creates a protective field that helps others feel safe enough to be authentically themselves."
+      ],
+      "compatibility": {
+        "highest": [
+          "Birch Moon",
+          "Ash Moon"
+        ],
+        "challenging": [
+          "Holly Moon",
+          "Vine Moon"
+        ],
+        "growth_partnerships": [
+          "Hawthorn Moon",
+          "Reed Moon"
+        ]
+      }
+    },
+    "ash_moon": {
+      "name": "Ash Moon - The Enchanter",
+      "dates": "February 18 - March 17",
+      "ogham_symbol": "\u1685 (Nion)",
+      "tree_wisdom": "The world tree connecting all realms, symbol of connection and divine communication",
+      "spiritual_archetype": "The Sacred Connector",
+      "anulunar_connection": "Ash bridges the gap between worlds, teaching us to access wisdom from multiple dimensions of existence",
+      "seasonal_wisdom": "Late winter - preparing for spring's emergence through inner cultivation",
+      "healing_herbs": [
+        "Mugwort",
+        "Jasmine",
+        "Myrrh"
+      ],
+      "power_animals": [
+        "Spider",
+        "Butterfly",
+        "Dolphin"
+      ],
+      "celtic_deities": [
+        "Manannan mac Lir",
+        "Arianrhod"
+      ],
+      "core_traits": [
+        "Natural bridge between different worlds or groups",
+        "Intuitive understanding of hidden connections",
+        "Gifted communicator and translator",
+        "Attracts mystical experiences"
+      ],
+      "unique_second_person_statements": [
+        "You naturally serve as a bridge between different worlds, helping others understand perspectives they couldn't access alone.",
+        "Your intuitive understanding of hidden connections reveals patterns that others miss entirely.",
+        "You have a gift for translating complex spiritual concepts into language that speaks directly to people's hearts.",
+        "Your presence tends to attract mystical experiences and synchronicities that benefit everyone around you.",
+        "You possess an enchanting quality that helps others believe in magic and possibility again."
+      ],
+      "compatibility": {
+        "highest": [
+          "Rowan Moon",
+          "Willow Moon"
+        ],
+        "challenging": [
+          "Alder Moon",
+          "Hazel Moon"
+        ],
+        "growth_partnerships": [
+          "Vine Moon",
+          "Elder Moon"
+        ]
+      }
+    },
+    "alder_moon": {
+      "name": "Alder Moon - The Trailblazer",
+      "dates": "March 18 - April 14",
+      "ogham_symbol": "\u1683 (Fearn)",
+      "tree_wisdom": "The foundation tree, thriving in wet conditions others cannot endure, symbol of strength and determination",
+      "spiritual_archetype": "The Sacred Pioneer",
+      "anulunar_connection": "Alder teaches us to find our footing in unstable circumstances and create solid foundations for others to follow",
+      "seasonal_wisdom": "Spring Equinox - balance between light and dark, preparation and action",
+      "healing_herbs": [
+        "Nettle",
+        "Dandelion",
+        "Clover"
+      ],
+      "power_animals": [
+        "Ram",
+        "Robin",
+        "Salmon"
+      ],
+      "celtic_deities": [
+        "Bran the Blessed",
+        "Epona"
+      ],
+      "core_traits": [
+        "Makes decisions quickly and confidently",
+        "Courageous in the face of uncertainty",
+        "Natural pioneer and path-maker",
+        "Strong sense of purpose and direction"
+      ],
+      "unique_second_person_statements": [
+        "You make decisions with a confidence that comes from trusting your inner compass even when the path ahead is unclear.",
+        "Your courage in facing uncertainty inspires others to take risks they wouldn't dare attempt alone.",
+        "You naturally create pathways for others to follow, often without realizing the profound impact of your pioneering spirit.",
+        "Your strong sense of purpose acts as a magnetic force that draws opportunities and resources toward your vision.",
+        "You have an extraordinary ability to find solid ground in situations where others see only instability and chaos."
+      ],
+      "compatibility": {
+        "highest": [
+          "Holly Moon",
+          "Oak Moon"
+        ],
+        "challenging": [
+          "Ash Moon",
+          "Ivy Moon"
+        ],
+        "growth_partnerships": [
+          "Hawthorn Moon",
+          "Vine Moon"
+        ]
+      }
+    },
+    "willow_moon": {
+      "name": "Willow Moon - The Observer",
+      "dates": "April 15 - May 12",
+      "ogham_symbol": "\u1684 (Saille)",
+      "tree_wisdom": "The bending tree that never breaks, symbol of flexibility and deep emotional wisdom",
+      "spiritual_archetype": "The Sacred Healer",
+      "anulunar_connection": "Willow teaches us that true strength comes from flexibility and that healing flows through understanding rather than force",
+      "seasonal_wisdom": "Late spring - full emergence of life force and creative potential",
+      "healing_herbs": [
+        "Willow Bark",
+        "Calendula",
+        "Chamomile"
+      ],
+      "power_animals": [
+        "Deer",
+        "Swan",
+        "Frog"
+      ],
+      "celtic_deities": [
+        "Brigantia",
+        "Dian Cecht"
+      ],
+      "core_traits": [
+        "Exceptional emotional intelligence",
+        "Natural healer and counselor",
+        "Flexible and adaptable nature",
+        "Deep connection to lunar cycles"
+      ],
+      "unique_second_person_statements": [
+        "Your emotional intelligence allows you to understand what others need before they can articulate it themselves.",
+        "You have a natural healing presence that helps people feel safe enough to release pain they've been carrying for years.",
+        "Your flexible nature enables you to find creative solutions that honor everyone's needs rather than forcing compromise.",
+        "Your deep connection to lunar cycles gives you an intuitive understanding of natural timing and emotional rhythms.",
+        "You possess a rare ability to observe human nature without judgment, which creates space for authentic transformation."
+      ],
+      "compatibility": {
+        "highest": [
+          "Ash Moon",
+          "Hawthorn Moon"
+        ],
+        "challenging": [
+          "Birch Moon",
+          "Alder Moon"
+        ],
+        "growth_partnerships": [
+          "Ivy Moon",
+          "Reed Moon"
+        ]
+      }
+    },
+    "hawthorn_moon": {
+      "name": "Hawthorn Moon - The Illusionist",
+      "dates": "May 13 - June 9",
+      "ogham_symbol": "\u1686 (Huath)",
+      "tree_wisdom": "The fairy tree, guardian of thresholds and sacred spaces, symbol of protection and magic",
+      "spiritual_archetype": "The Sacred Guardian",
+      "anulunar_connection": "Hawthorn protects the sacred spaces where transformation occurs, teaching us to honor both the seen and unseen worlds",
+      "seasonal_wisdom": "Beltane energy - celebration of fertility and the union of opposing forces",
+      "healing_herbs": [
+        "Hawthorn Berry",
+        "Rose Hip",
+        "Elderflower"
+      ],
+      "power_animals": [
+        "Bee",
+        "Hummingbird",
+        "White Horse"
+      ],
+      "celtic_deities": [
+        "Blodeuwedd",
+        "Cernunnos"
+      ],
+      "core_traits": [
+        "Natural ability to see beyond surface appearances",
+        "Protective of sacred spaces and vulnerable people",
+        "Comfortable with paradox and mystery",
+        "Attracts magical experiences and opportunities"
+      ],
+      "unique_second_person_statements": [
+        "You naturally see beyond surface appearances to the deeper truth that others often miss entirely.",
+        "Your protective instincts kick in automatically when you sense someone or something sacred is threatened.",
+        "You're remarkably comfortable with paradox and mystery, which allows you to hold space for contradictory truths simultaneously.",
+        "You attract magical experiences and opportunities because you believe in wonder rather than limiting yourself to only what seems logical.",
+        "Your presence creates a protective field around sacred spaces and vulnerable people without them needing to ask for help."
+      ],
+      "compatibility": {
+        "highest": [
+          "Willow Moon",
+          "Oak Moon"
+        ],
+        "challenging": [
+          "Holly Moon",
+          "Hazel Moon"
+        ],
+        "growth_partnerships": [
+          "Rowan Moon",
+          "Elder Moon"
+        ]
+      }
+    },
+    "oak_moon": {
+      "name": "Oak Moon - The Stabilizer",
+      "dates": "June 10 - July 7",
+      "ogham_symbol": "\u1687 (Duir)",
+      "tree_wisdom": "The king of trees, symbol of strength, endurance, and noble leadership",
+      "spiritual_archetype": "The Sacred Sovereign",
+      "anulunar_connection": "Oak teaches us that true leadership comes from serving the greater good with unwavering integrity and strength",
+      "seasonal_wisdom": "Summer Solstice - peak of solar energy and manifest power",
+      "healing_herbs": [
+        "Oak Bark",
+        "Acorn",
+        "St. John's Wort"
+      ],
+      "power_animals": [
+        "Stag",
+        "Eagle",
+        "Lion"
+      ],
+      "celtic_deities": [
+        "Dagda",
+        "Taranis"
+      ],
+      "core_traits": [
+        "Natural leader with unshakeable integrity",
+        "Provides stability and strength to others",
+        "Deeply rooted in personal values",
+        "Protective of community and family"
+      ],
+      "unique_second_person_statements": [
+        "Your natural leadership comes from an unshakeable integrity that others can sense and trust implicitly.",
+        "You provide stability and strength to others without depleting your own resources because you're deeply rooted in your values.",
+        "Your protective instincts for community and family create a foundation that allows others to take risks and grow.",
+        "You have an extraordinary ability to remain centered and strong even when everything around you seems to be falling apart.",
+        "Your presence alone communicates safety and reliability, which draws people to seek your counsel during difficult times."
+      ],
+      "compatibility": {
+        "highest": [
+          "Birch Moon",
+          "Hawthorn Moon"
+        ],
+        "challenging": [
+          "Reed Moon",
+          "Ivy Moon"
+        ],
+        "growth_partnerships": [
+          "Alder Moon",
+          "Holly Moon"
+        ]
+      }
+    },
+    "holly_moon": {
+      "name": "Holly Moon - The Ruler",
+      "dates": "July 8 - August 4",
+      "ogham_symbol": "\u1688 (Tinne)",
+      "tree_wisdom": "The evergreen warrior, symbol of eternal life and victorious spirit",
+      "spiritual_archetype": "The Sacred Warrior",
+      "anulunar_connection": "Holly teaches us that true victory comes from overcoming our own limitations rather than defeating others",
+      "seasonal_wisdom": "Lughnasadh approaching - time of harvest and celebrating achievements",
+      "healing_herbs": [
+        "Holly Leaf",
+        "Vervain",
+        "Sunflower"
+      ],
+      "power_animals": [
+        "Wolf",
+        "Hawk",
+        "Dragon"
+      ],
+      "celtic_deities": [
+        "Lugh",
+        "Scathach"
+      ],
+      "core_traits": [
+        "Natural authority and commanding presence",
+        "Competitive spirit balanced with honor",
+        "Protective of those under their care",
+        "Driven to achieve excellence"
+      ],
+      "unique_second_person_statements": [
+        "Your natural authority stems from your ability to lead by example rather than by demanding compliance from others.",
+        "Your competitive spirit is always balanced by a strong sense of honor that prevents you from winning at any cost.",
+        "You're fiercely protective of those under your care, often anticipating threats before others are even aware of them.",
+        "Your drive to achieve excellence inspires others to reach beyond what they previously thought possible for themselves.",
+        "You have a commanding presence that can take charge of chaotic situations and restore order through clear direction."
+      ],
+      "compatibility": {
+        "highest": [
+          "Birch Moon",
+          "Alder Moon"
+        ],
+        "challenging": [
+          "Rowan Moon",
+          "Hawthorn Moon"
+        ],
+        "growth_partnerships": [
+          "Oak Moon",
+          "Vine Moon"
+        ]
+      }
+    },
+    "hazel_moon": {
+      "name": "Hazel Moon - The Knower",
+      "dates": "August 5 - September 1",
+      "ogham_symbol": "\u1689 (Coll)",
+      "tree_wisdom": "The wisdom tree, symbol of knowledge, intuition, and divine inspiration",
+      "spiritual_archetype": "The Sacred Scholar",
+      "anulunar_connection": "Hazel teaches us that true wisdom comes from combining intellectual knowledge with intuitive understanding",
+      "seasonal_wisdom": "Lughnasadh energy - celebration of skills, crafts, and intellectual achievements",
+      "healing_herbs": [
+        "Hazelnut",
+        "Ginkgo",
+        "Gotu Kola"
+      ],
+      "power_animals": [
+        "Owl",
+        "Raven",
+        "Serpent"
+      ],
+      "celtic_deities": [
+        "Manannan mac Lir",
+        "Oghma"
+      ],
+      "core_traits": [
+        "Exceptional learning ability and retention",
+        "Natural teacher and wisdom keeper",
+        "Combines logic with intuitive insight",
+        "Drawn to mysteries and hidden knowledge"
+      ],
+      "unique_second_person_statements": [
+        "Your exceptional learning ability allows you to absorb and synthesize information in ways that create entirely new understanding.",
+        "You're a natural teacher who can make complex concepts accessible without dumbing them down or losing their essential meaning.",
+        "Your ability to combine logical analysis with intuitive insight leads you to discoveries that purely rational approaches would miss.",
+        "You're irresistibly drawn to mysteries and hidden knowledge, often uncovering truths that benefit far more people than just yourself.",
+        "Your wisdom-keeping nature means people naturally turn to you for guidance that goes deeper than simple advice or solutions."
+      ],
+      "compatibility": {
+        "highest": [
+          "Vine Moon",
+          "Elder Moon"
+        ],
+        "challenging": [
+          "Ash Moon",
+          "Hawthorn Moon"
+        ],
+        "growth_partnerships": [
+          "Reed Moon",
+          "Willow Moon"
+        ]
+      }
+    },
+    "vine_moon": {
+      "name": "Vine Moon - The Equalizer",
+      "dates": "September 2 - September 29",
+      "ogham_symbol": "\u168b (Muin)",
+      "tree_wisdom": "The networking plant, symbol of connection, balance, and harvest wisdom",
+      "spiritual_archetype": "The Sacred Mediator",
+      "anulunar_connection": "Vine teaches us that true balance comes from understanding that everything is interconnected and interdependent",
+      "seasonal_wisdom": "Autumn Equinox - perfect balance between light and dark, harvest of the year's efforts",
+      "healing_herbs": [
+        "Grape Leaf",
+        "Valerian",
+        "Passionflower"
+      ],
+      "power_animals": [
+        "Spider",
+        "Butterfly",
+        "Hummingbird"
+      ],
+      "celtic_deities": [
+        "Mabon",
+        "Cerridwen"
+      ],
+      "core_traits": [
+        "Natural diplomat and mediator",
+        "Seeks balance and fairness in all things",
+        "Excellent at building connections between people",
+        "Appreciates beauty and refinement"
+      ],
+      "unique_second_person_statements": [
+        "Your natural diplomacy stems from your ability to genuinely understand and value all perspectives before seeking resolution.",
+        "You seek balance and fairness not from a sense of duty, but because harmony is simply how you prefer the world to operate.",
+        "Your talent for building connections between people creates networks that benefit everyone involved, often in unexpected ways.",
+        "Your appreciation for beauty and refinement elevates the environments and experiences of everyone around you.",
+        "You have an extraordinary ability to find common ground between opposing viewpoints without forcing anyone to compromise their core values."
+      ],
+      "compatibility": {
+        "highest": [
+          "Hazel Moon",
+          "Ivy Moon"
+        ],
+        "challenging": [
+          "Rowan Moon",
+          "Oak Moon"
+        ],
+        "growth_partnerships": [
+          "Ash Moon",
+          "Holly Moon"
+        ]
+      }
+    },
+    "ivy_moon": {
+      "name": "Ivy Moon - The Survivor",
+      "dates": "September 30 - October 27",
+      "ogham_symbol": "\u168c (Gort)",
+      "tree_wisdom": "The eternal climber, symbol of determination, loyalty, and hidden strength",
+      "spiritual_archetype": "The Sacred Survivor",
+      "anulunar_connection": "Ivy teaches us that survival is not just endurance, but the art of thriving by finding creative ways to grow",
+      "seasonal_wisdom": "Samhain approaching - honoring ancestors and preparing for the dark half of the year",
+      "healing_herbs": [
+        "Ivy Leaf",
+        "Burdock",
+        "Echinacea"
+      ],
+      "power_animals": [
+        "Cat",
+        "Badger",
+        "Octopus"
+      ],
+      "celtic_deities": [
+        "The Morrigan",
+        "Hel"
+      ],
+      "core_traits": [
+        "Incredible resilience and determination",
+        "Loyal and steadfast in relationships",
+        "Adaptable and resourceful",
+        "Hidden depths and unexpected strength"
+      ],
+      "unique_second_person_statements": [
+        "Your incredible resilience comes not from hardness, but from your ability to bend and flow while never losing sight of your goals.",
+        "Your loyalty in relationships runs so deep that people know they can count on you even when circumstances become challenging.",
+        "Your adaptability and resourcefulness allow you to thrive in conditions that would overwhelm others.",
+        "You possess hidden depths and unexpected strength that often surprise people who think they know you well.",
+        "Your survival instincts are paired with genuine wisdom about what's truly worth preserving and what should be released."
+      ],
+      "compatibility": {
+        "highest": [
+          "Vine Moon",
+          "Reed Moon"
+        ],
+        "challenging": [
+          "Birch Moon",
+          "Alder Moon"
+        ],
+        "growth_partnerships": [
+          "Willow Moon",
+          "Elder Moon"
+        ]
+      }
+    },
+    "reed_moon": {
+      "name": "Reed Moon - The Inquisitor",
+      "dates": "October 28 - November 24",
+      "ogham_symbol": "\u1685\u168c (Negetal)",
+      "tree_wisdom": "The hollow stem that bends without breaking, symbol of flexibility and hidden depths",
+      "spiritual_archetype": "The Sacred Investigator",
+      "anulunar_connection": "Reed teaches us that true understanding comes from diving deep beneath surface appearances to discover hidden truths",
+      "seasonal_wisdom": "Samhain energy - veil between worlds is thin, time for deep spiritual investigation",
+      "healing_herbs": [
+        "Cat Tail",
+        "Horsetail",
+        "Water Lily"
+      ],
+      "power_animals": [
+        "Otter",
+        "Crane",
+        "Salmon"
+      ],
+      "celtic_deities": [
+        "The Morrigan",
+        "Manannan mac Lir"
+      ],
+      "core_traits": [
+        "Natural investigator and truth-seeker",
+        "Comfortable with mystery and the unknown",
+        "Flexible and adaptable to changing circumstances",
+        "Deep intuitive understanding of hidden patterns"
+      ],
+      "unique_second_person_statements": [
+        "Your natural investigative abilities are motivated by genuine curiosity rather than a need to control or expose others.",
+        "You're remarkably comfortable with mystery and the unknown, which allows you to explore areas others avoid out of fear.",
+        "Your flexibility enables you to adapt to changing circumstances without losing your essential sense of self.",
+        "Your intuitive understanding of hidden patterns helps you see connections that lead to profound insights.",
+        "You possess the rare ability to dive deep into complex situations and emerge with clarity rather than confusion."
+      ],
+      "compatibility": {
+        "highest": [
+          "Ivy Moon",
+          "Elder Moon"
+        ],
+        "challenging": [
+          "Oak Moon",
+          "Holly Moon"
+        ],
+        "growth_partnerships": [
+          "Rowan Moon",
+          "Hazel Moon"
+        ]
+      }
+    },
+    "elder_moon": {
+      "name": "Elder Moon - The Seeker",
+      "dates": "November 25 - December 23",
+      "ogham_symbol": "\u168f (Ruis)",
+      "tree_wisdom": "The threshold tree between life and death, guardian of ancient wisdom and transformation",
+      "spiritual_archetype": "The Sacred Elder",
+      "anulunar_connection": "Elder teaches us that true wisdom comes from embracing both the light and shadow aspects of existence with courage",
+      "seasonal_wisdom": "Winter Solstice approaching - deepest darkness before the return of light",
+      "healing_herbs": [
+        "Elderberry",
+        "Elderflower",
+        "Sage"
+      ],
+      "power_animals": [
+        "Raven",
+        "Crone Spider",
+        "Winter Wolf"
+      ],
+      "celtic_deities": [
+        "The Cailleach",
+        "Cerridwen"
+      ],
+      "core_traits": [
+        "Deep spiritual wisdom gained through experience",
+        "Natural guide for others in transition",
+        "Comfortable with endings and new beginnings",
+        "Gift for helping others release what no longer serves"
+      ],
+      "unique_second_person_statements": [
+        "Your deep spiritual wisdom comes from having courageously journeyed through both light and shadow experiences with an open heart.",
+        "You naturally guide others through major life transitions because you understand that endings are always gateways to new beginnings.",
+        "Your comfort with mystery and the unknown helps others face their own fears about uncertainty and change.",
+        "Your gift for helping others release what no longer serves them comes from your own mastery of the art of conscious letting go.",
+        "Your presence alone creates a sacred space where people feel safe enough to explore the deeper questions of their existence."
+      ],
+      "compatibility": {
+        "highest": [
+          "Reed Moon",
+          "Birch Moon"
+        ],
+        "challenging": [
+          "Ash Moon",
+          "Hazel Moon"
+        ],
+        "growth_partnerships": [
+          "Hawthorn Moon",
+          "Ivy Moon"
+        ]
+      }
+    }
+  }
+}

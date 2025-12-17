@@ -1,0 +1,535 @@
+
+<!DOCTYPE html>
+<html lang="en" class="dark h-full">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cosmic Blueprint Foundation Quiz</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <style>
+        body {
+            font-family: 'Inter', system-ui, sans-serif;
+            background: linear-gradient(135deg, #09071F 0%, #1B1140 50%, #09071F 100%);
+            min-height: 100vh;
+        }
+        
+        .cosmic-card {
+            background: radial-gradient(ellipse at top left, rgba(0, 231, 255, 0.1), transparent 60%),
+                        radial-gradient(ellipse at bottom right, rgba(255, 0, 204, 0.1), transparent 60%),
+                        #1B1140;
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 203, 71, 0.3);
+            border-radius: 1rem;
+        }
+        
+        .cosmic-button {
+            background: linear-gradient(45deg, #FF00CC, #00E7FF);
+            border: none;
+            border-radius: 50px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 20px rgba(0, 231, 255, 0.3);
+        }
+        
+        .cosmic-button:hover {
+            box-shadow: 0 0 30px rgba(0, 231, 255, 0.5);
+            transform: translateY(-2px);
+        }
+        
+        .cosmic-input {
+            background: rgba(27, 17, 64, 0.8);
+            border: 2px solid rgba(255, 203, 71, 0.3);
+            border-radius: 0.75rem;
+            color: #FFFBF8;
+            padding: 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .cosmic-input:focus {
+            border-color: #00E7FF;
+            box-shadow: 0 0 20px rgba(0, 231, 255, 0.2);
+            outline: none;
+        }
+        
+        .progress-bar {
+            background: linear-gradient(90deg, #FF00CC 0%, #00E7FF 50%, #FFCB47 100%);
+            border-radius: 50px;
+            height: 8px;
+            transition: width 0.3s ease;
+        }
+        
+        .floating-stars {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+        
+        .star {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: #FFCB47;
+            border-radius: 50%;
+            animation: twinkle 3s infinite;
+        }
+        
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.3; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.2); }
+        }
+        
+        .question-appear {
+            animation: slideInFromRight 0.6s ease-out;
+        }
+        
+        @keyframes slideInFromRight {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        .spiritual-note {
+            background: linear-gradient(45deg, rgba(255, 203, 71, 0.1), rgba(255, 0, 204, 0.1));
+            border-left: 4px solid #FFCB47;
+            padding: 1rem;
+            border-radius: 0 0.5rem 0.5rem 0;
+            font-style: italic;
+            margin-top: 0.5rem;
+        }
+    </style>
+</head>
+
+<body class="min-h-screen relative">
+    <!-- Floating Stars Background -->
+    <div class="floating-stars" id="starsContainer"></div>
+    
+    <!-- Main Quiz Container -->
+    <div class="relative z-10 min-h-screen flex items-center justify-center p-4">
+        <div class="cosmic-card max-w-4xl w-full p-8">
+            <!-- Quiz Header -->
+            <div class="text-center mb-8">
+                <div class="flex items-center justify-center mb-4">
+                    <div class="w-16 h-16 rounded-full border-2 border-[#FFCB47] flex items-center justify-center mr-4">
+                        <span class="text-[#FFCB47] text-2xl font-bold">AL</span>
+                    </div>
+                    <h1 class="text-3xl font-bold text-[#FFCB47] uppercase tracking-wider">AnuLunar S.I™</h1>
+                </div>
+                
+                <h2 class="text-2xl font-bold text-[#FFFBF8] mb-2">Cosmic Blueprint Foundation Quiz</h2>
+                <p class="text-[#B8A4D9] text-lg">Gathering your essential cosmic data to create your personalized spiritual profile</p>
+                
+                <!-- Progress Bar -->
+                <div class="mt-6 bg-gray-700 rounded-full h-2">
+                    <div class="progress-bar" style="width: 0%" id="progressBar"></div>
+                </div>
+                <p class="text-sm text-[#B8A4D9] mt-2" id="progressText">Question 0 of 0</p>
+            </div>
+            
+            <!-- Quiz Content Area -->
+            <div id="quizContent" class="min-h-[400px]">
+                <!-- Questions will be dynamically inserted here -->
+            </div>
+            
+            <!-- Navigation Buttons -->
+            <div class="flex justify-between mt-8">
+                <button class="cosmic-button px-6 py-3 text-white" id="prevButton" onclick="previousQuestion()" style="display: none;">
+                    ← Previous
+                </button>
+                <button class="cosmic-button px-6 py-3 text-white ml-auto" id="nextButton" onclick="nextQuestion()">
+                    Next →
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Quiz Data and State Management
+        const quizData = {
+  "title": "Cosmic Blueprint Foundation Quiz",
+  "description": "Gathering your essential cosmic data to create your personalized spiritual profile",
+  "amanda_welcome": "Welcome, beautiful soul! I'm so excited to help you discover your cosmic blueprint. Answer honestly - your soul knows the truth.",
+  "sections": {
+    "basic_cosmic_data": {
+      "questions": [
+        {
+          "id": "birth_date",
+          "type": "date",
+          "question": "What is your birth date?",
+          "required": true,
+          "spiritual_note": "This connects you to the cosmic energies present at your soul's arrival"
+        },
+        {
+          "id": "birth_time",
+          "type": "time",
+          "question": "What time were you born? (If unknown, select 'Unknown')",
+          "required": true,
+          "options": [
+            "Known exact time",
+            "Approximate time",
+            "Unknown"
+          ],
+          "spiritual_note": "Your birth time reveals your rising sign - how your soul chose to present to the world"
+        },
+        {
+          "id": "birth_location",
+          "type": "location",
+          "question": "Where were you born? (City, State/Province, Country)",
+          "required": true,
+          "spiritual_note": "Your birthplace anchors your chart to specific Earth energies"
+        }
+      ]
+    },
+    "spiritual_background": {
+      "questions": [
+        {
+          "id": "spiritual_experience",
+          "type": "multiple_choice",
+          "question": "How would you describe your spiritual journey so far?",
+          "options": [
+            "Just beginning to explore spirituality",
+            "Have some experience with spiritual practices",
+            "Deeply involved in spiritual study and practice",
+            "Experienced practitioner helping others on their path",
+            "Spiritual teacher or professional guide"
+          ],
+          "scoring": {
+            "beginner": "Just beginning to explore spirituality",
+            "intermediate": "Have some experience with spiritual practices",
+            "advanced": "Deeply involved in spiritual study and practice",
+            "expert": "Experienced practitioner helping others on their path",
+            "teacher": "Spiritual teacher or professional guide"
+          }
+        },
+        {
+          "id": "modality_familiarity",
+          "type": "checkbox",
+          "question": "Which spiritual modalities are you familiar with? (Check all that apply)",
+          "options": [
+            "Astrology",
+            "Numerology",
+            "Tarot/Oracle Cards",
+            "Human Design",
+            "Meditation/Mindfulness",
+            "Energy Healing (Reiki, etc.)",
+            "Crystal Work",
+            "Celtic/Nature Spirituality",
+            "Chakra Work",
+            "Sound Healing",
+            "None of the above - I'm new to this!"
+          ]
+        }
+      ]
+    },
+    "energy_sensitivity": {
+      "questions": [
+        {
+          "id": "intuitive_abilities",
+          "type": "scale",
+          "question": "How strongly do you feel your intuitive abilities?",
+          "scale": {
+            "min": 1,
+            "max": 10,
+            "labels": {
+              "1": "I rarely trust my gut feelings",
+              "5": "Sometimes I get strong intuitive hits",
+              "10": "I rely heavily on my intuition for major decisions"
+            }
+          }
+        },
+        {
+          "id": "energy_sensitivity",
+          "type": "multiple_choice",
+          "question": "How do you experience other people's energies?",
+          "options": [
+            "I don't really notice energy from others",
+            "I sometimes pick up on moods but it's subtle",
+            "I often feel overwhelmed in crowds or with certain people",
+            "I can immediately sense someone's emotional state",
+            "I absorb others' emotions as if they were my own"
+          ]
+        },
+        {
+          "id": "moon_sensitivity",
+          "type": "multiple_choice",
+          "question": "How does the moon affect you?",
+          "options": [
+            "I don't notice any moon effects",
+            "I've heard about moon effects but don't track them",
+            "I notice some changes around full moons",
+            "I'm very aware of moon phases and plan around them",
+            "The moon dramatically affects my energy, sleep, and emotions"
+          ]
+        }
+      ]
+    },
+    "sacred_number_resonance": {
+      "questions": [
+        {
+          "id": "favorite_numbers",
+          "type": "text",
+          "question": "Do you have any numbers that feel especially meaningful to you? (List up to 3)",
+          "spiritual_note": "Numbers that call to us often reflect our soul's vibrational signature"
+        },
+        {
+          "id": "number_patterns",
+          "type": "checkbox",
+          "question": "Do you notice any of these number patterns in your life?",
+          "options": [
+            "Repeating numbers (11:11, 222, etc.)",
+            "Same numbers appearing everywhere",
+            "Birthdate numbers showing up frequently",
+            "Certain numbers feeling 'lucky' or significant",
+            "Numbers in dreams or meditation",
+            "None of the above"
+          ]
+        }
+      ]
+    }
+  },
+  "completion_message": "Thank you for sharing your cosmic information! Your blueprint is being woven with stardust and love. AnuLunar's wisdom will guide the creation of your personalized spiritual profile. \u2728"
+};
+        let currentQuestionIndex = 0;
+        let userResponses = {};
+        let totalQuestions = 0;
+        
+        // Initialize Quiz
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeStars();
+            loadQuizQuestions();
+            displayCurrentQuestion();
+        });
+        
+        function initializeStars() {
+            const starsContainer = document.getElementById('starsContainer');
+            for (let i = 0; i < 50; i++) {
+                const star = document.createElement('div');
+                star.className = 'star';
+                star.style.left = Math.random() * 100 + '%';
+                star.style.top = Math.random() * 100 + '%';
+                star.style.animationDelay = Math.random() * 3 + 's';
+                starsContainer.appendChild(star);
+            }
+        }
+        
+        function loadQuizQuestions() {
+            // Flatten all questions from all sections
+            const questions = [];
+            if (quizData.sections) {
+                Object.values(quizData.sections).forEach(section => {
+                    if (section.questions) {
+                        questions.push(...section.questions);
+                    }
+                });
+            }
+            window.allQuestions = questions;
+            totalQuestions = questions.length;
+            updateProgress();
+        }
+        
+        function displayCurrentQuestion() {
+            const question = window.allQuestions[currentQuestionIndex];
+            if (!question) return;
+            
+            const content = document.getElementById('quizContent');
+            content.className = 'question-appear min-h-[400px]';
+            
+            content.innerHTML = `
+                <div class="space-y-6">
+                    <div class="text-center">
+                        <h3 class="text-xl font-semibold text-[#FFFBF8] mb-4">${question.question}</h3>
+                        ${question.spiritual_note ? `<div class="spiritual-note text-sm text-[#B8A4D9]">${question.spiritual_note}</div>` : ''}
+                    </div>
+                    
+                    <div class="space-y-4">
+                        ${generateQuestionInput(question)}
+                    </div>
+                </div>
+            `;
+            
+            updateNavigationButtons();
+            updateProgress();
+        }
+        
+        function generateQuestionInput(question) {
+            switch(question.type) {
+                case 'multiple_choice':
+                    return question.options.map((option, index) => `
+                        <label class="cosmic-card p-4 cursor-pointer hover:border-[#00E7FF] transition-colors flex items-center space-x-3">
+                            <input type="radio" name="${question.id}" value="${option}" onchange="saveResponse('${question.id}', '${option}')" class="text-[#00E7FF]">
+                            <span class="text-[#FFFBF8]">${option}</span>
+                        </label>
+                    `).join('');
+                    
+                case 'scale':
+                    return `
+                        <div class="text-center">
+                            <input type="range" min="${question.scale.min}" max="${question.scale.max}" value="${Math.floor((question.scale.min + question.scale.max) / 2)}" 
+                                   class="w-full cosmic-input h-2 bg-gray-700 rounded-lg appearance-none cursor-pointer"
+                                   onchange="saveResponse('${question.id}', this.value)" id="${question.id}_slider">
+                            <div class="flex justify-between text-sm text-[#B8A4D9] mt-2">
+                                <span>${question.scale.labels[question.scale.min] || question.scale.min}</span>
+                                <span id="${question.id}_value">${Math.floor((question.scale.min + question.scale.max) / 2)}</span>
+                                <span>${question.scale.labels[question.scale.max] || question.scale.max}</span>
+                            </div>
+                        </div>
+                    `;
+                    
+                case 'checkbox':
+                    return question.options.map(option => `
+                        <label class="cosmic-card p-4 cursor-pointer hover:border-[#00E7FF] transition-colors flex items-center space-x-3">
+                            <input type="checkbox" value="${option}" onchange="saveMultipleResponse('${question.id}', '${option}', this.checked)" class="text-[#00E7FF]">
+                            <span class="text-[#FFFBF8]">${option}</span>
+                        </label>
+                    `).join('');
+                    
+                case 'text':
+                    return `
+                        <textarea class="cosmic-input w-full h-32 resize-none" 
+                                placeholder="Share your thoughts..."
+                                onchange="saveResponse('${question.id}', this.value)"></textarea>
+                    `;
+                    
+                case 'date':
+                    return `
+                        <input type="date" class="cosmic-input w-full" 
+                               onchange="saveResponse('${question.id}', this.value)" required>
+                    `;
+                    
+                case 'time':
+                    return `
+                        <select class="cosmic-input w-full" onchange="saveResponse('${question.id}', this.value)">
+                            <option value="">Select birth time accuracy</option>
+                            ${question.options.map(option => `<option value="${option}">${option}</option>`).join('')}
+                        </select>
+                    `;
+                    
+                case 'location':
+                    return `
+                        <input type="text" class="cosmic-input w-full" 
+                               placeholder="City, State/Province, Country"
+                               onchange="saveResponse('${question.id}', this.value)" required>
+                    `;
+                    
+                default:
+                    return `
+                        <input type="text" class="cosmic-input w-full" 
+                               onchange="saveResponse('${question.id}', this.value)">
+                    `;
+            }
+        }
+        
+        function saveResponse(questionId, value) {
+            userResponses[questionId] = value;
+            
+            // Update slider display
+            const valueDisplay = document.getElementById(questionId + '_value');
+            if (valueDisplay) {
+                valueDisplay.textContent = value;
+            }
+        }
+        
+        function saveMultipleResponse(questionId, value, checked) {
+            if (!userResponses[questionId]) {
+                userResponses[questionId] = [];
+            }
+            
+            if (checked) {
+                userResponses[questionId].push(value);
+            } else {
+                userResponses[questionId] = userResponses[questionId].filter(item => item !== value);
+            }
+        }
+        
+        function nextQuestion() {
+            const currentQuestion = window.allQuestions[currentQuestionIndex];
+            
+            // Validate required fields
+            if (currentQuestion.required && !userResponses[currentQuestion.id]) {
+                alert('Please answer this question before continuing.');
+                return;
+            }
+            
+            if (currentQuestionIndex < totalQuestions - 1) {
+                currentQuestionIndex++;
+                displayCurrentQuestion();
+            } else {
+                completeQuiz();
+            }
+        }
+        
+        function previousQuestion() {
+            if (currentQuestionIndex > 0) {
+                currentQuestionIndex--;
+                displayCurrentQuestion();
+            }
+        }
+        
+        function updateNavigationButtons() {
+            const prevButton = document.getElementById('prevButton');
+            const nextButton = document.getElementById('nextButton');
+            
+            prevButton.style.display = currentQuestionIndex > 0 ? 'block' : 'none';
+            nextButton.textContent = currentQuestionIndex === totalQuestions - 1 ? 'Complete Quiz ✨' : 'Next →';
+        }
+        
+        function updateProgress() {
+            const progress = ((currentQuestionIndex + 1) / totalQuestions) * 100;
+            document.getElementById('progressBar').style.width = progress + '%';
+            document.getElementById('progressText').textContent = `Question ${currentQuestionIndex + 1} of ${totalQuestions}`;
+        }
+        
+        function completeQuiz() {
+            // Send responses to backend
+            const quizSession = {
+                session_id: generateSessionId(),
+                quiz_type: quizData.title || 'unknown',
+                responses: userResponses,
+                completion_percentage: 100,
+                completed_at: new Date().toISOString()
+            };
+            
+            // Show completion message
+            document.getElementById('quizContent').innerHTML = `
+                <div class="text-center space-y-6">
+                    <div class="text-6xl mb-4">🌟</div>
+                    <h3 class="text-2xl font-bold text-[#FFCB47]">Quiz Complete!</h3>
+                    <p class="text-[#FFFBF8] text-lg">Your cosmic data is being processed...</p>
+                    <div class="cosmic-button px-8 py-4 text-white cursor-pointer" onclick="redirectToReports()">
+                        View Your Cosmic Blueprint ✨
+                    </div>
+                </div>
+            `;
+            
+            // Hide navigation buttons
+            document.getElementById('prevButton').style.display = 'none';
+            document.getElementById('nextButton').style.display = 'none';
+            
+            // Save to localStorage for now (would be API call in production)
+            localStorage.setItem('anulunar_quiz_session', JSON.stringify(quizSession));
+        }
+        
+        function generateSessionId() {
+            return 'quiz_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
+        }
+        
+        function redirectToReports() {
+            // Would redirect to report generation page
+            window.location.href = '/reports/generate';
+        }
+    </script>
+</body>
+</html>
+        

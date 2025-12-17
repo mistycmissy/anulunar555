@@ -1,0 +1,231 @@
+{
+  "aries": {
+    "core_essence": "The Warrior Heart - emotional courage and passionate instincts",
+    "emotional_nature": "Quick to feel, quick to act, needs immediate emotional expression",
+    "intuitive_gifts": "Lightning-fast emotional intelligence and crisis response",
+    "shadow_patterns": "Emotional reactivity and impatience with others' processing speed",
+    "lunar_integration": "New moon rituals help channel emotional fire into positive action",
+    "anulunar_guidance": "Your emotional directness helps others access their authentic feelings",
+    "childhood_patterns": "Needed to be first, independent, may have felt emotionally rushed",
+    "security_needs": "Freedom to express emotions immediately without judgment",
+    "relationship_style": "Passionate, direct, needs partner who can match emotional intensity",
+    "parenting_style": "Encouraging independence, teaching courage, may need to slow down",
+    "stress_response": "Fight mode - confronts problems head-on but may burn out",
+    "healing_practices": [
+      "Physical exercise",
+      "Anger release work",
+      "Martial arts",
+      "Fire ceremonies"
+    ]
+  },
+  "taurus": {
+    "core_essence": "The Sacred Grove - steady emotional presence and earthly wisdom",
+    "emotional_nature": "Slow to stir but deep in feeling, needs security and comfort",
+    "intuitive_gifts": "Sensing what others need for emotional stability and healing",
+    "shadow_patterns": "Emotional stubbornness and resistance to necessary change",
+    "lunar_integration": "Full moon ceremonies in nature amplify your earthy wisdom",
+    "anulunar_guidance": "Your emotional steadiness creates safe space for others to feel deeply",
+    "childhood_patterns": "Needed stability, routine, may have been the family anchor",
+    "security_needs": "Physical comfort, financial security, stable relationships",
+    "relationship_style": "Loyal, sensual, needs physical affection and consistent presence",
+    "parenting_style": "Nurturing through consistency, teaching patience and self-worth",
+    "stress_response": "Freeze mode - may withdraw and become immovable when overwhelmed",
+    "healing_practices": [
+      "Gardening",
+      "Massage",
+      "Cooking",
+      "Earth connection rituals"
+    ]
+  },
+  "gemini": {
+    "core_essence": "The Cosmic Messenger - emotional curiosity and mental agility",
+    "emotional_nature": "Emotionally curious, needs variety and mental stimulation",
+    "intuitive_gifts": "Reading emotional undercurrents and translating feelings into words",
+    "shadow_patterns": "Emotional superficiality and difficulty with deep feeling",
+    "lunar_integration": "Moon phases mirror your natural cycles of receiving and sharing",
+    "anulunar_guidance": "Your emotional versatility helps others process complex feelings",
+    "childhood_patterns": "Needed intellectual stimulation, may have been family communicator",
+    "security_needs": "Mental stimulation, variety, freedom to express ideas",
+    "relationship_style": "Chatty, curious, needs mental connection and variety",
+    "parenting_style": "Teaching through conversation, encouraging curiosity",
+    "stress_response": "Scatter mode - talks through problems but may avoid depth",
+    "healing_practices": [
+      "Journaling",
+      "Talk therapy",
+      "Learning new skills",
+      "Air element rituals"
+    ]
+  },
+  "cancer": {
+    "core_essence": "The Moon Child - intuitive guardian of emotional wisdom",
+    "emotional_nature": "Deeply sensitive, emotionally protective, natural nurturer",
+    "intuitive_gifts": "Psychic emotional reception, knowing what others need",
+    "shadow_patterns": "Emotional overwhelm and boundary confusion",
+    "lunar_integration": "You ARE the moon's representative - deeply connected to her cycles",
+    "anulunar_guidance": "Your emotional depth is a sacred well of healing for yourself and others",
+    "childhood_patterns": "May have parented the family, highly sensitive to family dynamics",
+    "security_needs": "Emotional safety, family connection, home sanctuary",
+    "relationship_style": "Nurturing, protective, needs emotional intimacy and security",
+    "parenting_style": "Intuitive, protective, may need to encourage independence",
+    "stress_response": "Retreat mode - withdraws into shell until feeling safe",
+    "healing_practices": [
+      "Water ceremonies",
+      "Moon rituals",
+      "Family healing",
+      "Ancestral work"
+    ]
+  },
+  "leo": {
+    "core_essence": "The Radiant Heart - generous spirit and creative emotional expression",
+    "emotional_nature": "Dramatic, generous, needs appreciation and creative outlet",
+    "intuitive_gifts": "Inspiring others through authentic emotional expression",
+    "shadow_patterns": "Emotional attention-seeking and wounded pride",
+    "lunar_integration": "New moons amplify your creative visions, full moons illuminate your gifts",
+    "anulunar_guidance": "Your emotional generosity helps others remember their own worth",
+    "childhood_patterns": "Needed to be special, may have been family entertainer",
+    "security_needs": "Recognition, appreciation, creative expression, loyal audience",
+    "relationship_style": "Warm, generous, needs admiration and romantic gestures",
+    "parenting_style": "Encouraging creativity, teaching self-confidence and generosity",
+    "stress_response": "Drama mode - amplifies emotions to get attention and support",
+    "healing_practices": [
+      "Creative arts",
+      "Performance",
+      "Solar rituals",
+      "Heart-opening work"
+    ]
+  },
+  "virgo": {
+    "core_essence": "The Sacred Healer - practical wisdom and service-oriented emotions",
+    "emotional_nature": "Analytical about feelings, practical approach to emotional healing",
+    "intuitive_gifts": "Seeing exactly what needs healing and how to fix it",
+    "shadow_patterns": "Emotional criticism and perfectionism that blocks intimacy",
+    "lunar_integration": "Waning moons support your natural inclination to purify and release",
+    "anulunar_guidance": "Your practical emotional wisdom helps others heal effectively",
+    "childhood_patterns": "May have been family helper, learned to be useful to feel loved",
+    "security_needs": "Order, usefulness, improvement, practical support",
+    "relationship_style": "Helpful, analytical, shows love through service and improvement",
+    "parenting_style": "Teaching life skills, practical wisdom, may need to ease criticism",
+    "stress_response": "Fix mode - analyzes and organizes to regain emotional control",
+    "healing_practices": [
+      "Organization",
+      "Service work",
+      "Health routines",
+      "Earth healing"
+    ]
+  },
+  "libra": {
+    "core_essence": "The Harmony Keeper - diplomatic heart seeking emotional balance",
+    "emotional_nature": "Seeks emotional harmony, disturbed by conflict and injustice",
+    "intuitive_gifts": "Creating emotional peace and helping others find balance",
+    "shadow_patterns": "Emotional people-pleasing and avoidance of authentic feelings",
+    "lunar_integration": "Libra season full moon teaches perfect balance between light and shadow",
+    "anulunar_guidance": "Your emotional diplomacy helps others find peace within conflict",
+    "childhood_patterns": "May have been family peacemaker, avoided conflict at personal cost",
+    "security_needs": "Harmony, beauty, fairness, partnership, peaceful environment",
+    "relationship_style": "Diplomatic, romantic, needs partnership and emotional equality",
+    "parenting_style": "Teaching fairness and cooperation, creating harmonious home",
+    "stress_response": "Balance mode - seeks external harmony to restore inner peace",
+    "healing_practices": [
+      "Art therapy",
+      "Relationship work",
+      "Beauty rituals",
+      "Justice work"
+    ]
+  },
+  "scorpio": {
+    "core_essence": "The Emotional Alchemist - transforming wounds into wisdom",
+    "emotional_nature": "Intense, secretive, experiences emotions at soul level",
+    "intuitive_gifts": "Seeing through emotional facades to core truth and healing needs",
+    "shadow_patterns": "Emotional manipulation and fear of vulnerability",
+    "lunar_integration": "Dark moon phases are your power time for deep emotional work",
+    "anulunar_guidance": "Your emotional intensity is medicine for collective healing",
+    "childhood_patterns": "May have experienced emotional intensity early, learned to protect feelings",
+    "security_needs": "Emotional authenticity, deep connection, transformative experiences",
+    "relationship_style": "Intense, loyal, needs complete emotional honesty and depth",
+    "parenting_style": "Teaching emotional courage, may need to allow lighter moments",
+    "stress_response": "Transform mode - uses crisis as opportunity for emotional rebirth",
+    "healing_practices": [
+      "Shadow work",
+      "Death/rebirth rituals",
+      "Tantric practices",
+      "Depth therapy"
+    ]
+  },
+  "sagittarius": {
+    "core_essence": "The Emotional Explorer - seeking meaning through feeling",
+    "emotional_nature": "Optimistic, philosophical about emotions, needs freedom to explore",
+    "intuitive_gifts": "Finding hope and meaning in any emotional experience",
+    "shadow_patterns": "Emotional restlessness and avoidance through spiritual bypassing",
+    "lunar_integration": "Waxing moons fuel your quest for emotional understanding and growth",
+    "anulunar_guidance": "Your emotional optimism helps others find meaning in their struggles",
+    "childhood_patterns": "Needed freedom to explore, may have been family philosopher",
+    "security_needs": "Freedom, adventure, learning, philosophical understanding",
+    "relationship_style": "Adventurous, honest, needs space and shared philosophical growth",
+    "parenting_style": "Teaching through experience, encouraging exploration and honesty",
+    "stress_response": "Escape mode - seeks new experiences or knowledge to process emotions",
+    "healing_practices": [
+      "Travel",
+      "Study",
+      "Teaching",
+      "Fire ceremonies",
+      "Adventure therapy"
+    ]
+  },
+  "capricorn": {
+    "core_essence": "The Emotional Mountain - steady climb toward emotional mastery",
+    "emotional_nature": "Controlled, responsible, earns emotional security through achievement",
+    "intuitive_gifts": "Understanding how emotional discipline creates lasting security",
+    "shadow_patterns": "Emotional rigidity and difficulty accessing spontaneous feeling",
+    "lunar_integration": "Winter solstice energy mirrors your ability to find warmth in darkness",
+    "anulunar_guidance": "Your emotional maturity helps others build lasting inner security",
+    "childhood_patterns": "May have grown up fast, learned to be emotionally responsible early",
+    "security_needs": "Achievement, respect, structure, long-term emotional stability",
+    "relationship_style": "Loyal, traditional, shows love through commitment and provision",
+    "parenting_style": "Teaching responsibility and perseverance, building character",
+    "stress_response": "Control mode - creates structure and goals to manage emotions",
+    "healing_practices": [
+      "Mountain meditation",
+      "Goal achievement",
+      "Tradition",
+      "Ancestor work"
+    ]
+  },
+  "aquarius": {
+    "core_essence": "The Emotional Revolutionary - feeling for the collective future",
+    "emotional_nature": "Detached yet caring, emotions connected to humanitarian ideals",
+    "intuitive_gifts": "Understanding collective emotional needs and future healing",
+    "shadow_patterns": "Emotional detachment and intellectualizing feelings",
+    "lunar_integration": "New moon in Aquarius activates your vision for emotional evolution",
+    "anulunar_guidance": "Your emotional innovation helps birth new ways of feeling and healing",
+    "childhood_patterns": "May have felt different, connected more to groups than individuals",
+    "security_needs": "Freedom, friendship, intellectual connection, humanitarian purpose",
+    "relationship_style": "Friendly, independent, needs mental connection and shared ideals",
+    "parenting_style": "Teaching independence and humanitarian values, encouraging uniqueness",
+    "stress_response": "Detach mode - steps back to gain objective emotional perspective",
+    "healing_practices": [
+      "Group healing",
+      "Technology",
+      "Innovation",
+      "Future visioning"
+    ]
+  },
+  "pisces": {
+    "core_essence": "The Emotional Ocean - boundless compassion and psychic sensitivity",
+    "emotional_nature": "Deeply empathic, psychically absorptive, emotionally boundaryless",
+    "intuitive_gifts": "Feeling into collective pain and channeling universal healing",
+    "shadow_patterns": "Emotional overwhelm and difficulty distinguishing own feelings",
+    "lunar_integration": "Full moon in Pisces opens veils for deep emotional communion",
+    "anulunar_guidance": "Your emotional sensitivity is a gift that heals the collective wounds",
+    "childhood_patterns": "Highly sensitive, may have absorbed family emotions",
+    "security_needs": "Spiritual connection, creative expression, emotional understanding",
+    "relationship_style": "Compassionate, sacrificial, needs spiritual and emotional depth",
+    "parenting_style": "Nurturing through imagination, teaching compassion and boundaries",
+    "stress_response": "Dissolve mode - may escape through fantasy, substances, or spirituality",
+    "healing_practices": [
+      "Water ceremonies",
+      "Art therapy",
+      "Music",
+      "Mystical practices"
+    ]
+  }
+}

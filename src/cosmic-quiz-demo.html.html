@@ -1,0 +1,601 @@
+
+<!DOCTYPE html>
+<html lang="en" class="dark h-full">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cosmic Blueprint Foundation Quiz</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <style>
+        body {
+            font-family: 'Inter', system-ui, sans-serif;
+            background: linear-gradient(135deg, #09071F 0%, #1B1140 50%, #09071F 100%);
+            min-height: 100vh;
+        }
+        
+        .cosmic-card {
+            background: radial-gradient(ellipse at top left, rgba(0, 231, 255, 0.1), transparent 60%),
+                        radial-gradient(ellipse at bottom right, rgba(255, 0, 204, 0.1), transparent 60%),
+                        #1B1140;
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 203, 71, 0.3);
+            border-radius: 1rem;
+        }
+        
+        .cosmic-button {
+            background: linear-gradient(45deg, #FF00CC, #00E7FF);
+            border: none;
+            border-radius: 50px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 20px rgba(0, 231, 255, 0.3);
+        }
+        
+        .cosmic-button:hover {
+            box-shadow: 0 0 30px rgba(0, 231, 255, 0.5);
+            transform: translateY(-2px);
+        }
+        
+        .cosmic-button:disabled {
+            background: #666;
+            box-shadow: none;
+            transform: none;
+            cursor: not-allowed;
+        }
+        
+        .cosmic-input {
+            background: rgba(27, 17, 64, 0.8);
+            border: 2px solid rgba(255, 203, 71, 0.3);
+            border-radius: 0.75rem;
+            color: #FFFBF8;
+            padding: 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .cosmic-input:focus {
+            border-color: #00E7FF;
+            box-shadow: 0 0 20px rgba(0, 231, 255, 0.2);
+            outline: none;
+        }
+        
+        .progress-bar {
+            background: linear-gradient(90deg, #FF00CC 0%, #00E7FF 50%, #FFCB47 100%);
+            border-radius: 50px;
+            height: 8px;
+            transition: width 0.3s ease;
+        }
+        
+        .floating-stars {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+        
+        .star {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: #FFCB47;
+            border-radius: 50%;
+            animation: twinkle 3s infinite;
+        }
+        
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.3; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.2); }
+        }
+        
+        .question-appear {
+            animation: slideInFromRight 0.6s ease-out;
+        }
+        
+        @keyframes slideInFromRight {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        .spiritual-note {
+            background: linear-gradient(45deg, rgba(255, 203, 71, 0.1), rgba(255, 0, 204, 0.1));
+            border-left: 4px solid #FFCB47;
+            padding: 1rem;
+            border-radius: 0 0.5rem 0.5rem 0;
+            font-style: italic;
+            margin-top: 0.5rem;
+        }
+        
+        .conditional-question {
+            display: none;
+        }
+        
+        .success-animation {
+            animation: successPulse 2s ease-in-out;
+        }
+        
+        @keyframes successPulse {
+            0% { transform: scale(0.8); opacity: 0; }
+            50% { transform: scale(1.1); opacity: 1; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+    </style>
+</head>
+
+<body class="min-h-screen relative">
+    <!-- Floating Stars Background -->
+    <div class="floating-stars" id="starsContainer"></div>
+    
+    <!-- Main Quiz Container -->
+    <div class="relative z-10 min-h-screen flex items-center justify-center p-4">
+        <div class="cosmic-card max-w-4xl w-full p-8">
+            <!-- Quiz Header -->
+            <div class="text-center mb-8">
+                <div class="flex items-center justify-center mb-4">
+                    <div class="w-16 h-16 rounded-full border-2 border-[#FFCB47] flex items-center justify-center mr-4">
+                        <span class="text-[#FFCB47] text-2xl font-bold">AL</span>
+                    </div>
+                    <h1 class="text-3xl font-bold text-[#FFCB47] uppercase tracking-wider">AnuLunar S.I™</h1>
+                </div>
+                
+                <h2 class="text-2xl font-bold text-[#FFFBF8] mb-2">Cosmic Blueprint Foundation Quiz</h2>
+                <p class="text-[#B8A4D9] text-lg">Gathering your essential cosmic data to create your personalized spiritual profile</p>
+                
+                <!-- Progress Bar -->
+                <div class="mt-6 bg-gray-700 rounded-full h-2">
+                    <div class="progress-bar" style="width: 0%" id="progressBar"></div>
+                </div>
+                <p class="text-sm text-[#B8A4D9] mt-2" id="progressText">Question 0 of 0</p>
+            </div>
+            
+            <!-- Quiz Content Area -->
+            <div id="quizContent" class="min-h-[400px]">
+                <!-- Questions will be dynamically inserted here -->
+            </div>
+            
+            <!-- Navigation Buttons -->
+            <div class="flex justify-between mt-8">
+                <button class="cosmic-button px-6 py-3 text-white" id="prevButton" onclick="previousQuestion()" style="display: none;">
+                    ← Previous
+                </button>
+                <button class="cosmic-button px-6 py-3 text-white ml-auto" id="nextButton" onclick="nextQuestion()" disabled>
+                    Next →
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Quiz Data and State Management
+        const quizData = {
+  "title": "Cosmic Blueprint Foundation Quiz",
+  "description": "Gathering your essential cosmic data to create your personalized spiritual profile",
+  "sections": {
+    "basic_cosmic_data": {
+      "questions": [
+        {
+          "id": "birth_date",
+          "type": "date",
+          "question": "What is your birth date?",
+          "required": true,
+          "spiritual_note": "This connects you to the cosmic energies present at your soul's arrival"
+        },
+        {
+          "id": "birth_time_known",
+          "type": "multiple_choice",
+          "question": "Do you know your exact birth time?",
+          "required": true,
+          "options": [
+            "Yes, I know the exact time",
+            "I know approximately (within 30 minutes)",
+            "No, I don't know my birth time"
+          ],
+          "spiritual_note": "Your birth time reveals your rising sign - how your soul chose to present to the world"
+        },
+        {
+          "id": "birth_time_exact",
+          "type": "time_input",
+          "question": "What time were you born? (24-hour format: HH:MM)",
+          "required": false,
+          "conditional": "birth_time_known == 'Yes, I know the exact time' || birth_time_known == 'I know approximately (within 30 minutes)'",
+          "spiritual_note": "The precise moment of your birth determines your ascendant and house placements"
+        },
+        {
+          "id": "birth_location",
+          "type": "location",
+          "question": "Where were you born? (City, State/Province, Country)",
+          "required": true,
+          "spiritual_note": "Your birthplace anchors your chart to specific Earth energies"
+        }
+      ]
+    },
+    "spiritual_background": {
+      "questions": [
+        {
+          "id": "spiritual_experience",
+          "type": "multiple_choice",
+          "question": "How would you describe your spiritual journey so far?",
+          "required": true,
+          "options": [
+            "Just beginning to explore spirituality",
+            "Have some experience with spiritual practices",
+            "Deeply involved in spiritual study and practice",
+            "Experienced practitioner helping others",
+            "Spiritual teacher or professional guide"
+          ],
+          "spiritual_note": "Your experience level helps us tailor your cosmic guidance appropriately"
+        },
+        {
+          "id": "intuitive_abilities",
+          "type": "scale",
+          "question": "How strong would you say your intuitive abilities are?",
+          "required": true,
+          "scale": {
+            "min": 1,
+            "max": 10,
+            "labels": {
+              "1": "Not intuitive at all",
+              "5": "Moderately intuitive",
+              "10": "Highly psychic/intuitive"
+            }
+          },
+          "spiritual_note": "Understanding your intuitive gifts helps us recommend the right spiritual practices"
+        },
+        {
+          "id": "moon_sensitivity",
+          "type": "multiple_choice",
+          "question": "How aware are you of moon phases and their effects?",
+          "required": true,
+          "options": [
+            "I don't notice moon phases at all",
+            "I sometimes notice but don't track them",
+            "I'm aware and notice some effects on my mood/energy",
+            "I actively track moon phases and plan around them",
+            "I'm highly sensitive and conduct rituals with moon cycles"
+          ],
+          "spiritual_note": "Moon sensitivity indicates your connection to lunar wisdom and Celtic moon sign influence"
+        }
+      ]
+    }
+  }
+};
+        let currentQuestionIndex = 0;
+        let userResponses = {};
+        let totalQuestions = 0;
+        let allQuestions = [];
+        
+        // Initialize Quiz
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeStars();
+            loadQuizQuestions();
+            displayCurrentQuestion();
+        });
+        
+        function initializeStars() {
+            const starsContainer = document.getElementById('starsContainer');
+            for (let i = 0; i < 50; i++) {
+                const star = document.createElement('div');
+                star.className = 'star';
+                star.style.left = Math.random() * 100 + '%';
+                star.style.top = Math.random() * 100 + '%';
+                star.style.animationDelay = Math.random() * 3 + 's';
+                starsContainer.appendChild(star);
+            }
+        }
+        
+        function loadQuizQuestions() {
+            // Flatten all questions from all sections
+            allQuestions = [];
+            if (quizData.sections) {
+                Object.values(quizData.sections).forEach(section => {
+                    if (section.questions) {
+                        allQuestions.push(...section.questions);
+                    }
+                });
+            }
+            totalQuestions = allQuestions.length;
+            updateProgress();
+        }
+        
+        function displayCurrentQuestion() {
+            const question = allQuestions[currentQuestionIndex];
+            if (!question) return;
+            
+            // Check if question should be shown based on conditions
+            if (question.conditional && !evaluateCondition(question.conditional)) {
+                // Skip this question
+                if (currentQuestionIndex < totalQuestions - 1) {
+                    currentQuestionIndex++;
+                    displayCurrentQuestion();
+                } else {
+                    completeQuiz();
+                }
+                return;
+            }
+            
+            const content = document.getElementById('quizContent');
+            content.className = 'question-appear min-h-[400px]';
+            
+            content.innerHTML = `
+                <div class="space-y-6">
+                    <div class="text-center">
+                        <h3 class="text-xl font-semibold text-[#FFFBF8] mb-4">${question.question}</h3>
+                        ${question.spiritual_note ? `<div class="spiritual-note text-sm text-[#B8A4D9]">${question.spiritual_note}</div>` : ''}
+                    </div>
+                    
+                    <div class="space-y-4">
+                        ${generateQuestionInput(question)}
+                    </div>
+                </div>
+            `;
+            
+            updateNavigationButtons();
+            updateProgress();
+            checkCurrentAnswer();
+        }
+        
+        function evaluateCondition(condition) {
+            // Simple condition evaluation for birth time
+            if (condition.includes("birth_time_known")) {
+                const response = userResponses['birth_time_known'];
+                if (condition.includes("'Yes, I know the exact time'")) {
+                    return response === 'Yes, I know the exact time' || response === 'I know approximately (within 30 minutes)';
+                }
+            }
+            return true;
+        }
+        
+        function generateQuestionInput(question) {
+            switch(question.type) {
+                case 'multiple_choice':
+                    return question.options.map((option, index) => `
+                        <label class="cosmic-card p-4 cursor-pointer hover:border-[#00E7FF] transition-colors flex items-center space-x-3">
+                            <input type="radio" name="${question.id}" value="${option}" onchange="saveResponse('${question.id}', '${option}')" class="text-[#00E7FF]">
+                            <span class="text-[#FFFBF8]">${option}</span>
+                        </label>
+                    `).join('');
+                    
+                case 'scale':
+                    const midPoint = Math.floor((question.scale.min + question.scale.max) / 2);
+                    return `
+                        <div class="text-center">
+                            <input type="range" min="${question.scale.min}" max="${question.scale.max}" value="${midPoint}" 
+                                   class="w-full h-2 bg-gray-700 rounded-lg appearance-none cursor-pointer mb-4"
+                                   onchange="saveResponse('${question.id}', this.value)" id="${question.id}_slider"
+                                   style="background: linear-gradient(to right, #FF00CC 0%, #00E7FF 50%, #FFCB47 100%);">
+                            <div class="flex justify-between text-sm text-[#B8A4D9] mt-2">
+                                <span>${question.scale.labels[question.scale.min] || question.scale.min}</span>
+                                <span id="${question.id}_value" class="font-bold text-[#FFCB47]">${midPoint}</span>
+                                <span>${question.scale.labels[question.scale.max] || question.scale.max}</span>
+                            </div>
+                        </div>
+                    `;
+                    
+                case 'date':
+                    return `
+                        <input type="date" class="cosmic-input w-full" 
+                               onchange="saveResponse('${question.id}', this.value)" 
+                               id="${question.id}_input" required>
+                    `;
+                    
+                case 'time_input':
+                    return `
+                        <div class="grid grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-[#B8A4D9] mb-2">Hour (0-23)</label>
+                                <input type="number" min="0" max="23" class="cosmic-input w-full" 
+                                       placeholder="14" id="${question.id}_hour"
+                                       onchange="saveBirthTime('${question.id}')">
+                            </div>
+                            <div>
+                                <label class="block text-[#B8A4D9] mb-2">Minute (0-59)</label>
+                                <input type="number" min="0" max="59" class="cosmic-input w-full" 
+                                       placeholder="30" id="${question.id}_minute"
+                                       onchange="saveBirthTime('${question.id}')">
+                            </div>
+                        </div>
+                        <p class="text-sm text-[#B8A4D9] mt-2">💫 Example: For 2:30 PM, enter Hour: 14, Minute: 30</p>
+                    `;
+                    
+                case 'location':
+                    return `
+                        <input type="text" class="cosmic-input w-full" 
+                               placeholder="Toronto, Ontario, Canada"
+                               onchange="saveResponse('${question.id}', this.value)" 
+                               id="${question.id}_input" required>
+                    `;
+                    
+                default:
+                    return `
+                        <input type="text" class="cosmic-input w-full" 
+                               onchange="saveResponse('${question.id}', this.value)"
+                               id="${question.id}_input">
+                    `;
+            }
+        }
+        
+        function saveBirthTime(questionId) {
+            const hour = document.getElementById(questionId + '_hour').value;
+            const minute = document.getElementById(questionId + '_minute').value;
+            
+            if (hour !== '' && minute !== '') {
+                const timeString = String(hour).padStart(2, '0') + ':' + String(minute).padStart(2, '0');
+                userResponses[questionId] = timeString;
+                enableNextButton();
+            }
+        }
+        
+        function saveResponse(questionId, value) {
+            userResponses[questionId] = value;
+            
+            // Update slider display
+            const valueDisplay = document.getElementById(questionId + '_value');
+            if (valueDisplay) {
+                valueDisplay.textContent = value;
+            }
+            
+            enableNextButton();
+        }
+        
+        function enableNextButton() {
+            const nextButton = document.getElementById('nextButton');
+            nextButton.disabled = false;
+            nextButton.style.opacity = '1';
+        }
+        
+        function checkCurrentAnswer() {
+            const question = allQuestions[currentQuestionIndex];
+            const nextButton = document.getElementById('nextButton');
+            
+            if (question.required) {
+                nextButton.disabled = true;
+                nextButton.style.opacity = '0.5';
+            } else {
+                nextButton.disabled = false;
+                nextButton.style.opacity = '1';
+            }
+        }
+        
+        function nextQuestion() {
+            const currentQuestion = allQuestions[currentQuestionIndex];
+            
+            // Validate required fields
+            if (currentQuestion.required && !userResponses[currentQuestion.id]) {
+                alert('✨ Please answer this cosmic question before continuing your journey!');
+                return;
+            }
+            
+            if (currentQuestionIndex < totalQuestions - 1) {
+                currentQuestionIndex++;
+                displayCurrentQuestion();
+            } else {
+                completeQuiz();
+            }
+        }
+        
+        function previousQuestion() {
+            if (currentQuestionIndex > 0) {
+                currentQuestionIndex--;
+                displayCurrentQuestion();
+            }
+        }
+        
+        function updateNavigationButtons() {
+            const prevButton = document.getElementById('prevButton');
+            const nextButton = document.getElementById('nextButton');
+            
+            prevButton.style.display = currentQuestionIndex > 0 ? 'block' : 'none';
+            nextButton.textContent = currentQuestionIndex === totalQuestions - 1 ? 'Complete Quiz ✨' : 'Next →';
+        }
+        
+        function updateProgress() {
+            const progress = ((currentQuestionIndex + 1) / totalQuestions) * 100;
+            document.getElementById('progressBar').style.width = progress + '%';
+            document.getElementById('progressText').textContent = `Question ${currentQuestionIndex + 1} of ${totalQuestions}`;
+        }
+        
+        function completeQuiz() {
+            // Create quiz session data
+            const quizSession = {
+                session_id: generateSessionId(),
+                quiz_type: quizData.title || 'Cosmic Blueprint Foundation',
+                responses: userResponses,
+                completion_percentage: 100,
+                completed_at: new Date().toISOString(),
+                birth_data: extractBirthData(),
+                spiritual_profile: extractSpiritualProfile()
+            };
+            
+            // Save to localStorage for demo purposes
+            localStorage.setItem('anulunar_quiz_session', JSON.stringify(quizSession));
+            
+            // Show success message
+            const content = document.getElementById('quizContent');
+            content.innerHTML = `
+                <div class="text-center space-y-6 success-animation">
+                    <div class="text-6xl mb-4">🌟</div>
+                    <h3 class="text-2xl font-bold text-[#FFCB47]">Cosmic Quiz Complete!</h3>
+                    <p class="text-[#FFFBF8] text-lg">Your spiritual data has been captured and is ready for cosmic synthesis!</p>
+                    
+                    <div class="cosmic-card p-6 text-left space-y-3">
+                        <h4 class="text-[#FFCB47] font-bold">Your Cosmic Data Summary:</h4>
+                        <div id="dataSummary" class="text-[#B8A4D9] text-sm space-y-1"></div>
+                    </div>
+                    
+                    <div class="space-y-4">
+                        <button class="cosmic-button px-8 py-4 text-white" onclick="downloadData()">
+                            📋 Download Your Data
+                        </button>
+                        <p class="text-[#B8A4D9] text-sm">
+                            💫 In the full AnuLunar platform, this would generate your personalized cosmic blueprint report!
+                        </p>
+                    </div>
+                </div>
+            `;
+            
+            // Display data summary
+            displayDataSummary(quizSession);
+            
+            // Hide navigation buttons
+            document.getElementById('prevButton').style.display = 'none';
+            document.getElementById('nextButton').style.display = 'none';
+        }
+        
+        function extractBirthData() {
+            return {
+                birth_date: userResponses.birth_date || null,
+                birth_time_known: userResponses.birth_time_known || null,
+                birth_time_exact: userResponses.birth_time_exact || null,
+                birth_location: userResponses.birth_location || null
+            };
+        }
+        
+        function extractSpiritualProfile() {
+            return {
+                spiritual_experience: userResponses.spiritual_experience || null,
+                intuitive_abilities: userResponses.intuitive_abilities || null,
+                moon_sensitivity: userResponses.moon_sensitivity || null
+            };
+        }
+        
+        function displayDataSummary(session) {
+            const summary = document.getElementById('dataSummary');
+            summary.innerHTML = `
+                <div>🎂 Birth Date: ${session.birth_data.birth_date || 'Not provided'}</div>
+                <div>⏰ Birth Time: ${session.birth_data.birth_time_exact || session.birth_data.birth_time_known || 'Not provided'}</div>
+                <div>📍 Birth Location: ${session.birth_data.birth_location || 'Not provided'}</div>
+                <div>🔮 Spiritual Experience: ${session.spiritual_profile.spiritual_experience || 'Not provided'}</div>
+                <div>✨ Intuitive Level: ${session.spiritual_profile.intuitive_abilities || 'Not provided'}/10</div>
+                <div>🌙 Moon Sensitivity: ${session.spiritual_profile.moon_sensitivity || 'Not provided'}</div>
+            `;
+        }
+        
+        function downloadData() {
+            const session = JSON.parse(localStorage.getItem('anulunar_quiz_session'));
+            const dataStr = JSON.stringify(session, null, 2);
+            const dataBlob = new Blob([dataStr], {type: 'application/json'});
+            
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(dataBlob);
+            link.download = 'anulunar_cosmic_data.json';
+            link.click();
+        }
+        
+        function generateSessionId() {
+            return 'quiz_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
+        }
+    </script>
+</body>
+</html>
+    

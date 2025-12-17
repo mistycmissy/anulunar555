@@ -1,0 +1,782 @@
+{
+  "birch_moon": {
+    "name": "Birch Moon - The Achiever",
+    "dates": "December 24 - January 20",
+    "celtic_name": "Beth",
+    "ogham_letter": "\u1681",
+    "traditional_themes": "Rebirth & Beginnings",
+    "traditional_description": "Associated with new starts and regeneration after the winter solstice",
+    "seasonal_energy": "Winter renewal and fresh possibilities emerging from darkness",
+    "tree_wisdom": "The pioneer tree, first to grow in disturbed soil",
+    "spiritual_archetype": "The Sacred Initiator",
+    "anulunar_connection": "Birch represents new beginnings emerging from apparent endings",
+    "core_traits": [
+      "Natural leadership with humble service",
+      "Ambitious but spiritually motivated",
+      "Resilient through life's storms",
+      "Intuitive problem-solving gifts"
+    ],
+    "unique_second_person_statements": [
+      "You possess an extraordinary ability to see potential where others see only problems or obstacles.",
+      "Your natural leadership style inspires others to believe in themselves rather than simply follow you.",
+      "You have an innate gift for transforming challenging situations into opportunities for collective growth.",
+      "Your ambitious nature is always tempered by a deep desire to serve something greater than yourself."
+    ],
+    "spiritual_gifts": {
+      "primary": "Pioneering new spiritual pathways for others to follow",
+      "secondary": "Transforming challenges into wisdom teachings",
+      "hidden": "Ability to channel post-solstice renewal energy for collective healing"
+    },
+    "lunar_connection": {
+      "new_moon_power": "Setting intentions for spiritual service and leadership during winter's depths",
+      "full_moon_release": "Releasing old patterns that block fresh spiritual growth",
+      "moon_phase_ritual": "Write spiritual goals under new moon, plant them with birch twigs in snow"
+    },
+    "seasonal_wisdom": "Winter solstice teaches that light returns even in darkest times - you embody this truth",
+    "compatibility": {
+      "highest": [
+        "Oak Moon",
+        "Rowan Moon"
+      ],
+      "challenging": [
+        "Willow Moon",
+        "Ivy Moon"
+      ],
+      "growth_partnerships": [
+        "Reed Moon",
+        "Elder Moon"
+      ]
+    },
+    "healing_herbs": [
+      "Birch bark tea",
+      "White sage",
+      "Clear quartz"
+    ],
+    "power_animals": [
+      "Eagle",
+      "Wolf",
+      "Snow leopard"
+    ],
+    "meditation_focus": "Winter renewal and the courage to begin again"
+  },
+  "rowan_moon": {
+    "name": "Rowan Moon - The Thinker",
+    "dates": "January 21 - February 17",
+    "celtic_name": "Luis",
+    "ogham_letter": "\u1682",
+    "traditional_themes": "Vision & Protection",
+    "traditional_description": "A time for spiritual protection and initiations (honoring the goddess Brighid)",
+    "seasonal_energy": "Imbolc energy of inner fire and spiritual awakening",
+    "tree_wisdom": "The protection tree, guardian against negative energies",
+    "spiritual_archetype": "The Sacred Guardian",
+    "anulunar_connection": "Rowan teaches that true protection comes from inner luminosity, especially during Brighid's season",
+    "core_traits": [
+      "Philosophical depth with practical wisdom",
+      "Natural psychic protection abilities",
+      "Humanitarian vision with strategic thinking",
+      "Connection to goddess Brighid's protective fire"
+    ],
+    "unique_second_person_statements": [
+      "You have an exceptional ability to think several steps ahead while remaining grounded in present reality.",
+      "Your mind naturally creates protective barriers against negative influences without you having to consciously try.",
+      "You possess a rare combination of visionary thinking and practical implementation skills.",
+      "Your philosophical insights often provide exactly the perspective others need to solve complex problems."
+    ],
+    "spiritual_gifts": {
+      "primary": "Creating energetic protection and sacred space for others, especially during initiations",
+      "secondary": "Channeling Brighid's wisdom for spiritual guidance and healing",
+      "hidden": "Ability to see through illusions and provide clear spiritual vision"
+    },
+    "lunar_connection": {
+      "new_moon_power": "Setting protective intentions and connecting with Brighid's flame",
+      "full_moon_release": "Releasing absorbed negative energies through Brighid's purifying fire",
+      "moon_phase_ritual": "Light candles for Brighid and create protection circles with rowan branches"
+    },
+    "seasonal_wisdom": "Imbolc teaches that inner fire protects and guides - you carry this sacred flame",
+    "compatibility": {
+      "highest": [
+        "Birch Moon",
+        "Ash Moon"
+      ],
+      "challenging": [
+        "Holly Moon",
+        "Vine Moon"
+      ],
+      "growth_partnerships": [
+        "Hazel Moon",
+        "Reed Moon"
+      ]
+    },
+    "healing_herbs": [
+      "Rowan berries",
+      "Black tourmaline",
+      "Frankincense"
+    ],
+    "power_animals": [
+      "Raven",
+      "Owl",
+      "Mountain goat"
+    ],
+    "meditation_focus": "Brighid's protective flame and clear spiritual vision"
+  },
+  "ash_moon": {
+    "name": "Ash Moon - The Enchanter",
+    "dates": "February 18 - March 17",
+    "celtic_name": "Nion",
+    "ogham_letter": "\u1685",
+    "traditional_themes": "Intuition",
+    "traditional_description": "Linked to prophetic dreams and the 'inner self'",
+    "seasonal_energy": "Late winter intuitive awakening and prophetic dreaming",
+    "tree_wisdom": "The connection tree, bridging earth and sky realms",
+    "spiritual_archetype": "The Sacred Bridge Builder",
+    "anulunar_connection": "Ash connects all worlds, teaching that prophetic wisdom flows between dimensions",
+    "core_traits": [
+      "Natural magic and manifestation abilities",
+      "Bridge between spiritual and material worlds",
+      "Prophetic dreaming and intuitive gifts",
+      "Deep connection to the 'inner self'"
+    ],
+    "unique_second_person_statements": [
+      "You have an extraordinary gift for bringing spiritual visions and prophetic dreams into tangible reality.",
+      "Your creative expressions naturally carry healing energy that affects others on multiple dimensional levels.",
+      "You possess an innate understanding of how prophetic wisdom moves between the seen and unseen worlds.",
+      "Your presence alone helps others access their own inner self and prophetic abilities."
+    ],
+    "spiritual_gifts": {
+      "primary": "Bridging dimensions and translating prophetic visions into practical guidance",
+      "secondary": "Natural spell-crafting and ritual creation for manifestation",
+      "hidden": "Direct access to prophetic dreams and the collective unconscious"
+    },
+    "lunar_connection": {
+      "new_moon_power": "Manifesting prophetic visions into physical reality through intention",
+      "full_moon_release": "Releasing the illusion of separation between inner and outer worlds",
+      "moon_phase_ritual": "Dream work with ash wood under pillow for prophetic guidance"
+    },
+    "seasonal_wisdom": "Late winter dreams carry spring's prophetic wisdom - you are the bridge",
+    "compatibility": {
+      "highest": [
+        "Rowan Moon",
+        "Alder Moon"
+      ],
+      "challenging": [
+        "Oak Moon",
+        "Hawthorn Moon"
+      ],
+      "growth_partnerships": [
+        "Willow Moon",
+        "Elder Moon"
+      ]
+    },
+    "healing_herbs": [
+      "Ash leaves",
+      "Amethyst",
+      "Lavender"
+    ],
+    "power_animals": [
+      "Dragon",
+      "Hummingbird",
+      "Butterfly"
+    ],
+    "meditation_focus": "Prophetic dreams and bridging inner wisdom with outer manifestation"
+  },
+  "alder_moon": {
+    "name": "Alder Moon - The Trailblazer",
+    "dates": "March 18 - April 14",
+    "celtic_name": "Fearn",
+    "ogham_letter": "\u1683",
+    "traditional_themes": "Decisiveness",
+    "traditional_description": "Symbols of spiritual decisions and divination during the spring equinox",
+    "seasonal_energy": "Spring equinox balance and decisive spiritual action",
+    "tree_wisdom": "The pioneer of waterways, creating paths where none existed",
+    "spiritual_archetype": "The Sacred Pathfinder",
+    "anulunar_connection": "Alder teaches decisive spiritual action during equinox balance - the courage to choose your path",
+    "core_traits": [
+      "Courageous exploration of uncharted spiritual territories",
+      "Natural ability to make clear decisions under pressure",
+      "Confident leadership during times of spiritual transition",
+      "Mastery of divination and spiritual decision-making"
+    ],
+    "unique_second_person_statements": [
+      "You possess remarkable courage to make spiritual decisions that others find too intimidating to face.",
+      "Your ability to remain decisive during uncertain times naturally guides others through their own confusion.",
+      "You have an innate gift for using divination tools to clarify complex spiritual choices.",
+      "Your adventurous spirit opens pathways that serve entire spiritual communities."
+    ],
+    "spiritual_gifts": {
+      "primary": "Making decisive spiritual choices that open new pathways for collective evolution",
+      "secondary": "Mastery of divination arts during times of spiritual transition",
+      "hidden": "Ability to find divine order and clear direction within apparent chaos"
+    },
+    "lunar_connection": {
+      "new_moon_power": "Setting intentions for bold spiritual decisions during equinox balance",
+      "full_moon_release": "Releasing indecision and fear of making the wrong spiritual choice",
+      "moon_phase_ritual": "Spring equinox divination ceremony with alder wood for guidance"
+    },
+    "seasonal_wisdom": "Spring equinox teaches perfect balance before decisive action - you embody this timing",
+    "compatibility": {
+      "highest": [
+        "Ash Moon",
+        "Willow Moon"
+      ],
+      "challenging": [
+        "Ivy Moon",
+        "Reed Moon"
+      ],
+      "growth_partnerships": [
+        "Birch Moon",
+        "Hawthorn Moon"
+      ]
+    },
+    "healing_herbs": [
+      "Alder bark",
+      "Carnelian",
+      "Ginger"
+    ],
+    "power_animals": [
+      "Salmon",
+      "Horse",
+      "Falcon"
+    ],
+    "meditation_focus": "Spring equinox balance and the courage to make decisive spiritual choices"
+  },
+  "willow_moon": {
+    "name": "Willow Moon - The Observer",
+    "dates": "April 15 - May 12",
+    "celtic_name": "Saille",
+    "ogham_letter": "\u1684",
+    "traditional_themes": "Healing",
+    "traditional_description": "Associated with growth, female mysteries, and warding away danger",
+    "seasonal_energy": "Spring growth and feminine healing wisdom",
+    "tree_wisdom": "The flexible tree that bends with storms but never breaks",
+    "spiritual_archetype": "The Sacred Witness",
+    "anulunar_connection": "Willow teaches the healing power of feminine mysteries and protective flexibility",
+    "core_traits": [
+      "Intuitive understanding of natural healing cycles",
+      "Patient observation that reveals female mysteries",
+      "Deep emotional intelligence and protective wisdom",
+      "Ability to ward away spiritual and psychic danger"
+    ],
+    "unique_second_person_statements": [
+      "You possess an extraordinary ability to heal others through patient witnessing of their authentic truth.",
+      "Your natural empathy allows you to understand the deeper feminine mysteries that others miss entirely.",
+      "You have a rare gift for creating protective energy that wards away danger without creating conflict.",
+      "Your patient approach to healing often reveals perfect timing that rushing would destroy."
+    ],
+    "spiritual_gifts": {
+      "primary": "Deep healing wisdom gained through understanding feminine mysteries and natural cycles",
+      "secondary": "Creating protective barriers that ward away spiritual danger",
+      "hidden": "Ability to bend without breaking under any spiritual or emotional pressure"
+    },
+    "lunar_connection": {
+      "new_moon_power": "Setting intentions for healing growth and protection of the vulnerable",
+      "full_moon_release": "Releasing tendency to absorb others' pain instead of facilitating their healing",
+      "moon_phase_ritual": "Moonwater ceremonies with willow branches for emotional healing"
+    },
+    "seasonal_wisdom": "Spring growth teaches that healing happens in its own time - you honor this rhythm",
+    "compatibility": {
+      "highest": [
+        "Alder Moon",
+        "Hawthorn Moon"
+      ],
+      "challenging": [
+        "Birch Moon",
+        "Oak Moon"
+      ],
+      "growth_partnerships": [
+        "Ash Moon",
+        "Vine Moon"
+      ]
+    },
+    "healing_herbs": [
+      "Willow bark",
+      "Moonstone",
+      "Chamomile"
+    ],
+    "power_animals": [
+      "Swan",
+      "Otter",
+      "Frog"
+    ],
+    "meditation_focus": "Feminine healing mysteries and protective flexibility"
+  },
+  "hawthorn_moon": {
+    "name": "Hawthorn Moon - The Illusionist",
+    "dates": "May 13 - June 9",
+    "celtic_name": "Huath",
+    "ogham_letter": "\u1686",
+    "traditional_themes": "Fertility",
+    "traditional_description": "A time of high masculine energy and potency; traditionally linked to the Fae",
+    "seasonal_energy": "Beltane fertility and Fae realm connections",
+    "tree_wisdom": "The fairy tree, guardian of thresholds between worlds",
+    "spiritual_archetype": "The Sacred Threshold Keeper",
+    "anulunar_connection": "Hawthorn guards fertility thresholds and sacred Fae connections during peak spring energy",
+    "core_traits": [
+      "Natural ability to see through illusions to fertility potential",
+      "Protective of sacred boundaries between human and Fae realms",
+      "Deep connection to masculine creative energy and potency",
+      "Complex personality that bridges multiple dimensions"
+    ],
+    "unique_second_person_statements": [
+      "You have an uncanny ability to recognize true fertility and creative potential beneath surface appearances.",
+      "Your presence naturally creates sacred space where magical manifestations can occur during peak creative times.",
+      "You possess deep understanding of masculine creative energy and how to channel it for highest good.",
+      "Your protective instincts activate most strongly around sacred creative and fertility thresholds."
+    ],
+    "spiritual_gifts": {
+      "primary": "Guarding sacred thresholds of creativity and fertility, especially Fae connections",
+      "secondary": "Revealing hidden creative potential and cutting through fertility blocks",
+      "hidden": "Direct communication with Fae realm beings and fertility spirits"
+    },
+    "lunar_connection": {
+      "new_moon_power": "Setting intentions for creative fertility and Fae realm communication",
+      "full_moon_release": "Releasing creative blocks and fear of powerful manifestation energy",
+      "moon_phase_ritual": "Beltane threshold blessing ceremony with hawthorn flowers for Fae connection"
+    },
+    "seasonal_wisdom": "Beltane fertility teaches that creative power requires sacred boundaries - you guard these wisely",
+    "compatibility": {
+      "highest": [
+        "Willow Moon",
+        "Oak Moon"
+      ],
+      "challenging": [
+        "Ash Moon",
+        "Alder Moon"
+      ],
+      "growth_partnerships": [
+        "Holly Moon",
+        "Ivy Moon"
+      ]
+    },
+    "healing_herbs": [
+      "Hawthorn flowers",
+      "Fluorite",
+      "Vervain"
+    ],
+    "power_animals": [
+      "Fox",
+      "Deer",
+      "Raven"
+    ],
+    "meditation_focus": "Beltane fertility energy and sacred Fae realm connections"
+  },
+  "oak_moon": {
+    "name": "Oak Moon - The Stabilizer",
+    "dates": "June 10 - July 7",
+    "celtic_name": "Duir",
+    "ogham_letter": "\u1687",
+    "traditional_themes": "Strength",
+    "traditional_description": "Rules the summer months; symbolizes protection, success, and good fortune",
+    "seasonal_energy": "Summer solstice peak power and protective strength",
+    "tree_wisdom": "The king of trees, symbol of strength, endurance, and nobility",
+    "spiritual_archetype": "The Sacred Sovereign",
+    "anulunar_connection": "Oak teaches that true strength protects and brings good fortune to all during summer's peak",
+    "core_traits": [
+      "Natural leadership through steady, protective example",
+      "Unwavering loyalty and reliability during peak seasons",
+      "Strong moral compass that ensures collective success",
+      "Ability to channel summer solstice energy for protection and fortune"
+    ],
+    "unique_second_person_statements": [
+      "You possess inherent sovereignty that naturally protects and brings good fortune to your community.",
+      "Your steady presence provides the foundation of strength that allows others to reach their peak potential.",
+      "You have an unshakeable moral compass that guides collective success even during intense pressure.",
+      "Your natural leadership channels summer solstice energy to create lasting protection and abundance."
+    ],
+    "spiritual_gifts": {
+      "primary": "Providing sovereign protection and channeling summer solstice strength for collective good fortune",
+      "secondary": "Leadership through moral example that ensures lasting success for all",
+      "hidden": "Ability to channel ancient oak wisdom and Druidic protection magic"
+    },
+    "lunar_connection": {
+      "new_moon_power": "Setting intentions for protective leadership and collective good fortune",
+      "full_moon_release": "Releasing ego-driven power in favor of servant leadership",
+      "moon_phase_ritual": "Summer solstice oak tree meditation for sovereign strength and protection"
+    },
+    "seasonal_wisdom": "Summer solstice teaches that peak power serves protection - you embody sacred sovereignty",
+    "compatibility": {
+      "highest": [
+        "Birch Moon",
+        "Hawthorn Moon"
+      ],
+      "challenging": [
+        "Ash Moon",
+        "Willow Moon"
+      ],
+      "growth_partnerships": [
+        "Holly Moon",
+        "Elder Moon"
+      ]
+    },
+    "healing_herbs": [
+      "Oak leaves",
+      "Emerald",
+      "Cedar"
+    ],
+    "power_animals": [
+      "Stag",
+      "Bear",
+      "Eagle"
+    ],
+    "meditation_focus": "Summer solstice sovereign strength and protective leadership"
+  },
+  "holly_moon": {
+    "name": "Holly Moon - The Ruler",
+    "dates": "July 8 - August 4",
+    "celtic_name": "Tinne",
+    "ogham_letter": "\u1688",
+    "traditional_themes": "Masculinity",
+    "traditional_description": "Symbolizes firmness and immortality; historical wood used for weapons",
+    "seasonal_energy": "High summer masculine power and immortal strength",
+    "tree_wisdom": "The protective evergreen, maintaining life force through all seasons",
+    "spiritual_archetype": "The Sacred Protector",
+    "anulunar_connection": "Holly teaches immortal masculine strength that protects life through all seasons and challenges",
+    "core_traits": [
+      "Natural authority combined with immortal protective instincts",
+      "Ability to maintain firmness and strength through any challenge",
+      "Strong sense of divine masculine justice and protection",
+      "Leadership that creates lasting security like evergreen resilience"
+    ],
+    "unique_second_person_statements": [
+      "You possess immortal masculine strength that others respect because it protects rather than dominates.",
+      "Your ability to maintain firmness and vitality through all challenges inspires others to develop their own resilience.",
+      "You have innate understanding of divine masculine energy that creates lasting protection for the vulnerable.",
+      "Your leadership style naturally creates immortal security that withstands any seasonal change or challenge."
+    ],
+    "spiritual_gifts": {
+      "primary": "Channeling immortal masculine energy for protection that endures through all seasons",
+      "secondary": "Creating firm boundaries and lasting security through divine masculine wisdom",
+      "hidden": "Access to ancient warrior wisdom and protective magic that never diminishes"
+    },
+    "lunar_connection": {
+      "new_moon_power": "Setting intentions for immortal protection and divine masculine strength",
+      "full_moon_release": "Releasing toxic masculine patterns in favor of divine protective masculinity",
+      "moon_phase_ritual": "Lughnasadh fire ceremony with holly for immortal strength and protection"
+    },
+    "seasonal_wisdom": "High summer teaches that true masculinity protects life eternally - you embody this immortal strength",
+    "compatibility": {
+      "highest": [
+        "Oak Moon",
+        "Hazel Moon"
+      ],
+      "challenging": [
+        "Rowan Moon",
+        "Hawthorn Moon"
+      ],
+      "growth_partnerships": [
+        "Vine Moon",
+        "Reed Moon"
+      ]
+    },
+    "healing_herbs": [
+      "Holly leaves",
+      "Garnet",
+      "Cinnamon"
+    ],
+    "power_animals": [
+      "Lion",
+      "Wolf",
+      "Hawk"
+    ],
+    "meditation_focus": "Divine masculine protection and immortal evergreen strength"
+  },
+  "hazel_moon": {
+    "name": "Hazel Moon - The Knower",
+    "dates": "August 5 - September 1",
+    "celtic_name": "Coll",
+    "ogham_letter": "\u1689",
+    "traditional_themes": "Wisdom",
+    "traditional_description": "Linked to knowledge-seeking and inspiration; a 'harvest' for the creative mind",
+    "seasonal_energy": "Late summer wisdom harvest and creative inspiration",
+    "tree_wisdom": "The wisdom tree, source of divine knowledge and poetic inspiration",
+    "spiritual_archetype": "The Sacred Scholar",
+    "anulunar_connection": "Hazel connects us to wisdom harvest and the sacred wells of creative inspiration",
+    "core_traits": [
+      "Natural ability to harvest higher knowledge and wisdom",
+      "Poetic and artistic expression of divine inspiration",
+      "Teaching through creative inspiration rather than mere instruction",
+      "Deep connection to wisdom traditions and knowledge-seeking"
+    ],
+    "unique_second_person_statements": [
+      "You have an extraordinary ability to harvest wisdom that seems to come from divine creative wells.",
+      "Your natural teaching style inspires creative breakthroughs rather than simple knowledge transfer.",
+      "You possess a poetic soul that can express profound wisdom through beautifully inspired creativity.",
+      "Your connection to ancient wisdom traditions provides timeless inspiration for modern creative challenges."
+    ],
+    "spiritual_gifts": {
+      "primary": "Harvesting divine wisdom and sharing it through inspired creative expression and teaching",
+      "secondary": "Translating complex spiritual concepts into accessible poetic and artistic forms",
+      "hidden": "Direct connection to sacred wisdom wells and ancient creative inspiration sources"
+    },
+    "lunar_connection": {
+      "new_moon_power": "Setting intentions for wisdom harvest and creative inspiration during late summer",
+      "full_moon_release": "Releasing intellectual pride that blocks true creative wisdom flow",
+      "moon_phase_ritual": "Wisdom harvest ceremony with hazel nuts for creative inspiration and knowledge"
+    },
+    "seasonal_wisdom": "Late summer teaches that wisdom ripens like fruit - you know how to harvest divine inspiration",
+    "compatibility": {
+      "highest": [
+        "Holly Moon",
+        "Vine Moon"
+      ],
+      "challenging": [
+        "Alder Moon",
+        "Rowan Moon"
+      ],
+      "growth_partnerships": [
+        "Ivy Moon",
+        "Elder Moon"
+      ]
+    },
+    "healing_herbs": [
+      "Hazel nuts",
+      "Sapphire",
+      "Rosemary"
+    ],
+    "power_animals": [
+      "Owl",
+      "Salmon",
+      "Crane"
+    ],
+    "meditation_focus": "Wisdom harvest and creative inspiration from divine wells"
+  },
+  "vine_moon": {
+    "name": "Vine Moon - The Equalizer",
+    "dates": "September 2 - September 29",
+    "celtic_name": "Muin",
+    "ogham_letter": "\u168b",
+    "traditional_themes": "Balance",
+    "traditional_description": "A time of harvest and balancing light and dark during the autumn equinox",
+    "seasonal_energy": "Autumn equinox balance and harvest integration",
+    "tree_wisdom": "The connective plant that weaves different elements into unified beauty",
+    "spiritual_archetype": "The Sacred Harmonizer",
+    "anulunar_connection": "Vine teaches the art of creating perfect balance during harvest time while weaving unity from diversity",
+    "core_traits": [
+      "Natural ability to bring opposing elements into equinox harmony",
+      "Diplomatic skills that create balance while preserving harvest abundance",
+      "Aesthetic sense that weaves beauty from autumn's diverse elements",
+      "Talent for connecting diverse energies during times of transition"
+    ],
+    "unique_second_person_statements": [
+      "You have a remarkable gift for finding perfect balance between opposing forces during times of harvest and transition.",
+      "Your diplomatic approach to conflict creates autumn equinox harmony where all parties can celebrate their abundance.",
+      "You possess an aesthetic sense that can weave beauty by connecting diverse elements like autumn's colorful tapestry.",
+      "Your harmonizing abilities naturally create networks of mutual support during seasons of change."
+    ],
+    "spiritual_gifts": {
+      "primary": "Creating autumn equinox balance and harmony while honoring the abundance each element brings",
+      "secondary": "Diplomatic problem-solving that preserves relationships during harvest celebrations",
+      "hidden": "Ability to weave spiritual connections between seemingly unrelated people during transition times"
+    },
+    "lunar_connection": {
+      "new_moon_power": "Setting intentions for balanced harmony and grateful harvest celebration",
+      "full_moon_release": "Releasing false harmony that avoids celebrating authentic differences",
+      "moon_phase_ritual": "Autumn equinox harvest ceremony with grape vines for balance and abundance"
+    },
+    "seasonal_wisdom": "Autumn equinox teaches perfect balance honors both light and shadow - you weave this harmony",
+    "compatibility": {
+      "highest": [
+        "Hazel Moon",
+        "Ivy Moon"
+      ],
+      "challenging": [
+        "Birch Moon",
+        "Holly Moon"
+      ],
+      "growth_partnerships": [
+        "Willow Moon",
+        "Reed Moon"
+      ]
+    },
+    "healing_herbs": [
+      "Grape leaves",
+      "Rose quartz",
+      "Diplomatic blue lace agate"
+    ],
+    "power_animals": [
+      "Dove",
+      "Spider",
+      "Peacock"
+    ],
+    "meditation_focus": "Autumn equinox balance and weaving harmony from diversity"
+  },
+  "ivy_moon": {
+    "name": "Ivy Moon - The Survivor",
+    "dates": "September 30 - October 27",
+    "celtic_name": "Gort",
+    "ogham_letter": "\u168c",
+    "traditional_themes": "Survival",
+    "traditional_description": "Focused on banishing negativity and ending toxic cycles",
+    "seasonal_energy": "Autumn transformation and purification through survival wisdom",
+    "tree_wisdom": "The resilient climber that finds a way to thrive in any environment",
+    "spiritual_archetype": "The Sacred Perseverer",
+    "anulunar_connection": "Ivy teaches survival wisdom through banishing negativity and breaking toxic cycles",
+    "core_traits": [
+      "Extraordinary resilience and ability to banish negativity",
+      "Natural talent for ending toxic cycles and surviving transformation",
+      "Persistent pursuit of growth despite obstacles and opposition",
+      "Instinctive knowledge of what needs to be purged for healthy survival"
+    ],
+    "unique_second_person_statements": [
+      "You possess extraordinary ability to not just survive but transform toxic situations into opportunities for growth.",
+      "Your resilience is matched by your talent for helping others banish negativity and break free from harmful cycles.",
+      "You have an uncanny knack for identifying and ending toxic patterns that others cannot even see.",
+      "Your persistent nature is balanced by wisdom about when to purge what no longer serves survival and growth."
+    ],
+    "spiritual_gifts": {
+      "primary": "Modeling survival resilience while helping others banish negativity and end toxic cycles",
+      "secondary": "Finding transformative opportunities within challenging circumstances and opposition",
+      "hidden": "Ability to transmute toxicity into wisdom and guide others through purification processes"
+    },
+    "lunar_connection": {
+      "new_moon_power": "Setting intentions for banishing negativity and breaking free from toxic cycles",
+      "full_moon_release": "Releasing attachment to survival struggle as identity while embracing healthy growth",
+      "moon_phase_ritual": "Samhain purification ritual with ivy for banishing negativity and ending harmful cycles"
+    },
+    "seasonal_wisdom": "Autumn teaches that some things must die for healthy survival - you know what to release",
+    "compatibility": {
+      "highest": [
+        "Vine Moon",
+        "Reed Moon"
+      ],
+      "challenging": [
+        "Birch Moon",
+        "Alder Moon"
+      ],
+      "growth_partnerships": [
+        "Holly Moon",
+        "Elder Moon"
+      ]
+    },
+    "healing_herbs": [
+      "Ivy leaves",
+      "Hematite",
+      "Nettle"
+    ],
+    "power_animals": [
+      "Serpent",
+      "Turtle",
+      "Phoenix"
+    ],
+    "meditation_focus": "Banishing negativity and transforming toxic cycles into wisdom"
+  },
+  "reed_moon": {
+    "name": "Reed Moon - The Inquisitor",
+    "dates": "October 28 - November 23",
+    "celtic_name": "Negetal",
+    "ogham_letter": "\u1685\u168c",
+    "traditional_themes": "Spiritual Connections",
+    "traditional_description": "Associated with the dead, the underworld, and spirit guides",
+    "seasonal_energy": "Samhain spirit realm opening and underworld connections",
+    "tree_wisdom": "The hollow plant that bends without breaking and carries spirit voices on the wind",
+    "spiritual_archetype": "The Sacred Questioner",
+    "anulunar_connection": "Reed teaches that hollow space within creates capacity for spirit guide communication and underworld wisdom",
+    "core_traits": [
+      "Natural investigative abilities connecting with spirit realm",
+      "Talent for asking questions that open underworld communications",
+      "Ability to remain flexible while channeling messages from the dead",
+      "Gift for helping others connect with their spirit guides and ancestors"
+    ],
+    "unique_second_person_statements": [
+      "You have exceptional talent for asking exactly the questions that open communication channels with spirit guides and ancestors.",
+      "Your investigative nature is motivated by genuine desire to understand spirit realm wisdom rather than mere curiosity.",
+      "You possess rare ability to remain flexible and responsive while channeling messages from the underworld and spirit guides.",
+      "Your natural connection to the dead and spirit realm often brings wisdom that serves entire communities of seekers."
+    ],
+    "spiritual_gifts": {
+      "primary": "Investigating spirit realm mysteries and helping others connect with ancestors and spirit guides",
+      "secondary": "Maintaining flexibility while serving as channel for underworld wisdom and guidance",
+      "hidden": "Direct communication with the dead and ability to bridge underworld and living world"
+    },
+    "lunar_connection": {
+      "new_moon_power": "Setting intentions for spirit guide communication and ancestor connection during Samhain",
+      "full_moon_release": "Releasing fear of death and opening to spirit realm wisdom and guidance",
+      "moon_phase_ritual": "Samhain ancestor ceremony with reed instruments for spirit communication"
+    },
+    "seasonal_wisdom": "Samhain teaches that death is doorway to wisdom - you are the bridge between worlds",
+    "compatibility": {
+      "highest": [
+        "Ivy Moon",
+        "Elder Moon"
+      ],
+      "challenging": [
+        "Alder Moon",
+        "Oak Moon"
+      ],
+      "growth_partnerships": [
+        "Rowan Moon",
+        "Vine Moon"
+      ]
+    },
+    "healing_herbs": [
+      "Reed grass",
+      "Obsidian",
+      "Mugwort"
+    ],
+    "power_animals": [
+      "Heron",
+      "Cat",
+      "Bat"
+    ],
+    "meditation_focus": "Spirit guide communication and ancestor wisdom through Samhain portal"
+  },
+  "elder_moon": {
+    "name": "Elder Moon - The Seeker",
+    "dates": "November 24 - December 23",
+    "celtic_name": "Ruis",
+    "ogham_letter": "\u168f",
+    "traditional_themes": "Renewal",
+    "traditional_description": "Covers the winter solstice; focuses on rejuvenation and the cycle of life/death",
+    "seasonal_energy": "Winter solstice renewal and life/death cycle completion",
+    "tree_wisdom": "The threshold tree between life and death, guardian of renewal wisdom",
+    "spiritual_archetype": "The Sacred Elder",
+    "anulunar_connection": "Elder teaches that true renewal comes through embracing complete life/death cycles with wisdom",
+    "core_traits": [
+      "Deep spiritual wisdom gained through understanding life/death cycles",
+      "Natural ability to guide others through major transitions and renewals",
+      "Comfortable with mystery of death and rebirth processes",
+      "Gift for helping others release what blocks their rejuvenation and renewal"
+    ],
+    "unique_second_person_statements": [
+      "You possess wisdom that comes from understanding how death and renewal are part of the same sacred cycle.",
+      "Your natural ability to guide others through life/death transitions provides crucial support during winter solstice darkness.",
+      "You have rare comfort with the mystery of endings that helps others embrace necessary completions and renewals.",
+      "Your presence alone helps people feel safe enough to release what blocks their rejuvenation and spiritual rebirth."
+    ],
+    "spiritual_gifts": {
+      "primary": "Guiding others through life/death cycles and winter solstice renewal processes",
+      "secondary": "Helping people release what blocks rejuvenation and embrace necessary endings",
+      "hidden": "Serving as bridge between life and death wisdom during times of spiritual renewal"
+    },
+    "lunar_connection": {
+      "new_moon_power": "Setting intentions for rejuvenation and renewal during winter solstice approach",
+      "full_moon_release": "Releasing attachment to old cycles and opening to winter solstice rebirth",
+      "moon_phase_ritual": "Winter solstice renewal ceremony with elder flowers for life/death wisdom"
+    },
+    "seasonal_wisdom": "Winter solstice teaches that apparent death births renewal - you guide others through this mystery",
+    "compatibility": {
+      "highest": [
+        "Reed Moon",
+        "Birch Moon"
+      ],
+      "challenging": [
+        "Ash Moon",
+        "Hazel Moon"
+      ],
+      "growth_partnerships": [
+        "Oak Moon",
+        "Ivy Moon"
+      ]
+    },
+    "healing_herbs": [
+      "Elder flowers",
+      "Onyx",
+      "Sage"
+    ],
+    "power_animals": [
+      "Raven",
+      "Crone Spider",
+      "Ancient Turtle"
+    ],
+    "meditation_focus": "Winter solstice renewal and life/death cycle completion wisdom"
+  }
+}

@@ -1,0 +1,243 @@
+{
+  "database_name": "anulunar_spiritual_intelligence",
+  "description": "Supabase database schema for AnuLunar Spiritual Intelligence platform",
+  "version": "1.0.0",
+  
+  "tables": {
+    "users": {
+      "description": "User accounts and profiles",
+      "columns": {
+        "id": {
+          "type": "uuid",
+          "primary_key": true,
+          "default": "uuid_generate_v4()"
+        },
+        "email": {
+          "type": "varchar(255)",
+          "unique": true,
+          "not_null": true
+        },
+        "created_at": {
+          "type": "timestamp",
+          "default": "now()"
+        },
+        "subscription_tier": {
+          "type": "varchar(50)",
+          "default": "cosmic_blueprint_foundation"
+        },
+        "birth_data": {
+          "type": "jsonb",
+          "description": "Birth date, time, location for calculations"
+        }
+      }
+    },
+    
+    "quiz_sessions": {
+      "description": "User quiz responses and sessions",
+      "columns": {
+        "id": {
+          "type": "uuid",
+          "primary_key": true,
+          "default": "uuid_generate_v4()"
+        },
+        "user_id": {
+          "type": "uuid",
+          "foreign_key": "users.id",
+          "not_null": true
+        },
+        "quiz_type": {
+          "type": "varchar(100)",
+          "not_null": true
+        },
+        "responses": {
+          "type": "jsonb",
+          "description": "All quiz responses for LUNARIS synthesis"
+        },
+        "completion_percentage": {
+          "type": "decimal(5,2)",
+          "default": 0
+        },
+        "completed_at": {
+          "type": "timestamp"
+        },
+        "created_at": {
+          "type": "timestamp",
+          "default": "now()"
+        }
+      }
+    },
+    
+    "cosmic_blueprints": {
+      "description": "Generated spiritual reports and blueprints",
+      "columns": {
+        "id": {
+          "type": "uuid",
+          "primary_key": true,
+          "default": "uuid_generate_v4()"
+        },
+        "user_id": {
+          "type": "uuid",
+          "foreign_key": "users.id",
+          "not_null": true
+        },
+        "report_type": {
+          "type": "varchar(100)",
+          "not_null": true
+        },
+        "astrological_data": {
+          "type": "jsonb",
+          "description": "Houses, planets, aspects calculations"
+        },
+        "celtic_moon_sign": {
+          "type": "jsonb", 
+          "description": "Celtic moon sign interpretation"
+        },
+        "human_design_data": {
+          "type": "jsonb",
+          "description": "Bodygraph, type, strategy, authority"
+        },
+        "lunaris_synthesis": {
+          "type": "jsonb",
+          "description": "Multi-modal synthesis results"
+        },
+        "report_content": {
+          "type": "text",
+          "description": "Generated report text"
+        },
+        "created_at": {
+          "type": "timestamp",
+          "default": "now()"
+        }
+      }
+    },
+    
+    "bodygraphs": {
+      "description": "Human Design bodygraph calculations and SVG data",
+      "columns": {
+        "id": {
+          "type": "uuid",
+          "primary_key": true,
+          "default": "uuid_generate_v4()"
+        },
+        "user_id": {
+          "type": "uuid",
+          "foreign_key": "users.id",
+          "not_null": true
+        },
+        "birth_data": {
+          "type": "jsonb",
+          "description": "Birth date, time, location"
+        },
+        "personality_gates": {
+          "type": "jsonb",
+          "description": "Conscious/red activations"
+        },
+        "design_gates": {
+          "type": "jsonb", 
+          "description": "Unconscious/black activations"
+        },
+        "defined_centers": {
+          "type": "jsonb",
+          "description": "Which centers are defined"
+        },
+        "type_strategy_authority": {
+          "type": "jsonb",
+          "description": "Type, strategy, authority calculations"
+        },
+        "svg_data": {
+          "type": "text",
+          "description": "Generated SVG bodygraph"
+        },
+        "created_at": {
+          "type": "timestamp",
+          "default": "now()"
+        }
+      }
+    },
+    
+    "subscriptions": {
+      "description": "User subscription management", 
+      "columns": {
+        "id": {
+          "type": "uuid",
+          "primary_key": true,
+          "default": "uuid_generate_v4()"
+        },
+        "user_id": {
+          "type": "uuid",
+          "foreign_key": "users.id",
+          "not_null": true
+        },
+        "tier": {
+          "type": "varchar(50)",
+          "not_null": true
+        },
+        "stripe_subscription_id": {
+          "type": "varchar(255)"
+        },
+        "status": {
+          "type": "varchar(20)",
+          "default": "active"
+        },
+        "current_period_start": {
+          "type": "timestamp"
+        },
+        "current_period_end": {
+          "type": "timestamp"
+        },
+        "created_at": {
+          "type": "timestamp",
+          "default": "now()"
+        }
+      }
+    }
+  },
+  
+  "indexes": {
+    "users_email_idx": {
+      "table": "users",
+      "column": "email",
+      "unique": true
+    },
+    "quiz_sessions_user_id_idx": {
+      "table": "quiz_sessions", 
+      "column": "user_id"
+    },
+    "cosmic_blueprints_user_id_idx": {
+      "table": "cosmic_blueprints",
+      "column": "user_id"
+    },
+    "bodygraphs_user_id_idx": {
+      "table": "bodygraphs",
+      "column": "user_id"
+    }
+  },
+  
+  "row_level_security": {
+    "enabled": true,
+    "policies": {
+      "users_policy": "Users can only access their own data",
+      "quiz_sessions_policy": "Users can only access their own quiz sessions", 
+      "cosmic_blueprints_policy": "Users can only access their own reports",
+      "bodygraphs_policy": "Users can only access their own bodygraphs"
+    }
+  },
+  
+  "functions": {
+    "calculate_birth_chart": {
+      "description": "Calculate astrological birth chart from birth data",
+      "parameters": ["birth_date", "birth_time", "birth_location"],
+      "returns": "jsonb"
+    },
+    "generate_bodygraph": {
+      "description": "Generate Human Design bodygraph from birth data",
+      "parameters": ["birth_date", "birth_time", "birth_location"],
+      "returns": "jsonb"
+    },
+    "lunaris_synthesis": {
+      "description": "Synthesize multi-modal spiritual data using LUNARIS framework",
+      "parameters": ["astrological_data", "celtic_data", "quiz_responses"],
+      "returns": "jsonb"
+    }
+  }
+}
