@@ -139,6 +139,9 @@ export default async function handler(req, res) {
     LEAD_SOURCE: String(body.source || 'quiz_opener').slice(0, 100),
     REF_CODE: String(body.ref || '').slice(0, 50),
     AFFILIATE_CODE: affiliateCode,
+    // Contact-level tracking for “which mini-report email they received”
+    LAST_MINI_REPORT_EMAIL: `MINI_REPORT_${['A', 'B', 'C', 'D'].includes(abVariant) ? abVariant : 'A'}`,
+    LAST_MINI_REPORT_EMAIL_AT: new Date().toISOString(),
     EMAIL_OPTIN: consent,
     LEAD_CAPTURED_AT: new Date().toISOString(),
   }
@@ -198,6 +201,8 @@ export default async function handler(req, res) {
           to: [{ email, name: `${firstName} ${lastName}`.trim() }],
           subject: `Your AnuLunar Mini Report (Life Path ${body.lifePath || ''})`.trim(),
           htmlContent,
+          // Email-level tag (visible in Brevo email reporting)
+          tags: [attributes.LAST_MINI_REPORT_EMAIL],
         }),
       })
 
