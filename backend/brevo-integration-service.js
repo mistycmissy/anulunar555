@@ -33,14 +33,6 @@ const supabase = createClient(
 
 class BrevoIntegrationService {
   constructor() {
-    // Validate required environment variables
-    if (!process.env.BREVO_API_KEY) {
-      throw new Error('BREVO_API_KEY environment variable is required');
-    }
-    if (!process.env.BREVO_MASTER_LIST_ID) {
-      throw new Error('BREVO_MASTER_LIST_ID environment variable is required');
-    }
-    
     this.apiKey = process.env.BREVO_API_KEY;
     this.baseUrl = 'https://api.brevo.com/v3';
     this.listId = parseInt(process.env.BREVO_MASTER_LIST_ID);
@@ -185,7 +177,8 @@ class BrevoIntegrationService {
         const error = await response.json();
         
         // Handle duplicate contact by updating instead
-        if (error.code === 'duplicate_parameter' || response.status === 400) {
+        // Brevo returns code 'duplicate_parameter' when contact already exists
+        if (error.code === 'duplicate_parameter') {
           console.log(`⚠️  Contact already exists, updating instead: ${profileData.email}`);
           return await this.updateContact(profileData.email, this.buildContactAttributes(profileData));
         }
