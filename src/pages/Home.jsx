@@ -218,8 +218,11 @@ const Home = () => {
             onSubmit={handleGenerateBlueprint}
             loading={loading}
             initialValues={{
+              firstName: quizSession?.responses?.first_name || '',
+              lastName: quizSession?.responses?.last_name || '',
               birthDate: quizSession?.responses?.birth_date || '',
-              birthPlace: quizSession?.responses?.birth_location || ''
+              birthTime: quizSession?.responses?.birth_time || '',
+              birthPlace: quizSession?.responses?.birth_location || quizSession?.responses?.birth_country || ''
             }}
           />
         )}

@@ -1,5 +1,7 @@
 import { useMemo, useState } from 'react'
 import { onboardingQuizTemplate } from './onboardingQuizTemplate'
+import { calculateCelticMoonSign } from '../../utils/celticMoonSign'
+import { calculateLifePath, calculateSoulUrge } from '../../utils/numerology'
 
 const STORAGE_KEY = 'anulunar_onboarding_quiz_v1'
 
@@ -10,8 +12,32 @@ const flattenQuestions = (template) =>
 
 const isAnswered = (q, value) => {
   if (q.type === 'checkbox') return Array.isArray(value) && value.length > 0
+  if (q.type === 'consent') return value === true
   if (q.type === 'scale') return value !== null && value !== undefined && value !== ''
   return value !== null && value !== undefined && String(value).trim().length > 0
+}
+
+const computeMiniReading = (responses) => {
+  const birthDate = responses.birth_date
+  const fullName = `${responses.first_name || ''} ${responses.last_name || ''}`.trim()
+  const celtic = calculateCelticMoonSign(birthDate)
+  const lifePath = calculateLifePath(birthDate)
+  const soulUrge = calculateSoulUrge(fullName)
+
+  return {
+    celticMoon: celtic?.name || null,
+    lifePath,
+    soulUrge,
+  }
+}
+
+const abVariantFromEmail = (email) => {
+  // Deterministic variant assignment (stable across sessions).
+  // Simple hash (non-crypto) to avoid pulling node crypto into the client bundle.
+  const s = String(email || '').trim().toLowerCase()
+  let h = 0
+  for (let i = 0; i < s.length; i++) h = (h * 31 + s.charCodeAt(i)) >>> 0
+  return ['A', 'B', 'C', 'D'][h % 4]
 }
 
 const OnboardingQuiz = ({ onComplete }) => {
@@ -21,6 +47,10 @@ const OnboardingQuiz = ({ onComplete }) => {
   const [index, setIndex] = useState(0)
   const [responses, setResponses] = useState({})
   const [submitted, setSubmitted] = useState(false)
+  const [submitting, setSubmitting] = useState(false)
+  const [submitError, setSubmitError] = useState('')
+  const [miniReading, setMiniReading] = useState(null)
+  const [abVariant, setAbVariant] = useState(null)
 
   const current = questions[index]
   const progressPct = Math.round(((index + 1) / total) * 100)
@@ -56,14 +86,22 @@ const OnboardingQuiz = ({ onComplete }) => {
       return
     }
 
+    const computed = computeMiniReading(responses)
+    const email = responses.email
+    const variant = abVariantFromEmail(email)
+
     const payload = {
       template_id: onboardingQuizTemplate.id,
       completed_at: new Date().toISOString(),
       responses,
+      computed,
+      ab_variant: variant,
     }
 
     localStorage.setItem(STORAGE_KEY, JSON.stringify(payload))
     setSubmitted(true)
+    setMiniReading(computed)
+    setAbVariant(variant)
     onComplete?.(payload)
   }
 
@@ -142,6 +180,43 @@ const OnboardingQuiz = ({ onComplete }) => {
       )
     }
 
+    if (current.type === 'time') {
+      return (
+        <input
+          className="input-field"
+          type="time"
+          value={value || ''}
+          onChange={(e) => updateResponse(current.id, e.target.value)}
+        />
+      )
+    }
+
+    if (current.type === 'email') {
+      return (
+        <input
+          className="input-field"
+          type="email"
+          placeholder={current.placeholder || ''}
+          value={value || ''}
+          onChange={(e) => updateResponse(current.id, e.target.value)}
+        />
+      )
+    }
+
+    if (current.type === 'consent') {
+      return (
+        <label className="card p-4 flex gap-3 items-start cursor-pointer">
+          <input
+            type="checkbox"
+            checked={Boolean(value)}
+            onChange={(e) => updateResponse(current.id, e.target.checked)}
+            style={{ marginTop: 4 }}
+          />
+          <span className="text-gray-100">{current.question}</span>
+        </label>
+      )
+    }
+
     return (
       <input
         className="input-field"
@@ -160,11 +235,78 @@ const OnboardingQuiz = ({ onComplete }) => {
           <h2 className="text-2xl font-display font-semibold text-cosmic-300 mb-3">
             Cosmic quiz complete
           </h2>
-          <p className="text-gray-300 mb-6">
-            Your blueprint is ready for the next step.
-          </p>
-          <button className="btn-primary" onClick={() => onComplete?.(JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}'))}>
-            Continue
+          {miniReading && (
+            <div className="text-left bg-white/5 border border-white/10 rounded-lg p-4 mb-6">
+              <div className="text-sm text-gray-300 mb-2">Your mini reading</div>
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                <div className="bg-white/5 rounded p-3">
+                  <div className="text-xs text-gray-400">Celtic Moon</div>
+                  <div className="text-lg font-semibold text-cosmic-300">{miniReading.celticMoon || '—'}</div>
+                </div>
+                <div className="bg-white/5 rounded p-3">
+                  <div className="text-xs text-gray-400">Life Path</div>
+                  <div className="text-lg font-semibold text-cosmic-300">{miniReading.lifePath || '—'}</div>
+                </div>
+                <div className="bg-white/5 rounded p-3">
+                  <div className="text-xs text-gray-400">Soul Urge</div>
+                  <div className="text-lg font-semibold text-cosmic-300">{miniReading.soulUrge || '—'}</div>
+                </div>
+              </div>
+              <div className="text-xs text-gray-400 mt-3">
+                Assigned experiment group: <span className="text-gray-200 font-semibold">{abVariant || 'A'}</span>
+              </div>
+            </div>
+          )}
+
+          {submitError && (
+            <p className="text-sm text-red-300 mb-4">{submitError}</p>
+          )}
+
+          <button
+            className="btn-primary"
+            disabled={submitting}
+            onClick={async () => {
+              setSubmitting(true)
+              setSubmitError('')
+              try {
+                const payload = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}')
+                const email = payload?.responses?.email
+
+                const resp = await fetch('/api/brevo-lead', {
+                  method: 'POST',
+                  headers: { 'Content-Type': 'application/json' },
+                  body: JSON.stringify({
+                    email,
+                    firstName: payload?.responses?.first_name,
+                    lastName: payload?.responses?.last_name,
+                    birthDate: payload?.responses?.birth_date,
+                    birthTime: payload?.responses?.birth_time,
+                    birthCountry: payload?.responses?.birth_country,
+                    consent: payload?.responses?.marketing_consent === true,
+                    celticMoon: payload?.computed?.celticMoon,
+                    lifePath: payload?.computed?.lifePath,
+                    soulUrge: payload?.computed?.soulUrge,
+                    abVariant: payload?.ab_variant,
+                    source: 'quiz_opener',
+                  }),
+                })
+
+                if (!resp.ok) {
+                  const err = await resp.json().catch(() => ({}))
+                  throw new Error(err?.error || 'Failed to save your email preference.')
+                }
+
+                const result = await resp.json().catch(() => ({}))
+                setAbVariant(result?.abVariant || abVariant)
+                onComplete?.(payload)
+              } catch (e) {
+                setSubmitError(String(e?.message || e))
+              } finally {
+                setSubmitting(false)
+              }
+            }}
+          >
+            {submitting ? 'Saving…' : 'Continue'}
           </button>
         </div>
       </div>

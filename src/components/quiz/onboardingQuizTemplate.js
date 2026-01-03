@@ -9,6 +9,27 @@ export const onboardingQuizTemplate = {
       title: 'Basic Cosmic Data',
       questions: [
         {
+          id: 'first_name',
+          type: 'text',
+          question: 'What is your first name?',
+          required: true,
+          placeholder: 'First name',
+        },
+        {
+          id: 'last_name',
+          type: 'text',
+          question: 'What is your last name?',
+          required: true,
+          placeholder: 'Last name',
+        },
+        {
+          id: 'email',
+          type: 'email',
+          question: 'Where should we send your mini cosmic reading?',
+          required: true,
+          placeholder: 'you@example.com',
+        },
+        {
           id: 'birth_date',
           type: 'date',
           question: 'What is your birth date?',
@@ -18,10 +39,9 @@ export const onboardingQuizTemplate = {
         },
         {
           id: 'birth_time',
-          type: 'multiple_choice',
-          question: "What time were you born? (If unknown, select 'Unknown')",
+          type: 'time',
+          question: 'What time were you born? (HH:MM)',
           required: true,
-          options: ['Known exact time', 'Approximate time', 'Unknown'],
           spiritual_note:
             'Your birth time reveals your rising sign — how your soul chose to present to the world',
         },
@@ -29,9 +49,23 @@ export const onboardingQuizTemplate = {
           id: 'birth_location',
           type: 'text',
           question: 'Where were you born? (City, State/Province, Country)',
-          required: true,
+          required: false,
           placeholder: 'Toronto, Ontario, Canada',
           spiritual_note: 'Your birthplace anchors your chart to specific Earth energies',
+        },
+        {
+          id: 'birth_country',
+          type: 'text',
+          question: 'What country were you born in?',
+          required: true,
+          placeholder: 'Canada',
+        },
+        {
+          id: 'marketing_consent',
+          type: 'consent',
+          question:
+            'I consent to receive email guidance, updates, and offers from AnuLunar (you can unsubscribe anytime).',
+          required: true,
         },
       ],
     },
