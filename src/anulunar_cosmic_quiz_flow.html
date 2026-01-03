@@ -1,0 +1,783 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <title>AnuLunar™ Cosmic Quiz - Spiritual Intelligence Journey</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    :root {
+      --void-indigo: #09071f;
+      --astral-violet: #6f6bd8;
+      --lunar-veil: #e9eaf1;
+      --starlight-gold: #d6b36a;
+      --star-ash-grey: #a7a9c2;
+      
+      --font-display: 'Bank Gothic', 'Arial Narrow', sans-serif;
+      --font-body: 'Aeonik', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: var(--font-body);
+      background: linear-gradient(135deg, #09071f 0%, #120c2e 50%, #09071f 100%);
+      color: var(--lunar-veil);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+    }
+
+    .quiz-container {
+      max-width: 600px;
+      width: 100%;
+      background: rgba(9, 7, 31, 0.35);
+      border: 1px solid rgba(233, 234, 241, 0.08);
+      border-radius: 20px;
+      padding: 3rem;
+      position: relative;
+      min-height: 500px;
+    }
+
+    .logo {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    .logo img {
+      max-width: 200px;
+      height: auto;
+      opacity: 0.95;
+      filter: drop-shadow(0 0 30px rgba(111, 107, 216, 0.4));
+    }
+
+    .progress-bar {
+      width: 100%;
+      height: 4px;
+      background: rgba(233, 234, 241, 0.1);
+      border-radius: 2px;
+      margin-bottom: 2rem;
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--astral-violet), var(--starlight-gold));
+      border-radius: 2px;
+      transition: width 0.5s ease;
+      width: 0%;
+    }
+
+    .step {
+      display: none;
+      animation: fadeIn 0.5s ease;
+    }
+
+    .step.active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .step-header {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    .step-number {
+      font-family: var(--font-display);
+      font-size: 0.75rem;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--star-ash-grey);
+      margin-bottom: 0.5rem;
+    }
+
+    .step-title {
+      font-family: var(--font-display);
+      font-size: 1.5rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--astral-violet);
+      margin-bottom: 1rem;
+    }
+
+    .step-description {
+      color: var(--star-ash-grey);
+      font-size: 0.9rem;
+      line-height: 1.6;
+      max-width: 400px;
+      margin: 0 auto;
+    }
+
+    .form-group {
+      margin-bottom: 2rem;
+    }
+
+    label {
+      display: block;
+      font-size: 0.8rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 0.5rem;
+      color: var(--star-ash-grey);
+    }
+
+    input, select {
+      width: 100%;
+      background: rgba(9, 7, 31, 0.6);
+      border: 1px solid rgba(233, 234, 241, 0.15);
+      color: var(--lunar-veil);
+      padding: 1rem;
+      margin-bottom: 1rem;
+      font-family: var(--font-body);
+      font-size: 1rem;
+      border-radius: 8px;
+      outline: none;
+      transition: border-color 0.3s ease;
+    }
+
+    input:focus, select:focus {
+      border-color: var(--astral-violet);
+      box-shadow: 0 0 0 2px rgba(111, 107, 216, 0.2);
+    }
+
+    input::placeholder {
+      color: var(--star-ash-grey);
+      opacity: 0.7;
+    }
+
+    .input-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+
+    .input-row-3 {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 1rem;
+    }
+
+    .button-group {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 3rem;
+    }
+
+    button {
+      font-family: var(--font-display);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      background: none;
+      border: 1px solid var(--astral-violet);
+      color: var(--lunar-veil);
+      padding: 1rem 2rem;
+      cursor: pointer;
+      border-radius: 8px;
+      transition: all 0.3s ease;
+      font-size: 0.8rem;
+    }
+
+    button:hover {
+      background: rgba(111, 107, 216, 0.15);
+      transform: translateY(-1px);
+    }
+
+    button:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    button.btn-secondary {
+      border: 1px solid rgba(233, 234, 241, 0.3);
+      color: var(--star-ash-grey);
+    }
+
+    button.btn-secondary:hover {
+      background: rgba(9, 7, 31, 0.6);
+      border-color: var(--star-ash-grey);
+    }
+
+    button.btn-primary {
+      background: var(--astral-violet);
+      color: var(--lunar-veil);
+    }
+
+    button.btn-primary:hover {
+      background: var(--starlight-gold);
+      border-color: var(--starlight-gold);
+    }
+
+    .checkbox-group {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      margin: 2rem 0;
+    }
+
+    .checkbox-group input[type="checkbox"] {
+      width: auto;
+      margin: 0.3rem 0 0 0;
+    }
+
+    .checkbox-group label {
+      text-transform: none;
+      letter-spacing: normal;
+      font-size: 0.9rem;
+      line-height: 1.5;
+      cursor: pointer;
+    }
+
+    .completion-screen {
+      text-align: center;
+    }
+
+    .completion-icon {
+      font-size: 4rem;
+      color: var(--starlight-gold);
+      margin-bottom: 1rem;
+    }
+
+    .results-preview {
+      background: rgba(9, 7, 31, 0.6);
+      border: 1px solid rgba(233, 234, 241, 0.1);
+      border-radius: 12px;
+      padding: 2rem;
+      margin: 2rem 0;
+    }
+
+    .results-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    .result-card {
+      text-align: center;
+      padding: 1rem;
+      background: rgba(111, 107, 216, 0.1);
+      border-radius: 8px;
+    }
+
+    .result-card h4 {
+      font-family: var(--font-display);
+      font-size: 0.7rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--star-ash-grey);
+      margin-bottom: 0.5rem;
+    }
+
+    .result-card p {
+      font-size: 1.5rem;
+      color: var(--astral-violet);
+      font-weight: 500;
+    }
+
+    .cosmic-message {
+      background: linear-gradient(135deg, rgba(111, 107, 216, 0.1), rgba(214, 179, 106, 0.1));
+      border: 1px solid var(--starlight-gold);
+      border-radius: 12px;
+      padding: 1.5rem;
+      margin: 2rem 0;
+      text-align: center;
+    }
+
+    .cosmic-message h3 {
+      color: var(--starlight-gold);
+      margin-bottom: 1rem;
+      font-family: var(--font-display);
+      letter-spacing: 2px;
+    }
+
+    @media (max-width: 768px) {
+      .quiz-container {
+        padding: 2rem;
+        margin: 1rem;
+      }
+
+      .input-row, .input-row-3, .results-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .button-group {
+        flex-direction: column;
+        gap: 1rem;
+      }
+
+      button {
+        width: 100%;
+      }
+    }
+  </style>
+ </head>
+ <body>
+  <div class="quiz-container">
+    <div class="logo">
+      <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjgwIiB2aWV3Qm94PSIwIDAgMjAwIDgwIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjx0ZXh0IHg9IjEwMCIgeT0iNDAiIGZvbnQtZmFtaWx5PSJCYW5rIEdvdGhpYyIgZm9udC1zaXplPSIxOCIgZm9udC13ZWlnaHQ9ImJvbGQiIGxldHRlci1zcGFjaW5nPSIzIiBmaWxsPSIjNmY2YmQ4IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5BTlVMVU5BUuKEojwvdGV4dD48L3N2Zz4=" alt="AnuLunar Logo">
+    </div>
+
+    <div class="progress-bar">
+      <div class="progress-fill" id="progressFill"></div>
+    </div>
+
+    <!-- Step 1: Welcome -->
+    <div class="step active" id="step-1">
+      <div class="step-header">
+        <div class="step-number">Step 1 of 7</div>
+        <h2 class="step-title">Welcome, Cosmic Seeker</h2>
+        <p class="step-description">
+          Your journey into spiritual intelligence begins now. We'll guide you through a sacred process of discovery, 
+          unlocking the cosmic blueprint encoded within your birth data and personal essence.
+        </p>
+      </div>
+
+      <div class="cosmic-message">
+        <h3>✦ Your Sacred Path Awaits ✦</h3>
+        <p>In the next few minutes, you'll discover your numerological frequencies, Celtic moon wisdom, and astrological alignments. Each answer brings you closer to your complete spiritual intelligence profile.</p>
+      </div>
+
+      <div class="button-group">
+        <div></div>
+        <button onclick="nextStep()" class="btn-primary">Begin Journey</button>
+      </div>
+    </div>
+
+    <!-- Step 2: Identity -->
+    <div class="step" id="step-2">
+      <div class="step-header">
+        <div class="step-number">Step 2 of 7</div>
+        <h2 class="step-title">Your Sacred Identity</h2>
+        <p class="step-description">
+          Your name carries vibrational frequencies that influence your spiritual path. 
+          Each letter holds numerical significance in the ancient art of numerology.
+        </p>
+      </div>
+
+      <div class="form-group">
+        <label for="firstName">First Name</label>
+        <input type="text" id="firstName" placeholder="Your given name" required>
+      </div>
+
+      <div class="form-group">
+        <label for="middleName">Middle Name (Optional)</label>
+        <input type="text" id="middleName" placeholder="Your middle name">
+      </div>
+
+      <div class="form-group">
+        <label for="lastName">Last Name</label>
+        <input type="text" id="lastName" placeholder="Your family name" required>
+      </div>
+
+      <div class="button-group">
+        <button onclick="prevStep()" class="btn-secondary">Previous</button>
+        <button onclick="nextStep()" class="btn-primary" id="step2Next">Continue</button>
+      </div>
+    </div>
+
+    <!-- Step 3: Contact -->
+    <div class="step" id="step-3">
+      <div class="step-header">
+        <div class="step-number">Step 3 of 7</div>
+        <h2 class="step-title">Cosmic Connection</h2>
+        <p class="step-description">
+          Your sacred insights will be transmitted to this celestial coordinate. 
+          This also creates your AnuLunar™ profile for future wisdom updates.
+        </p>
+      </div>
+
+      <div class="form-group">
+        <label for="email">Email Address</label>
+        <input type="email" id="email" placeholder="your.email@cosmic.realm" required>
+      </div>
+
+      <div class="button-group">
+        <button onclick="prevStep()" class="btn-secondary">Previous</button>
+        <button onclick="nextStep()" class="btn-primary" id="step3Next">Continue</button>
+      </div>
+    </div>
+
+    <!-- Step 4: Birth Date -->
+    <div class="step" id="step-4">
+      <div class="step-header">
+        <div class="step-number">Step 4 of 7</div>
+        <h2 class="step-title">Earthly Arrival</h2>
+        <p class="step-description">
+          The moment you chose to incarnate on Earth carries profound significance. 
+          Your birth date reveals your Life Path number and Celtic Moon sign.
+        </p>
+      </div>
+
+      <div class="form-group">
+        <label for="birthDate">Date of Birth</label>
+        <input type="date" id="birthDate" required>
+      </div>
+
+      <div class="button-group">
+        <button onclick="prevStep()" class="btn-secondary">Previous</button>
+        <button onclick="nextStep()" class="btn-primary" id="step4Next">Continue</button>
+      </div>
+    </div>
+
+    <!-- Step 5: Birth Time -->
+    <div class="step" id="step-5">
+      <div class="step-header">
+        <div class="step-number">Step 5 of 7</div>
+        <h2 class="step-title">Celestial Timing</h2>
+        <p class="step-description">
+          The exact moment of your first breath determines your rising sign and house placements. 
+          If unknown, we'll use cosmic noon for your calculations.
+        </p>
+      </div>
+
+      <div class="input-row-3">
+        <div class="form-group">
+          <label for="birthHour">Hour (24h)</label>
+          <input type="number" id="birthHour" min="0" max="23" value="12" placeholder="12">
+        </div>
+        <div class="form-group">
+          <label for="birthMinute">Minute</label>
+          <input type="number" id="birthMinute" min="0" max="59" value="0" placeholder="00">
+        </div>
+        <div class="form-group">
+          <label for="birthTimezone">Timezone</label>
+          <select id="birthTimezone">
+            <option value="America/Toronto">EST (Toronto)</option>
+            <option value="America/Vancouver">PST (Vancouver)</option>
+            <option value="America/New_York">EST (New York)</option>
+            <option value="America/Los_Angeles">PST (Los Angeles)</option>
+            <option value="America/Chicago">CST (Chicago)</option>
+            <option value="America/Denver">MST (Denver)</option>
+            <option value="Europe/London">GMT (London)</option>
+            <option value="Europe/Paris">CET (Paris)</option>
+            <option value="UTC">UTC</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="button-group">
+        <button onclick="prevStep()" class="btn-secondary">Previous</button>
+        <button onclick="nextStep()" class="btn-primary">Continue</button>
+      </div>
+    </div>
+
+    <!-- Step 6: Birth Location -->
+    <div class="step" id="step-6">
+      <div class="step-header">
+        <div class="step-number">Step 6 of 7</div>
+        <h2 class="step-title">Sacred Coordinates</h2>
+        <p class="step-description">
+          Your birthplace anchors your chart to Earth's energy grid. 
+          This determines your exact astrological house system and planetary aspects.
+        </p>
+      </div>
+
+      <div class="form-group">
+        <label for="birthCity">Birth City</label>
+        <input type="text" id="birthCity" placeholder="Toronto" required>
+      </div>
+
+      <div class="input-row">
+        <div class="form-group">
+          <label for="birthRegion">Region/State</label>
+          <input type="text" id="birthRegion" placeholder="Ontario">
+        </div>
+        <div class="form-group">
+          <label for="birthCountry">Country</label>
+          <input type="text" id="birthCountry" placeholder="Canada" required>
+        </div>
+      </div>
+
+      <div class="button-group">
+        <button onclick="prevStep()" class="btn-secondary">Previous</button>
+        <button onclick="nextStep()" class="btn-primary" id="step6Next">Continue</button>
+      </div>
+    </div>
+
+    <!-- Step 7: Consent & Complete -->
+    <div class="step" id="step-7">
+      <div class="step-header">
+        <div class="step-number">Step 7 of 7</div>
+        <h2 class="step-title">Sacred Agreement</h2>
+        <p class="step-description">
+          Your cosmic data will be held in the highest reverence, used only to generate your spiritual intelligence insights and notify you of relevant wisdom updates.
+        </p>
+      </div>
+
+      <div class="checkbox-group">
+        <input type="checkbox" id="consent" required>
+        <label for="consent">
+          I consciously consent to my sacred data being stored securely by AnuLunar™ for generating my Spiritual Intelligence Blueprint, future cosmic insights, and invitations to relevant celestial events. I understand my data is protected and will never be shared without my explicit permission.
+        </label>
+      </div>
+
+      <div class="button-group">
+        <button onclick="prevStep()" class="btn-secondary">Previous</button>
+        <button onclick="generateBlueprint()" class="btn-primary" id="generateBtn">Generate My Blueprint</button>
+      </div>
+    </div>
+
+    <!-- Step 8: Results -->
+    <div class="step" id="step-8">
+      <div class="completion-screen">
+        <div class="completion-icon">✦</div>
+        <h2 class="step-title">Your Cosmic Blueprint Awaits</h2>
+        <p class="step-description">
+          The cosmic frequencies have been decoded. Your spiritual intelligence profile is ready for exploration.
+        </p>
+
+        <div class="results-preview">
+          <div class="results-grid">
+            <div class="result-card">
+              <h4>Life Path</h4>
+              <p id="resultLifePath">—</p>
+            </div>
+            <div class="result-card">
+              <h4>Expression</h4>
+              <p id="resultExpression">—</p>
+            </div>
+            <div class="result-card">
+              <h4>Soul Urge</h4>
+              <p id="resultSoulUrge">—</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="cosmic-message">
+          <h3>🌙 Your Journey Continues</h3>
+          <p id="transmissionMessage">Your complete Spiritual Intelligence Blueprint has been transmitted to your cosmic inbox. Check your email for deeper insights and your personalized Celtic Moon wisdom.</p>
+        </div>
+
+        <div class="button-group">
+          <button onclick="restartQuiz()" class="btn-secondary">Begin Another Journey</button>
+          <button onclick="window.close()" class="btn-primary">Enter the Cosmic Realm</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    let currentStep = 1;
+    const totalSteps = 7;
+    let userData = {};
+
+    // Numerology calculation functions
+    const letterValues = {
+      'A': 1, 'J': 1, 'S': 1, 'B': 2, 'K': 2, 'T': 2, 'C': 3, 'L': 3, 'U': 3,
+      'D': 4, 'M': 4, 'V': 4, 'E': 5, 'N': 5, 'W': 5, 'F': 6, 'O': 6, 'X': 6,
+      'G': 7, 'P': 7, 'Y': 7, 'H': 8, 'Q': 8, 'Z': 8, 'I': 9, 'R': 9
+    };
+
+    const vowels = ['A', 'E', 'I', 'O', 'U'];
+
+    function reduceToSingle(num) {
+      while (num > 9 && num !== 11 && num !== 22 && num !== 33) {
+        num = num.toString().split('').reduce((sum, digit) => sum + parseInt(digit), 0);
+      }
+      return num;
+    }
+
+    function calculateNameNumber(name, useVowels = null) {
+      const cleanName = name.toUpperCase().replace(/[^A-Z]/g, '');
+      let sum = 0;
+      
+      for (let char of cleanName) {
+        if (letterValues[char]) {
+          if (useVowels === null) {
+            sum += letterValues[char];
+          } else if (useVowels && vowels.includes(char)) {
+            sum += letterValues[char];
+          } else if (!useVowels && !vowels.includes(char)) {
+            sum += letterValues[char];
+          }
+        }
+      }
+      
+      return reduceToSingle(sum);
+    }
+
+    function calculateLifePath(dateStr) {
+      const [year, month, day] = dateStr.split('-').map(Number);
+      const sum = year + month + day;
+      return reduceToSingle(sum);
+    }
+
+    function updateProgress() {
+      const progress = (currentStep / totalSteps) * 100;
+      document.getElementById('progressFill').style.width = progress + '%';
+    }
+
+    function showStep(stepNum) {
+      // Hide all steps
+      document.querySelectorAll('.step').forEach(step => {
+        step.classList.remove('active');
+      });
+      
+      // Show current step
+      document.getElementById(`step-${stepNum}`).classList.add('active');
+      
+      updateProgress();
+    }
+
+    function nextStep() {
+      if (validateCurrentStep()) {
+        collectStepData();
+        currentStep++;
+        showStep(currentStep);
+      }
+    }
+
+    function prevStep() {
+      currentStep--;
+      showStep(currentStep);
+    }
+
+    function validateCurrentStep() {
+      let isValid = true;
+      
+      switch(currentStep) {
+        case 2: // Identity
+          const firstName = document.getElementById('firstName').value.trim();
+          const lastName = document.getElementById('lastName').value.trim();
+          if (!firstName || !lastName) {
+            alert('Please enter your first and last name to continue your cosmic journey.');
+            isValid = false;
+          }
+          break;
+        
+        case 3: // Contact
+          const email = document.getElementById('email').value.trim();
+          if (!email || !email.includes('@')) {
+            alert('Please enter a valid email address for your cosmic transmissions.');
+            isValid = false;
+          }
+          break;
+        
+        case 4: // Birth Date
+          const birthDate = document.getElementById('birthDate').value;
+          if (!birthDate) {
+            alert('Your birth date is essential for calculating your cosmic blueprint.');
+            isValid = false;
+          }
+          break;
+        
+        case 6: // Birth Location
+          const birthCity = document.getElementById('birthCity').value.trim();
+          const birthCountry = document.getElementById('birthCountry').value.trim();
+          if (!birthCity || !birthCountry) {
+            alert('Your birth location is needed to anchor your astrological chart to Earth\'s energy grid.');
+            isValid = false;
+          }
+          break;
+      }
+      
+      return isValid;
+    }
+
+    function collectStepData() {
+      switch(currentStep) {
+        case 2: // Identity
+          userData.firstName = document.getElementById('firstName').value.trim();
+          userData.middleName = document.getElementById('middleName').value.trim();
+          userData.lastName = document.getElementById('lastName').value.trim();
+          break;
+        
+        case 3: // Contact
+          userData.email = document.getElementById('email').value.trim();
+          break;
+        
+        case 4: // Birth Date
+          userData.birthDate = document.getElementById('birthDate').value;
+          break;
+        
+        case 5: // Birth Time
+          userData.birthHour = parseInt(document.getElementById('birthHour').value);
+          userData.birthMinute = parseInt(document.getElementById('birthMinute').value);
+          userData.birthTimezone = document.getElementById('birthTimezone').value;
+          break;
+        
+        case 6: // Birth Location
+          userData.birthCity = document.getElementById('birthCity').value.trim();
+          userData.birthRegion = document.getElementById('birthRegion').value.trim();
+          userData.birthCountry = document.getElementById('birthCountry').value.trim();
+          break;
+        
+        case 7: // Consent
+          userData.consent = document.getElementById('consent').checked;
+          break;
+      }
+    }
+
+    function generateBlueprint() {
+      const consent = document.getElementById('consent').checked;
+      
+      if (!consent) {
+        alert('Sacred consent is required to proceed with your spiritual intelligence blueprint generation.');
+        return;
+      }
+
+      collectStepData();
+
+      // Calculate numerology
+      const fullName = userData.middleName ? 
+        `${userData.firstName} ${userData.middleName} ${userData.lastName}` : 
+        `${userData.firstName} ${userData.lastName}`;
+      
+      const lifePath = calculateLifePath(userData.birthDate);
+      const expression = calculateNameNumber(fullName);
+      const soulUrge = calculateNameNumber(fullName, true);
+
+      // Display results
+      document.getElementById('resultLifePath').textContent = lifePath;
+      document.getElementById('resultExpression').textContent = expression;
+      document.getElementById('resultSoulUrge').textContent = soulUrge;
+
+      // Update transmission message
+      document.getElementById('transmissionMessage').textContent = 
+        `Your complete Spiritual Intelligence Blueprint has been transmitted to ${userData.email}. The cosmic frequencies of Life Path ${lifePath}, Expression ${expression}, and Soul Urge ${soulUrge} reveal your unique spiritual signature.`;
+
+      // Here you would typically send the data to your backend
+      console.log('User Data Collected:', userData);
+      console.log('Numerology Results:', { lifePath, expression, soulUrge });
+
+      // Show results
+      currentStep = 8;
+      showStep(currentStep);
+    }
+
+    function restartQuiz() {
+      currentStep = 1;
+      userData = {};
+      
+      // Reset all form fields
+      document.querySelectorAll('input, select').forEach(input => {
+        if (input.type === 'checkbox') {
+          input.checked = false;
+        } else if (input.id === 'birthHour') {
+          input.value = '12';
+        } else if (input.id === 'birthMinute') {
+          input.value = '0';
+        } else {
+          input.value = '';
+        }
+      });
+      
+      showStep(currentStep);
+    }
+
+    // Initialize
+    updateProgress();
+  </script>
+ </body>
+</html>

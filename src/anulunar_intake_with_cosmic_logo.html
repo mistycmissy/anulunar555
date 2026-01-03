@@ -1,0 +1,790 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <title>AnuLunar™ Spiritual Intelligence Intake</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="/_sdk/element_sdk.js"></script>
+  <style>
+    :root {
+      --void-indigo: #09071f;
+      --astral-violet: #6f6bd8;
+      --lunar-veil: #e9eaf1;
+      --starlight-gold: #d6b36a;
+      --star-ash-grey: #a7a9c2;
+      
+      --font-display: 'Bank Gothic', 'Arial Narrow', sans-serif;
+      --font-body: 'Aeonik', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: var(--font-body);
+      background: linear-gradient(135deg, #09071f 0%, #120c2e 50%, #09071f 100%);
+      color: var(--lunar-veil);
+      padding: 3rem 1.5rem;
+      box-sizing: border-box;
+      height: 100%;
+    }
+
+    html {
+      height: 100%;
+    }
+
+    .container {
+      max-width: 860px;
+      margin: 0 auto;
+    }
+
+    h1 {
+      font-family: var(--font-display);
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      text-align: center;
+      color: var(--astral-violet);
+      margin-bottom: 0.75rem;
+    }
+
+    .subtitle {
+      text-align: center;
+      color: var(--star-ash-grey);
+      margin-bottom: 1.5rem;
+    }
+
+    .lead {
+      text-align: center;
+      color: var(--star-ash-grey);
+      font-size: 0.85rem;
+      line-height: 1.6;
+      max-width: 720px;
+      margin: 0 auto 3rem;
+    }
+
+    .section {
+      background: rgba(9, 7, 31, 0.35);
+      border: 1px solid rgba(233, 234, 241, 0.08);
+      padding: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    .section-title {
+      font-family: var(--font-display);
+      font-size: 0.75rem;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--star-ash-grey);
+      border-bottom: 1px solid rgba(233, 234, 241, 0.1);
+      padding-bottom: 0.75rem;
+      margin-bottom: 1.5rem;
+    }
+
+    label {
+      display: block;
+      font-size: 0.7rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 0.35rem;
+      color: var(--star-ash-grey);
+    }
+
+    input, select {
+      width: 100%;
+      background: rgba(9, 7, 31, 0.6);
+      border: 1px solid rgba(233, 234, 241, 0.15);
+      color: var(--lunar-veil);
+      padding: 0.6rem 0.75rem;
+      margin-bottom: 1.25rem;
+      font-family: var(--font-body);
+      outline: none;
+    }
+
+    input:focus, select:focus {
+      outline: none;
+      border-color: var(--astral-violet);
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+    }
+
+    .actions {
+      text-align: center;
+    }
+
+    button {
+      font-family: var(--font-display);
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      background: none;
+      border: 1px solid var(--astral-violet);
+      color: var(--lunar-veil);
+      padding: 0.75rem 2.5rem;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: rgba(111, 107, 216, 0.15);
+    }
+
+    button.btn-secondary {
+      border: 1px solid rgba(233, 234, 241, 0.3);
+      color: var(--star-ash-grey);
+      margin-left: 1rem;
+    }
+
+    button.btn-secondary:hover {
+      background: rgba(9, 7, 31, 0.6);
+      border-color: var(--star-ash-grey);
+    }
+
+    #results {
+      margin-top: 0;
+      opacity: 0;
+      max-height: 0;
+      overflow: hidden;
+      transition: opacity 0.3s ease, max-height 0.3s ease;
+    }
+
+    #results.show {
+      opacity: 1;
+      max-height: 4000px;
+    }
+
+    .result-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    .result-card {
+      background: rgba(9, 7, 31, 0.6);
+      border: 1px solid rgba(233, 234, 241, 0.1);
+      padding: 1rem;
+      text-align: center;
+    }
+
+    .result-card h3 {
+      font-family: var(--font-display);
+      font-size: 0.65rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--star-ash-grey);
+      margin-bottom: 0.5rem;
+    }
+
+    .result-card p {
+      font-size: 1.5rem;
+      color: var(--astral-violet);
+      font-weight: 500;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 1rem;
+      font-size: 0.8rem;
+    }
+
+    th, td {
+      border: 1px solid rgba(233, 234, 241, 0.1);
+      padding: 0.6rem 0.75rem;
+      text-align: left;
+    }
+
+    th {
+      background: rgba(9, 7, 31, 0.6);
+      color: var(--star-ash-grey);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-size: 0.65rem;
+      font-family: var(--font-display);
+    }
+
+    td {
+      font-family: var(--font-body);
+      color: var(--lunar-veil);
+    }
+
+    .error-msg {
+      background: rgba(216, 74, 95, 0.1);
+      border: 1px solid #d84a5f;
+      padding: 0.75rem;
+      color: #d84a5f;
+      margin-top: 1rem;
+      font-size: 0.85rem;
+      display: none;
+    }
+
+    .error-msg.show {
+      display: block;
+    }
+
+    .success-confirmation {
+      background: rgba(214, 179, 106, 0.1);
+      border: 1px solid var(--starlight-gold);
+      padding: 0.75rem;
+      color: var(--starlight-gold);
+      margin-bottom: 1.5rem;
+      font-size: 0.85rem;
+      text-align: center;
+    }
+
+    .note {
+      color: var(--star-ash-grey);
+      font-size: 0.85rem;
+      margin-bottom: 1.5rem;
+      line-height: 1.5;
+    }
+
+    .logo {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 2rem;
+    }
+
+    .logo svg {
+      opacity: 0.95;
+      filter: drop-shadow(0 0 20px rgba(111, 107, 216, 0.3));
+    }
+
+    @media (max-width: 640px) {
+      .grid-2, .grid-3, .result-grid {
+        grid-template-columns: 1fr;
+      }
+
+      body {
+        padding: 2rem 1rem;
+      }
+
+      .logo svg {
+        width: 200px;
+        height: 66px;
+      }
+    }
+  </style>
+  <style>@view-transition { navigation: auto; }</style>
+  <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
+  <script src="https://cdn.tailwindcss.com" type="text/javascript"></script>
+ </head>
+ <body>
+  <main class="container">
+   <div class="logo">
+    <svg width="240" height="80" viewBox="0 0 240 80" xmlns="http://www.w3.org/2000/svg">
+      <!-- Cosmic Circle Background -->
+      <defs>
+        <radialGradient id="cosmicGlow" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" stop-color="#6f6bd8" stop-opacity="0.3"/>
+          <stop offset="70%" stop-color="#09071f" stop-opacity="0.1"/>
+          <stop offset="100%" stop-color="transparent"/>
+        </radialGradient>
+        <linearGradient id="textGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" stop-color="#6f6bd8"/>
+          <stop offset="50%" stop-color="#d6b36a"/>
+          <stop offset="100%" stop-color="#6f6bd8"/>
+        </linearGradient>
+      </defs>
+      
+      <!-- Cosmic Background Circle -->
+      <circle cx="120" cy="40" r="35" fill="url(#cosmicGlow)" opacity="0.6"/>
+      
+      <!-- Mystical Stars -->
+      <g opacity="0.8">
+        <circle cx="80" cy="25" r="1" fill="#d6b36a">
+          <animate attributeName="opacity" values="0.3;1;0.3" dur="3s" repeatCount="indefinite"/>
+        </circle>
+        <circle cx="160" cy="30" r="0.8" fill="#e9eaf1">
+          <animate attributeName="opacity" values="0.5;1;0.5" dur="2s" repeatCount="indefinite"/>
+        </circle>
+        <circle cx="90" cy="55" r="0.6" fill="#6f6bd8">
+          <animate attributeName="opacity" values="0.4;1;0.4" dur="4s" repeatCount="indefinite"/>
+        </circle>
+        <circle cx="150" cy="55" r="0.7" fill="#d6b36a">
+          <animate attributeName="opacity" values="0.6;1;0.6" dur="2.5s" repeatCount="indefinite"/>
+        </circle>
+      </g>
+      
+      <!-- Central Cosmic Symbol -->
+      <g transform="translate(120, 40)">
+        <!-- Outer Ring -->
+        <circle cx="0" cy="0" r="15" fill="none" stroke="#6f6bd8" stroke-width="1" opacity="0.6"/>
+        
+        <!-- Inner Sacred Geometry -->
+        <g opacity="0.8">
+          <!-- Crescent Moon -->
+          <path d="M-8,-6 A8,8 0 1,1 -8,6 A6,6 0 1,0 -8,-6 Z" fill="#e9eaf1" opacity="0.9"/>
+          
+          <!-- Star Points -->
+          <g stroke="#d6b36a" stroke-width="0.8" fill="none">
+            <line x1="-10" y1="0" x2="10" y2="0"/>
+            <line x1="0" y1="-10" x2="0" y2="10"/>
+            <line x1="-7" y1="-7" x2="7" y2="7"/>
+            <line x1="-7" y1="7" x2="7" y2="-7"/>
+          </g>
+          
+          <!-- Central Dot -->
+          <circle cx="3" cy="0" r="1.5" fill="#6f6bd8" opacity="0.8"/>
+        </g>
+      </g>
+      
+      <!-- ANULUNAR Text -->
+      <text x="120" y="70" 
+            font-family="'Bank Gothic', 'Arial Narrow', sans-serif" 
+            font-size="14" 
+            font-weight="bold" 
+            letter-spacing="4" 
+            fill="url(#textGradient)" 
+            text-anchor="middle"
+            opacity="0.95">
+        ANULUNAR™
+      </text>
+      
+      <!-- Spiritual Intelligence Subtitle -->
+      <text x="120" y="78" 
+            font-family="'Aeonik', sans-serif" 
+            font-size="7" 
+            letter-spacing="2" 
+            fill="#a7a9c2" 
+            text-anchor="middle"
+            opacity="0.8">
+        SPIRITUAL INTELLIGENCE
+      </text>
+    </svg>
+   </div>
+   <h1 id="mainTitle">AnuLunar™</h1>
+   <p class="subtitle" id="subtitleText">Spiritual Intelligence Intake</p>
+   <p class="lead">Your information is securely collected to generate your Numerology Blueprint, store your results in your AnuLunar™ profile, and notify you as additional reports, lunar updates, and event invitations are released.</p>
+   <form id="numerologyForm">
+    <div class="section">
+     <div class="section-title">
+      Identity
+     </div>
+     <div class="grid-3">
+      <div><label for="firstName">First Name</label> <input type="text" id="firstName" required>
+      </div>
+      <div><label for="middleName">Middle Name</label> <input type="text" id="middleName">
+      </div>
+      <div><label for="lastName">Last Name</label> <input type="text" id="lastName" required>
+      </div>
+     </div><label for="email">Email Address</label> <input type="email" id="email" required>
+    </div>
+    <div class="section">
+     <div class="section-title">
+      Birth Data
+     </div><label for="birthDate">Date of Birth</label> <input type="date" id="birthDate" required> <label for="birthCity">Birth City</label> <input type="text" id="birthCity" required>
+     <div class="grid-2">
+      <div><label for="birthRegion">Region / State</label> <input type="text" id="birthRegion">
+      </div>
+      <div><label for="birthCountry">Country</label> <input type="text" id="birthCountry" required>
+      </div>
+     </div>
+     <div class="grid-2">
+      <div><label for="birthLat">Latitude (Optional)</label> <input type="number" id="birthLat" step="0.0001" placeholder="e.g. 43.6532">
+      </div>
+      <div><label for="birthLon">Longitude (Optional)</label> <input type="number" id="birthLon" step="0.0001" placeholder="e.g. -79.3832">
+      </div>
+     </div><label for="dst">Daylight Saving Time at Birth</label> <select id="dst"> <option value="unknown">Unknown</option> <option value="yes">Yes</option> <option value="no">No</option> </select>
+     <div class="grid-3">
+      <div><label for="birthHour">Birth Hour (24h)</label> <input type="number" id="birthHour" min="0" max="23" value="12">
+      </div>
+      <div><label for="birthMinute">Birth Minute</label> <input type="number" id="birthMinute" min="0" max="59" value="0">
+      </div>
+      <div><label for="birthTimezone">Timezone</label> <select id="birthTimezone"> <option value="-12">UTC-12</option> <option value="-11">UTC-11</option> <option value="-10">UTC-10</option> <option value="-9">UTC-9</option> <option value="-8">UTC-8 (PST)</option> <option value="-7">UTC-7 (MST)</option> <option value="-6">UTC-6 (CST)</option> <option value="-5" selected>UTC-5 (EST)</option> <option value="-4">UTC-4</option> <option value="-3">UTC-3</option> <option value="-2">UTC-2</option> <option value="-1">UTC-1</option> <option value="0">UTC+0 (GMT)</option> <option value="1">UTC+1</option> <option value="2">UTC+2</option> <option value="3">UTC+3</option> <option value="4">UTC+4</option> <option value="5">UTC+5</option> <option value="6">UTC+6</option> <option value="7">UTC+7</option> <option value="8">UTC+8</option> <option value="9">UTC+9</option> <option value="10">UTC+10</option> <option value="11">UTC+11</option> <option value="12">UTC+12</option> </select>
+      </div>
+     </div>
+    </div>
+    <div class="error-msg" id="errorMsg"></div>
+    <div class="section">
+     <div class="section-title">
+      Submission
+     </div>
+     <p class="note">This information is used exclusively to generate your AnuLunar™ Spiritual Intelligence Blueprint.</p>
+     <div style="margin-bottom: 1.5rem;"><label style="display: flex; align-items: start; gap: 0.5rem; text-transform: none; letter-spacing: normal; font-size: 0.85rem; cursor: pointer;"> <input type="checkbox" id="consent" required style="width: auto; margin: 0.2rem 0 0 0; cursor: pointer;"> <span>I consent to my data being stored securely by AnuLunar™ for report generation, future insights, and relevant invitations.</span> </label>
+     </div>
+     <div class="actions"><button type="submit" class="btn-primary" id="calculateBtn">Generate Blueprint</button> <button type="button" class="btn-secondary" id="resetBtn">Clear Form</button>
+     </div>
+    </div>
+   </form>
+   <div id="results">
+    <div class="section">
+     <div class="section-title">
+      Core Numerical Values
+     </div>
+     <div class="result-grid">
+      <div class="result-card">
+       <h3>Life Path</h3>
+       <p id="lifePath">—</p>
+      </div>
+      <div class="result-card">
+       <h3>Expression</h3>
+       <p id="expression">—</p>
+      </div>
+      <div class="result-card">
+       <h3>Soul Urge</h3>
+       <p id="soulUrge">—</p>
+      </div>
+     </div>
+     <div class="result-grid">
+      <div class="result-card">
+       <h3>Personality</h3>
+       <p id="personality">—</p>
+      </div>
+      <div class="result-card">
+       <h3>Birthday</h3>
+       <p id="birthday">—</p>
+      </div>
+      <div class="result-card">
+       <h3>Maturity</h3>
+       <p id="maturity">—</p>
+      </div>
+     </div>
+    </div>
+    <div class="section">
+     <div class="section-title">
+      Lunar Phase Data
+     </div>
+     <div class="grid-2">
+      <div class="result-card">
+       <h3>Phase at Birth</h3>
+       <p id="moonPhase">—</p>
+      </div>
+      <div class="result-card">
+       <h3>Cycle Position</h3>
+       <p id="lunarDay">—</p>
+      </div>
+     </div>
+    </div>
+    <div class="section">
+     <div class="section-title">
+      Alphanumeric Conversion Table
+     </div>
+     <table id="letterTable">
+      <thead>
+       <tr>
+        <th>Letter</th>
+        <th>Value</th>
+        <th>Type</th>
+       </tr>
+      </thead>
+      <tbody id="letterTableBody">
+      </tbody>
+     </table>
+    </div>
+   </div>
+  </main>
+  <script>
+    const defaultConfig = {
+      main_title: "AnuLunar™",
+      subtitle_text: "Spiritual Intelligence Intake",
+      calculate_button: "Generate Blueprint",
+      reset_button: "Clear Form",
+      background_color: "#09071f",
+      surface_color: "#120c2e",
+      text_color: "#e9eaf1",
+      primary_action_color: "#6f6bd8",
+      accent_color: "#d6b36a",
+      font_family: "Aeonik",
+      font_size: 16
+    };
+
+    async function onConfigChange(config) {
+      const mainTitle = config.main_title || defaultConfig.main_title;
+      const subtitleText = config.subtitle_text || defaultConfig.subtitle_text;
+      const calculateButton = config.calculate_button || defaultConfig.calculate_button;
+      const resetButton = config.reset_button || defaultConfig.reset_button;
+      const backgroundColor = config.background_color || defaultConfig.background_color;
+      const surfaceColor = config.surface_color || defaultConfig.surface_color;
+      const textColor = config.text_color || defaultConfig.text_color;
+      const primaryActionColor = config.primary_action_color || defaultConfig.primary_action_color;
+      const accentColor = config.accent_color || defaultConfig.accent_color;
+      const fontFamily = config.font_family || defaultConfig.font_family;
+      const fontSize = config.font_size || defaultConfig.font_size;
+
+      document.getElementById('mainTitle').textContent = mainTitle;
+      document.getElementById('subtitleText').textContent = subtitleText;
+      document.getElementById('calculateBtn').textContent = calculateButton;
+      document.getElementById('resetBtn').textContent = resetButton;
+
+      document.body.style.background = `linear-gradient(135deg, ${backgroundColor} 0%, ${surfaceColor} 50%, ${backgroundColor} 100%)`;
+      document.documentElement.style.setProperty('--void-indigo', backgroundColor);
+      document.documentElement.style.setProperty('--lunar-veil', textColor);
+      document.documentElement.style.setProperty('--astral-violet', primaryActionColor);
+      document.documentElement.style.setProperty('--starlight-gold', accentColor);
+
+      const baseFontStack = 'Aeonik, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif';
+      document.body.style.fontFamily = `${fontFamily}, ${baseFontStack}`;
+      
+      document.getElementById('mainTitle').style.fontSize = `${fontSize * 1.5}px`;
+      document.querySelector('.subtitle').style.fontSize = `${fontSize * 1}px`;
+      document.querySelectorAll('.section-title').forEach(el => el.style.fontSize = `${fontSize * 0.75}px`);
+      document.querySelectorAll('label').forEach(label => label.style.fontSize = `${fontSize * 0.7}px`);
+      document.querySelectorAll('input, select').forEach(el => el.style.fontSize = `${fontSize * 0.9}px`);
+      document.querySelectorAll('button').forEach(btn => btn.style.fontSize = `${fontSize * 0.75}px`);
+    }
+
+    if (window.elementSdk) {
+      window.elementSdk.init({
+        defaultConfig,
+        onConfigChange,
+        mapToCapabilities: (config) => ({
+          recolorables: [
+            {
+              get: () => config.background_color || defaultConfig.background_color,
+              set: (value) => {
+                config.background_color = value;
+                window.elementSdk.setConfig({ background_color: value });
+              }
+            },
+            {
+              get: () => config.surface_color || defaultConfig.surface_color,
+              set: (value) => {
+                config.surface_color = value;
+                window.elementSdk.setConfig({ surface_color: value });
+              }
+            },
+            {
+              get: () => config.text_color || defaultConfig.text_color,
+              set: (value) => {
+                config.text_color = value;
+                window.elementSdk.setConfig({ text_color: value });
+              }
+            },
+            {
+              get: () => config.primary_action_color || defaultConfig.primary_action_color,
+              set: (value) => {
+                config.primary_action_color = value;
+                window.elementSdk.setConfig({ primary_action_color: value });
+              }
+            },
+            {
+              get: () => config.accent_color || defaultConfig.accent_color,
+              set: (value) => {
+                config.accent_color = value;
+                window.elementSdk.setConfig({ accent_color: value });
+              }
+            }
+          ],
+          borderables: [],
+          fontEditable: {
+            get: () => config.font_family || defaultConfig.font_family,
+            set: (value) => {
+              config.font_family = value;
+              window.elementSdk.setConfig({ font_family: value });
+            }
+          },
+          fontSizeable: {
+            get: () => config.font_size || defaultConfig.font_size,
+            set: (value) => {
+              config.font_size = value;
+              window.elementSdk.setConfig({ font_size: value });
+            }
+          }
+        }),
+        mapToEditPanelValues: (config) => new Map([
+          ["main_title", config.main_title || defaultConfig.main_title],
+          ["subtitle_text", config.subtitle_text || defaultConfig.subtitle_text],
+          ["calculate_button", config.calculate_button || defaultConfig.calculate_button],
+          ["reset_button", config.reset_button || defaultConfig.reset_button]
+        ])
+      });
+    }
+
+    const letterValues = {
+      'A': 1, 'J': 1, 'S': 1,
+      'B': 2, 'K': 2, 'T': 2,
+      'C': 3, 'L': 3, 'U': 3,
+      'D': 4, 'M': 4, 'V': 4,
+      'E': 5, 'N': 5, 'W': 5,
+      'F': 6, 'O': 6, 'X': 6,
+      'G': 7, 'P': 7, 'Y': 7,
+      'H': 8, 'Q': 8, 'Z': 8,
+      'I': 9, 'R': 9
+    };
+
+    const vowels = ['A', 'E', 'I', 'O', 'U'];
+
+    function reduceToSingle(num) {
+      while (num > 9 && num !== 11 && num !== 22 && num !== 33) {
+        num = num.toString().split('').reduce((sum, digit) => sum + parseInt(digit), 0);
+      }
+      return num;
+    }
+
+    function calculateNameNumber(name, useVowels = null) {
+      const cleanName = name.toUpperCase().replace(/[^A-Z]/g, '');
+      let sum = 0;
+      
+      for (let char of cleanName) {
+        if (letterValues[char]) {
+          if (useVowels === null) {
+            sum += letterValues[char];
+          } else if (useVowels && vowels.includes(char)) {
+            sum += letterValues[char];
+          } else if (!useVowels && !vowels.includes(char)) {
+            sum += letterValues[char];
+          }
+        }
+      }
+      
+      return reduceToSingle(sum);
+    }
+
+    function calculateLifePath(dateStr) {
+      const [year, month, day] = dateStr.split('-').map(Number);
+      const sum = year + month + day;
+      return reduceToSingle(sum);
+    }
+
+    function getMoonPhase(date) {
+      const knownNewMoon = new Date('2000-01-06');
+      const lunarCycle = 29.53058867;
+      const diffDays = Math.floor((date - knownNewMoon) / (1000 * 60 * 60 * 24));
+      const phase = ((diffDays % lunarCycle) / lunarCycle);
+      
+      const phases = [
+        'New Moon', 'Waxing Crescent', 'First Quarter', 'Waxing Gibbous',
+        'Full Moon', 'Waning Gibbous', 'Last Quarter', 'Waning Crescent'
+      ];
+      
+      const phaseIndex = Math.floor(phase * 8) % 8;
+      return {
+        name: phases[phaseIndex],
+        day: Math.floor(phase * lunarCycle) + 1
+      };
+    }
+
+    function getLetterBreakdown(fullName) {
+      const cleanName = fullName.toUpperCase().replace(/[^A-Z]/g, '');
+      const breakdown = [];
+      
+      for (let char of cleanName) {
+        if (letterValues[char]) {
+          breakdown.push({
+            letter: char,
+            value: letterValues[char],
+            type: vowels.includes(char) ? 'Vowel' : 'Consonant'
+          });
+        }
+      }
+      
+      return breakdown;
+    }
+
+    document.getElementById('numerologyForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      const firstName = document.getElementById('firstName').value.trim();
+      const middleName = document.getElementById('middleName').value.trim();
+      const lastName = document.getElementById('lastName').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const birthDate = document.getElementById('birthDate').value;
+      const birthHour = parseInt(document.getElementById('birthHour').value);
+      const birthMinute = parseInt(document.getElementById('birthMinute').value);
+      const birthTimezone = document.getElementById('birthTimezone').value;
+      const birthCity = document.getElementById('birthCity').value.trim();
+      const birthRegion = document.getElementById('birthRegion').value.trim();
+      const birthCountry = document.getElementById('birthCountry').value.trim();
+      const birthLat = document.getElementById('birthLat').value;
+      const birthLon = document.getElementById('birthLon').value;
+      const dst = document.getElementById('dst').value;
+      const consent = document.getElementById('consent').checked;
+      
+      const errorMsg = document.getElementById('errorMsg');
+      
+      if (!firstName || !lastName || !email || !birthDate || !birthCity || !birthCountry || !consent) {
+        errorMsg.textContent = 'All required fields and consent must be completed.';
+        errorMsg.classList.add('show');
+        return;
+      }
+      
+      errorMsg.classList.remove('show');
+      
+      const userProfile = {
+        identity: {
+          first_name: firstName,
+          middle_name: middleName || null,
+          last_name: lastName,
+          email: email
+        },
+        birth: {
+          date: birthDate,
+          hour: birthHour,
+          minute: birthMinute,
+          timezone: birthTimezone,
+          latitude: birthLat ? parseFloat(birthLat) : null,
+          longitude: birthLon ? parseFloat(birthLon) : null
+        },
+        consent: true,
+        source: "anulunar_intake_v1"
+      };
+      
+      const fullName = middleName ? firstName + ' ' + middleName + ' ' + lastName : firstName + ' ' + lastName;
+      
+      const lifePath = calculateLifePath(birthDate);
+      const expression = calculateNameNumber(fullName);
+      const soulUrge = calculateNameNumber(fullName, true);
+      const personality = calculateNameNumber(fullName, false);
+      const birthday = reduceToSingle(parseInt(birthDate.split('-')[2]));
+      const maturity = reduceToSingle(lifePath + expression);
+      
+      const birthDateTime = new Date(birthDate);
+      birthDateTime.setHours(birthHour, birthMinute);
+      const moonInfo = getMoonPhase(birthDateTime);
+      
+      const letterBreakdown = getLetterBreakdown(fullName);
+      
+      document.getElementById('lifePath').textContent = lifePath;
+      document.getElementById('expression').textContent = expression;
+      document.getElementById('soulUrge').textContent = soulUrge;
+      document.getElementById('personality').textContent = personality;
+      document.getElementById('birthday').textContent = birthday;
+      document.getElementById('maturity').textContent = maturity;
+      document.getElementById('moonPhase').textContent = moonInfo.name;
+      document.getElementById('lunarDay').textContent = `Day ${moonInfo.day} of 29`;
+      
+      const tbody = document.getElementById('letterTableBody');
+      tbody.innerHTML = '';
+      letterBreakdown.forEach(item => {
+        const row = tbody.insertRow();
+        row.insertCell(0).textContent = item.letter;
+        row.insertCell(1).textContent = item.value;
+        row.insertCell(2).textContent = item.type;
+      });
+      
+      const results = document.getElementById('results');
+      results.classList.add('show');
+      results.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      
+      const existingMsg = document.querySelector('.success-confirmation');
+      if (existingMsg) existingMsg.remove();
+      
+      const successMsg = document.createElement('div');
+      successMsg.className = 'success-confirmation';
+      successMsg.textContent = `Blueprint will be transmitted to ${email}`;
+      
+      results.insertBefore(successMsg, results.firstChild);
+      
+      setTimeout(() => successMsg.remove(), 5000);
+    });
+
+    document.getElementById('resetBtn').addEventListener('click', function() {
+      document.getElementById('numerologyForm').reset();
+      document.getElementById('results').classList.remove('show');
+      document.getElementById('errorMsg').classList.remove('show');
+    });
+  </script>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9af371efa0f1ebb6',t:'MTc2NTk0MzMwOC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
