@@ -2,6 +2,8 @@ import { useMemo, useState } from 'react'
 import { onboardingQuizTemplate } from './onboardingQuizTemplate'
 import { calculateCelticMoonSign } from '../../utils/celticMoonSign'
 import { calculateLifePath, calculateSoulUrge } from '../../utils/numerology'
+import html2canvas from 'html2canvas'
+import jsPDF from 'jspdf'
 
 const STORAGE_KEY = 'anulunar_onboarding_quiz_v1'
 
@@ -51,6 +53,7 @@ const OnboardingQuiz = ({ onComplete }) => {
   const [submitError, setSubmitError] = useState('')
   const [miniReading, setMiniReading] = useState(null)
   const [abVariant, setAbVariant] = useState(null)
+  const [affiliateCode, setAffiliateCode] = useState(null)
 
   const current = questions[index]
   const progressPct = Math.round(((index + 1) / total) * 100)
@@ -89,6 +92,15 @@ const OnboardingQuiz = ({ onComplete }) => {
     const computed = computeMiniReading(responses)
     const email = responses.email
     const variant = abVariantFromEmail(email)
+    const aff = String(email || '')
+      .trim()
+      .toLowerCase()
+      .split('')
+      .reduce((h, ch) => ((h * 31 + ch.charCodeAt(0)) >>> 0), 0)
+      .toString(16)
+      .toUpperCase()
+      .padStart(8, '0')
+      .slice(0, 10)
 
     const payload = {
       template_id: onboardingQuizTemplate.id,
@@ -96,12 +108,14 @@ const OnboardingQuiz = ({ onComplete }) => {
       responses,
       computed,
       ab_variant: variant,
+      affiliate_code: aff,
     }
 
     localStorage.setItem(STORAGE_KEY, JSON.stringify(payload))
     setSubmitted(true)
     setMiniReading(computed)
     setAbVariant(variant)
+    setAffiliateCode(aff)
     onComplete?.(payload)
   }
 
@@ -236,7 +250,7 @@ const OnboardingQuiz = ({ onComplete }) => {
             Cosmic quiz complete
           </h2>
           {miniReading && (
-            <div className="text-left bg-white/5 border border-white/10 rounded-lg p-4 mb-6">
+            <div id="miniReportCard" className="text-left bg-white/5 border border-white/10 rounded-lg p-4 mb-6">
               <div className="text-sm text-gray-300 mb-2">Your mini reading</div>
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
                 <div className="bg-white/5 rounded p-3">
@@ -255,12 +269,63 @@ const OnboardingQuiz = ({ onComplete }) => {
               <div className="text-xs text-gray-400 mt-3">
                 Assigned experiment group: <span className="text-gray-200 font-semibold">{abVariant || 'A'}</span>
               </div>
+              <div className="text-xs text-gray-400 mt-1">
+                Gratitude Frequency Circle referral: <span className="text-gray-200 font-semibold">{affiliateCode || '—'}</span>
+              </div>
             </div>
           )}
 
           {submitError && (
             <p className="text-sm text-red-300 mb-4">{submitError}</p>
           )}
+
+          <div className="flex flex-col sm:flex-row gap-3 justify-center mb-4">
+            <button
+              className="btn-secondary"
+              onClick={async () => {
+                try {
+                  const el = document.getElementById('miniReportCard')
+                  if (!el) return
+                  const canvas = await html2canvas(el, { backgroundColor: null, scale: 2 })
+                  const img = canvas.toDataURL('image/png')
+                  const pdf = new jsPDF({ orientation: 'p', unit: 'pt', format: 'a4' })
+                  const pageWidth = pdf.internal.pageSize.getWidth()
+                  const margin = 36
+                  const usableWidth = pageWidth - margin * 2
+                  const ratio = usableWidth / canvas.width
+                  const height = canvas.height * ratio
+                  pdf.addImage(img, 'PNG', margin, margin, usableWidth, height)
+                  pdf.save('anulunar-mini-report.pdf')
+                } catch {
+                  alert('Could not generate PDF on this device.')
+                }
+              }}
+            >
+              Download PDF
+            </button>
+            <button
+              className="btn-secondary"
+              onClick={async () => {
+                const payload = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}')
+                const shareText =
+                  `My AnuLunar mini reading: Celtic Moon ${payload?.computed?.celticMoon}, Life Path ${payload?.computed?.lifePath}, Soul Urge ${payload?.computed?.soulUrge}.`
+
+                const url = `${window.location.origin}/?ref=${encodeURIComponent(payload?.affiliate_code || '')}`
+                try {
+                  if (navigator.share) {
+                    await navigator.share({ text: shareText, url })
+                  } else {
+                    await navigator.clipboard.writeText(`${shareText} ${url}`)
+                    alert('Share text copied to clipboard.')
+                  }
+                } catch {
+                  // ignore
+                }
+              }}
+            >
+              Share
+            </button>
+          </div>
 
           <button
             className="btn-primary"
@@ -271,6 +336,7 @@ const OnboardingQuiz = ({ onComplete }) => {
               try {
                 const payload = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}')
                 const email = payload?.responses?.email
+                const ref = new URLSearchParams(window.location.search).get('ref') || ''
 
                 const resp = await fetch('/api/brevo-lead', {
                   method: 'POST',
@@ -287,7 +353,10 @@ const OnboardingQuiz = ({ onComplete }) => {
                     lifePath: payload?.computed?.lifePath,
                     soulUrge: payload?.computed?.soulUrge,
                     abVariant: payload?.ab_variant,
+                    affiliateCode: payload?.affiliate_code,
+                    ref,
                     source: 'quiz_opener',
+                    sendEmail: true,
                   }),
                 })
 
@@ -298,6 +367,7 @@ const OnboardingQuiz = ({ onComplete }) => {
 
                 const result = await resp.json().catch(() => ({}))
                 setAbVariant(result?.abVariant || abVariant)
+                setAffiliateCode(result?.affiliateCode || affiliateCode)
                 onComplete?.(payload)
               } catch (e) {
                 setSubmitError(String(e?.message || e))

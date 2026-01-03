@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom'
 import { useAuth } from '../hooks/useAuth'
 import { supabase } from '../lib/supabase'
 
+const ONBOARDING_STORAGE_KEY = 'anulunar_onboarding_quiz_v1'
+
 const Dashboard = () => {
   const { user } = useAuth()
   const [reports, setReports] = useState([])
@@ -51,6 +53,49 @@ const Dashboard = () => {
     if (user) {
       loadDashboardData()
     }
+  }, [user, loadDashboardData])
+
+  useEffect(() => {
+    // If a guest completed the opener quiz, persist the mini report into the user's portal after sign-in.
+    if (!user) return
+    ;(async () => {
+      try {
+        const raw = localStorage.getItem(ONBOARDING_STORAGE_KEY)
+        if (!raw) return
+        const session = JSON.parse(raw)
+        if (!session?.computed?.lifePath) return
+
+        const birthData = {
+          name: `${session?.responses?.first_name || ''} ${session?.responses?.last_name || ''}`.trim(),
+          birthDate: session?.responses?.birth_date,
+          birthTime: session?.responses?.birth_time,
+          birthPlace: session?.responses?.birth_location || session?.responses?.birth_country,
+        }
+
+        const reportData = {
+          kind: 'mini_report',
+          created_at: session?.completed_at,
+          computed: session?.computed,
+          ab_variant: session?.ab_variant,
+          affiliate_code: session?.affiliate_code,
+          quiz_responses: session?.responses,
+        }
+
+        await supabase.from('cosmic_reports').insert([
+          {
+            user_id: user.id,
+            birth_data: birthData,
+            report_data: reportData,
+            created_at: new Date().toISOString(),
+          },
+        ])
+
+        localStorage.removeItem(ONBOARDING_STORAGE_KEY)
+        loadDashboardData()
+      } catch (error) {
+        console.error('Error persisting mini report:', error)
+      }
+    })()
   }, [user, loadDashboardData])
 
   if (loading) {

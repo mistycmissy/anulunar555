@@ -21,6 +21,62 @@ const abVariantFromEmail = (email) => {
   return ['A', 'B', 'C', 'D'][n]
 }
 
+const affiliateCodeFromEmail = (email) => {
+  const hash = crypto.createHash('sha256').update(String(email)).digest('hex')
+  // short, share-friendly code (not secret)
+  return hash.slice(0, 10).toUpperCase()
+}
+
+const getBaseUrl = () => {
+  if (process.env.FRONTEND_URL) return process.env.FRONTEND_URL.replace(/\/+$/, '')
+  if (process.env.VERCEL_URL) return `https://${process.env.VERCEL_URL}`.replace(/\/+$/, '')
+  return ''
+}
+
+const buildMiniReportHtml = ({ firstName, celticMoon, lifePath, soulUrge, abVariant, affiliateCode }) => {
+  const safe = (s) => String(s || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+  const baseUrl = getBaseUrl()
+  const shareUrl = baseUrl ? `${baseUrl}/?ref=${encodeURIComponent(affiliateCode)}` : ''
+
+  return `<!doctype html>
+<html>
+  <body style="margin:0;padding:0;background:#09071f;color:#FFFBF8;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;">
+    <div style="max-width:640px;margin:0 auto;padding:28px;">
+      <div style="padding:22px;border:1px solid rgba(255,255,255,0.12);border-radius:16px;background:rgba(255,255,255,0.06);">
+        <h1 style="margin:0 0 8px 0;font-size:22px;line-height:1.2;">Your AnuLunar Mini Report</h1>
+        <p style="margin:0 0 18px 0;opacity:0.9;">Hello ${safe(firstName)} — here’s your cosmic snapshot.</p>
+
+        <div style="display:block;">
+          <div style="margin:0 0 12px 0;padding:14px;border-radius:12px;background:rgba(255,255,255,0.06);">
+            <div style="font-size:12px;opacity:0.8;">Celtic Moon Sign</div>
+            <div style="font-size:18px;font-weight:700;">${safe(celticMoon || '—')}</div>
+          </div>
+          <div style="margin:0 0 12px 0;padding:14px;border-radius:12px;background:rgba(255,255,255,0.06);">
+            <div style="font-size:12px;opacity:0.8;">Life Path</div>
+            <div style="font-size:18px;font-weight:700;">${safe(lifePath || '—')}</div>
+          </div>
+          <div style="margin:0 0 12px 0;padding:14px;border-radius:12px;background:rgba(255,255,255,0.06);">
+            <div style="font-size:12px;opacity:0.8;">Soul Urge</div>
+            <div style="font-size:18px;font-weight:700;">${safe(soulUrge || '—')}</div>
+          </div>
+        </div>
+
+        <p style="margin:18px 0 0 0;opacity:0.9;">
+          Your A/B/C/D test path: <strong>${safe(abVariant)}</strong>
+        </p>
+        <p style="margin:8px 0 0 0;opacity:0.9;">
+          Your Gratitude Frequency Circle referral code: <strong>${safe(affiliateCode)}</strong>
+        </p>
+        ${shareUrl ? `<p style="margin:8px 0 0 0;opacity:0.9;">Share link: <a href="${shareUrl}" style="color:#A5B4FC;">${shareUrl}</a></p>` : ''}
+      </div>
+      <p style="margin:14px 0 0 0;font-size:12px;opacity:0.7;">
+        You can unsubscribe any time.
+      </p>
+    </div>
+  </body>
+</html>`
+}
+
 export default async function handler(req, res) {
   if (req.method !== 'POST') {
     res.setHeader('Allow', 'POST')
@@ -63,6 +119,8 @@ export default async function handler(req, res) {
     .trim()
     .toUpperCase()
 
+  const affiliateCode = String(body.affiliateCode || affiliateCodeFromEmail(email)).trim().toUpperCase()
+
   const attributes = {
     FIRSTNAME: firstName,
     LASTNAME: lastName,
@@ -79,6 +137,8 @@ export default async function handler(req, res) {
     // Experiment + attribution
     AB_VARIANT: ['A', 'B', 'C', 'D'].includes(abVariant) ? abVariant : 'A',
     LEAD_SOURCE: String(body.source || 'quiz_opener').slice(0, 100),
+    REF_CODE: String(body.ref || '').slice(0, 50),
+    AFFILIATE_CODE: affiliateCode,
     EMAIL_OPTIN: consent,
     LEAD_CAPTURED_AT: new Date().toISOString(),
   }
@@ -116,8 +176,47 @@ export default async function handler(req, res) {
       return json(res, 502, { error: 'Brevo upsert failed', details })
     }
 
-    // Brevo often returns empty body on success here.
-    return json(res, 200, { ok: true, email, abVariant: attributes.AB_VARIANT, consent })
+    // Optionally send mini report email (HTML) immediately.
+    if (consent && body.sendEmail === true) {
+      const htmlContent = buildMiniReportHtml({
+        firstName,
+        celticMoon: body.celticMoon,
+        lifePath: body.lifePath,
+        soulUrge: body.soulUrge,
+        abVariant: attributes.AB_VARIANT,
+        affiliateCode,
+      })
+
+      const emailResp = await fetch('https://api.brevo.com/v3/smtp/email', {
+        method: 'POST',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+          'api-key': apiKey,
+        },
+        body: JSON.stringify({
+          to: [{ email, name: `${firstName} ${lastName}`.trim() }],
+          subject: `Your AnuLunar Mini Report (Life Path ${body.lifePath || ''})`.trim(),
+          htmlContent,
+        }),
+      })
+
+      if (!emailResp.ok) {
+        // Don’t fail the lead capture if email send fails — just report it.
+        const details = await emailResp.json().catch(() => ({}))
+        return json(res, 200, {
+          ok: true,
+          email,
+          abVariant: attributes.AB_VARIANT,
+          consent,
+          affiliateCode,
+          email_sent: false,
+          email_error: details,
+        })
+      }
+    }
+
+    return json(res, 200, { ok: true, email, abVariant: attributes.AB_VARIANT, consent, affiliateCode, email_sent: consent && body.sendEmail === true })
   } catch (e) {
     return json(res, 502, { error: 'Brevo request failed', details: String(e?.message || e) })
   }
