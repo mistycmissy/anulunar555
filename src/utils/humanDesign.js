@@ -1,8 +1,9 @@
 // Simple Human Design Type Calculator (based on birth date)
 // Note: Full Human Design requires exact birth time and location
+import { getBirthDayOfYear } from './birthDate'
+
 export const calculateHumanDesignType = (birthDate) => {
-  const date = new Date(birthDate)
-  const dayOfYear = Math.floor((date - new Date(date.getFullYear(), 0, 0)) / 1000 / 60 / 60 / 24)
+  const dayOfYear = getBirthDayOfYear(birthDate) ?? 1
   
   // Simplified calculation based on day of year
   const types = [

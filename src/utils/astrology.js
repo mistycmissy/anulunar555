@@ -1,8 +1,10 @@
 // Zodiac Sign Calculator
+import { getBirthDateParts } from './birthDate'
+
 export const calculateZodiacSign = (birthDate) => {
-  const date = new Date(birthDate)
-  const month = date.getMonth() + 1
-  const day = date.getDate()
+  const parts = getBirthDateParts(birthDate)
+  if (!parts) return null
+  const { month, day } = parts
 
   const zodiacSigns = [
     { name: 'Capricorn', start: [12, 22], end: [1, 19], element: 'Earth', modality: 'Cardinal', ruler: 'Saturn', traits: 'Ambitious, disciplined, responsible, practical' },

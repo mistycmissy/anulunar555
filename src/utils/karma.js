@@ -1,7 +1,9 @@
 // Karma and Life Lessons Calculator
+import { getBirthDateParts } from './birthDate'
+
 export const calculateKarma = (birthDate, fullName) => {
-  const date = new Date(birthDate)
-  const lifePathNumber = calculateKarmaNumber(date)
+  const parts = getBirthDateParts(birthDate)
+  const lifePathNumber = calculateKarmaNumber(parts)
   const namePath = calculateNameKarma(fullName)
 
   const karmaLessons = {
@@ -65,15 +67,15 @@ export const calculateKarma = (birthDate, fullName) => {
     mainLesson: karmaLessons[lifePathNumber] || karmaLessons[1],
     karmaNumber: lifePathNumber,
     nameKarma: namePath,
-    karmicDebt: checkKarmicDebt(date),
+    karmicDebt: checkKarmicDebt(parts),
     soulContract: generateSoulContract(lifePathNumber, namePath)
   }
 }
 
-const calculateKarmaNumber = (date) => {
-  const day = date.getDate()
-  const month = date.getMonth() + 1
-  const year = date.getFullYear()
+const calculateKarmaNumber = (parts) => {
+  const day = parts?.day ?? 1
+  const month = parts?.month ?? 1
+  const year = parts?.year ?? 1900
 
   let total = day + month + year
   while (total > 9 && total !== 11 && total !== 22 && total !== 33) {
@@ -94,8 +96,8 @@ const calculateNameKarma = (name) => {
   return result
 }
 
-const checkKarmicDebt = (date) => {
-  const day = date.getDate()
+const checkKarmicDebt = (parts) => {
+  const day = parts?.day ?? 1
   const karmicDebtNumbers = [13, 14, 16, 19]
   
   if (karmicDebtNumbers.includes(day)) {

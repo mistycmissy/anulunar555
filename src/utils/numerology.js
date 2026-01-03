@@ -1,5 +1,7 @@
 // Numerology Calculator - Life Path, Expression, Soul Urge, etc.
 
+import { getBirthDateParts } from './birthDate'
+
 const reduceToSingleDigit = (num) => {
   // Master numbers: 11, 22, 33
   if (num === 11 || num === 22 || num === 33) return num
@@ -17,10 +19,10 @@ const letterValues = {
 }
 
 export const calculateLifePath = (birthDate) => {
-  const date = new Date(birthDate)
-  const day = date.getDate()
-  const month = date.getMonth() + 1
-  const year = date.getFullYear()
+  const parts = getBirthDateParts(birthDate)
+  if (!parts) return 0
+
+  const { day, month, year } = parts
 
   const daySum = reduceToSingleDigit(day)
   const monthSum = reduceToSingleDigit(month)

@@ -1,8 +1,10 @@
 // Celtic Moon Sign Calculator (13 lunar months)
+import { getBirthDateParts } from './birthDate'
+
 export const calculateCelticMoonSign = (birthDate) => {
-  const date = new Date(birthDate)
-  const month = date.getMonth() + 1
-  const day = date.getDate()
+  const parts = getBirthDateParts(birthDate)
+  if (!parts) return null
+  const { month, day } = parts
 
   const celticSigns = [
     { name: 'Birch', start: [12, 24], end: [1, 20], traits: 'New beginnings, purification, rebirth', element: 'Air' },

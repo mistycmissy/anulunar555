@@ -1,7 +1,9 @@
 // Chakra Analysis based on birth date and name
+import { getBirthDateParts } from './birthDate'
+
 export const analyzeChakras = (birthDate, fullName) => {
-  const date = new Date(birthDate)
-  const dayOfMonth = date.getDate()
+  const parts = getBirthDateParts(birthDate)
+  const dayOfMonth = parts?.day ?? 1
   const nameLength = fullName.replace(/[^A-Za-z]/g, '').length
 
   const chakras = [
