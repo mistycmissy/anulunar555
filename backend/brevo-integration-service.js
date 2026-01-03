@@ -4,6 +4,27 @@
 // =============================================
 
 import { createClient } from '@supabase/supabase-js';
+import crypto from 'crypto';
+
+// =============================================
+// ENVIRONMENT VALIDATION
+// =============================================
+
+function validateEnvironment() {
+  const requiredVars = [
+    'BREVO_API_KEY',
+    'BREVO_MASTER_LIST_ID',
+    'BREVO_WEBHOOK_SECRET',
+    'SUPABASE_URL',
+    'SUPABASE_SERVICE_KEY'
+  ];
+  
+  const missing = requiredVars.filter(varName => !process.env[varName]);
+  
+  if (missing.length > 0) {
+    throw new Error(`Missing required environment variables: ${missing.join(', ')}`);
+  }
+}
 
 const supabase = createClient(
   process.env.SUPABASE_URL,
@@ -12,62 +33,145 @@ const supabase = createClient(
 
 class BrevoIntegrationService {
   constructor() {
+    // Validate required environment variables
+    if (!process.env.BREVO_API_KEY) {
+      throw new Error('BREVO_API_KEY environment variable is required');
+    }
+    if (!process.env.BREVO_MASTER_LIST_ID) {
+      throw new Error('BREVO_MASTER_LIST_ID environment variable is required');
+    }
+    
     this.apiKey = process.env.BREVO_API_KEY;
     this.baseUrl = 'https://api.brevo.com/v3';
-    this.listId = parseInt(process.env.BREVO_MASTER_LIST_ID || '2'); // AnuLunar Spiritual Intelligence List
+    this.listId = parseInt(process.env.BREVO_MASTER_LIST_ID);
+    
+    // Rate limiting properties
+    this.requestQueue = [];
+    this.lastRequestTime = 0;
+    this.minRequestInterval = 200; // Minimum 200ms between requests
   }
 
   // =============================================
   // CORE CRM OPERATIONS
   // =============================================
 
+  /**
+   * Rate-limited fetch wrapper with retry logic
+   * @param {string} url - The URL to fetch
+   * @param {object} options - Fetch options
+   * @param {number} retryCount - Current retry attempt (internal)
+   * @returns {Promise<Response>} - Fetch response
+   */
+  async rateLimitedFetch(url, options, retryCount = 0) {
+    // Enforce minimum time between requests
+    const now = Date.now();
+    const timeSinceLastRequest = now - this.lastRequestTime;
+    
+    if (timeSinceLastRequest < this.minRequestInterval) {
+      await new Promise(resolve => 
+        setTimeout(resolve, this.minRequestInterval - timeSinceLastRequest)
+      );
+    }
+    
+    this.lastRequestTime = Date.now();
+    
+    try {
+      const response = await fetch(url, options);
+      
+      // Handle rate limiting
+      if (response.status === 429) {
+        const retryAfter = response.headers.get('retry-after');
+        const waitTime = retryAfter ? parseInt(retryAfter) * 1000 : Math.pow(2, retryCount) * 1000;
+        
+        if (retryCount < 3) {
+          console.log(`⏳ Rate limited. Waiting ${waitTime}ms before retry ${retryCount + 1}/3...`);
+          await new Promise(resolve => setTimeout(resolve, waitTime));
+          return this.rateLimitedFetch(url, options, retryCount + 1);
+        }
+      }
+      
+      // Retry on server errors with exponential backoff
+      if (!response.ok && response.status >= 500 && retryCount < 3) {
+        const waitTime = Math.pow(2, retryCount) * 1000; // 1s, 2s, 4s
+        console.log(`⏳ Server error ${response.status}. Retrying in ${waitTime}ms (${retryCount + 1}/3)...`);
+        await new Promise(resolve => setTimeout(resolve, waitTime));
+        return this.rateLimitedFetch(url, options, retryCount + 1);
+      }
+      
+      return response;
+    } catch (error) {
+      // Retry on network errors with exponential backoff
+      if (retryCount < 3) {
+        const waitTime = Math.pow(2, retryCount) * 1000; // 1s, 2s, 4s
+        console.log(`⏳ Network error. Retrying in ${waitTime}ms (${retryCount + 1}/3)...`);
+        await new Promise(resolve => setTimeout(resolve, waitTime));
+        return this.rateLimitedFetch(url, options, retryCount + 1);
+      }
+      throw error;
+    }
+  }
+
+  /**
+   * Build contact attributes from profile data
+   * @param {object} profileData - User profile data
+   * @returns {object} - Contact attributes for Brevo
+   */
+  buildContactAttributes(profileData) {
+    return {
+      FIRSTNAME: profileData.first_name,
+      LASTNAME: profileData.last_name,
+      SMS: profileData.phone || '',
+      
+      // Birth Data
+      BIRTH_DATE: profileData.birth_date,
+      BIRTH_CITY: profileData.birth_city,
+      BIRTH_COUNTRY: profileData.birth_country,
+      BIRTH_TIME: `${profileData.birth_hour}:${profileData.birth_minute}`,
+      TIMEZONE: profileData.birth_timezone,
+      
+      // Numerology Core Numbers
+      LIFE_PATH: profileData.life_path_number,
+      EXPRESSION: profileData.expression_number,
+      SOUL_URGE: profileData.soul_urge_number,
+      
+      // Celtic Moon Data
+      CELTIC_TREE: profileData.celtic_tree_sign,
+      LUNAR_PHASE: profileData.lunar_phase,
+      
+      // Astrology Basics
+      SUN_SIGN: profileData.sun_sign,
+      MOON_SIGN: profileData.moon_sign,
+      RISING_SIGN: profileData.rising_sign,
+      
+      // AnuLunar Specific
+      PROFILE_ID: profileData.id,
+      CREATED_AT: profileData.created_at,
+      SUBSCRIPTION_TIER: profileData.subscription_tier || 'free',
+      LUNARIS_SCORE: profileData.lunaris_compatibility_score,
+      
+      // Engagement Tracking
+      REPORTS_GENERATED: 0,
+      LAST_REPORT: null,
+      EMAIL_ENGAGEMENT: 'new',
+      COSMIC_PREFERENCES: JSON.stringify(profileData.preferences || {})
+    };
+  }
+
   async createContact(profileData) {
     try {
+      // Validate email is present upfront
+      if (!profileData.email) {
+        throw new Error('Email is required to create a contact');
+      }
+
       const contact = {
         email: profileData.email,
-        attributes: {
-          FIRSTNAME: profileData.first_name,
-          LASTNAME: profileData.last_name,
-          SMS: profileData.phone || '',
-          
-          // Birth Data
-          BIRTH_DATE: profileData.birth_date,
-          BIRTH_CITY: profileData.birth_city,
-          BIRTH_COUNTRY: profileData.birth_country,
-          BIRTH_TIME: `${profileData.birth_hour}:${profileData.birth_minute}`,
-          TIMEZONE: profileData.birth_timezone,
-          
-          // Numerology Core Numbers
-          LIFE_PATH: profileData.life_path_number,
-          EXPRESSION: profileData.expression_number,
-          SOUL_URGE: profileData.soul_urge_number,
-          
-          // Celtic Moon Data
-          CELTIC_TREE: profileData.celtic_tree_sign,
-          LUNAR_PHASE: profileData.lunar_phase,
-          
-          // Astrology Basics
-          SUN_SIGN: profileData.sun_sign,
-          MOON_SIGN: profileData.moon_sign,
-          RISING_SIGN: profileData.rising_sign,
-          
-          // AnuLunar Specific
-          PROFILE_ID: profileData.id,
-          CREATED_AT: profileData.created_at,
-          SUBSCRIPTION_TIER: profileData.subscription_tier || 'free',
-          LUNARIS_SCORE: profileData.lunaris_compatibility_score,
-          
-          // Engagement Tracking
-          REPORTS_GENERATED: 0,
-          LAST_REPORT: null,
-          EMAIL_ENGAGEMENT: 'new',
-          COSMIC_PREFERENCES: JSON.stringify(profileData.preferences || {})
-        },
+        attributes: this.buildContactAttributes(profileData),
         listIds: [this.listId],
-        updateEnabled: true // Update if contact already exists
+        updateEnabled: false // We'll handle duplicates manually
       };
 
-      const response = await fetch(`${this.baseUrl}/contacts`, {
+      const response = await this.rateLimitedFetch(`${this.baseUrl}/contacts`, {
         method: 'POST',
         headers: {
           'Accept': 'application/json',
@@ -79,7 +183,14 @@ class BrevoIntegrationService {
 
       if (!response.ok) {
         const error = await response.json();
-        throw new Error(`Brevo contact creation failed: ${error.message}`);
+        
+        // Handle duplicate contact by updating instead
+        if (error.code === 'duplicate_parameter' || response.status === 400) {
+          console.log(`⚠️  Contact already exists, updating instead: ${profileData.email}`);
+          return await this.updateContact(profileData.email, this.buildContactAttributes(profileData));
+        }
+        
+        throw new Error(`Brevo contact creation failed (${response.status}): ${error.message || error.code}`);
       }
 
       const result = await response.json();
@@ -90,8 +201,39 @@ class BrevoIntegrationService {
       
       return result;
     } catch (error) {
-      console.error('❌ Brevo contact creation error:', error);
+      console.error(`❌ Brevo contact creation error for ${profileData.email}:`, error.message);
       await this.logBrevoSync(profileData.id, 'contact_failed', { error: error.message });
+      throw error; // Always re-throw so callers know the operation failed
+    }
+  }
+
+  /**
+   * Update an existing contact
+   * @param {string} email - Contact email
+   * @param {object} attributes - Attributes to update
+   * @returns {Promise<object>} - Update result
+   */
+  async updateContact(email, attributes) {
+    try {
+      const response = await this.rateLimitedFetch(`${this.baseUrl}/contacts/${encodeURIComponent(email)}`, {
+        method: 'PUT',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+          'api-key': this.apiKey
+        },
+        body: JSON.stringify({ attributes })
+      });
+
+      if (!response.ok) {
+        const error = await response.json();
+        throw new Error(`Failed to update contact (${response.status}): ${error.message || error.code}`);
+      }
+
+      console.log(`✅ Brevo contact updated: ${email}`);
+      return { email, updated: true };
+    } catch (error) {
+      console.error(`❌ Brevo contact update error for ${email}:`, error.message);
       throw error;
     }
   }
@@ -105,7 +247,7 @@ class BrevoIntegrationService {
         LAST_REPORT_TIER: reportData.reportTier
       };
 
-      const response = await fetch(`${this.baseUrl}/contacts/${encodeURIComponent(email)}`, {
+      const response = await this.rateLimitedFetch(`${this.baseUrl}/contacts/${encodeURIComponent(email)}`, {
         method: 'PUT',
         headers: {
           'Accept': 'application/json',
@@ -194,7 +336,7 @@ class BrevoIntegrationService {
 
   async sendTransactionalEmail(emailData) {
     try {
-      const response = await fetch(`${this.baseUrl}/smtp/email`, {
+      const response = await this.rateLimitedFetch(`${this.baseUrl}/smtp/email`, {
         method: 'POST',
         headers: {
           'Accept': 'application/json',
@@ -224,7 +366,7 @@ class BrevoIntegrationService {
   async trackEmailEngagement() {
     try {
       // Get email events from Brevo
-      const response = await fetch(`${this.baseUrl}/webhooks`, {
+      const response = await this.rateLimitedFetch(`${this.baseUrl}/webhooks`, {
         headers: {
           'Accept': 'application/json',
           'api-key': this.apiKey
@@ -275,7 +417,7 @@ class BrevoIntegrationService {
       if (eventType === 'opened') engagementScore = 'medium';
       if (eventType === 'clicked') engagementScore = 'high';
 
-      await fetch(`${this.baseUrl}/contacts/${encodeURIComponent(email)}`, {
+      await this.rateLimitedFetch(`${this.baseUrl}/contacts/${encodeURIComponent(email)}`, {
         method: 'PUT',
         headers: {
           'Accept': 'application/json',
@@ -312,7 +454,7 @@ class BrevoIntegrationService {
         }
       };
 
-      const response = await fetch(`${this.baseUrl}/contacts/segments`, {
+      const response = await this.rateLimitedFetch(`${this.baseUrl}/contacts/segments`, {
         method: 'POST',
         headers: {
           'Accept': 'application/json',
@@ -346,7 +488,7 @@ class BrevoIntegrationService {
         }
       };
 
-      const response = await fetch(`${this.baseUrl}/contacts/segments`, {
+      const response = await this.rateLimitedFetch(`${this.baseUrl}/contacts/segments`, {
         method: 'POST',
         headers: {
           'Accept': 'application/json',
@@ -406,26 +548,47 @@ class BrevoIntegrationService {
 
       if (error) throw error;
 
-      for (const profile of profiles || []) {
+      let totalSynced = 0;
+      let totalFailed = 0;
+      const totalProfiles = profiles?.length || 0;
+
+      console.log(`📊 Found ${totalProfiles} profiles to sync`);
+
+      for (let i = 0; i < totalProfiles; i++) {
+        const profile = profiles[i];
+        
         try {
+          // Show batch progress
+          console.log(`🔄 Processing ${i + 1}/${totalProfiles}: ${profile.email}`);
+          
           await this.createContact(profile);
           
-          // Mark as synced
+          // Mark as synced with timestamp
           await supabase
             .from('profiles')
-            .update({ brevo_synced: true })
+            .update({ 
+              brevo_synced: true,
+              brevo_synced_at: new Date().toISOString()
+            })
             .eq('id', profile.id);
-            
-          // Delay to respect rate limits
-          await new Promise(resolve => setTimeout(resolve, 200));
+          
+          totalSynced++;
+          console.log(`✅ Synced (${totalSynced}/${totalProfiles}): ${profile.email}`);
         } catch (error) {
-          console.error(`❌ Failed to sync profile ${profile.id}:`, error);
+          totalFailed++;
+          console.error(`❌ Failed to sync profile ${profile.id} (${totalFailed} failures):`, error.message);
         }
       }
 
-      console.log(`✅ Batch sync completed: ${profiles.length} profiles processed`);
+      console.log(`\n📈 Batch sync completed!`);
+      console.log(`   ✅ Successfully synced: ${totalSynced}`);
+      console.log(`   ❌ Failed: ${totalFailed}`);
+      console.log(`   📊 Total processed: ${totalProfiles}`);
+      
+      return { synced: totalSynced, failed: totalFailed };
     } catch (error) {
       console.error('❌ Batch sync error:', error);
+      throw error;
     }
   }
 }
@@ -433,6 +596,9 @@ class BrevoIntegrationService {
 // =============================================
 // EXPORT SERVICE INSTANCE
 // =============================================
+
+// Validate environment before creating service instance
+validateEnvironment();
 
 export const brevoService = new BrevoIntegrationService();
 
@@ -459,10 +625,54 @@ export async function handleBrevoWebhook(req, res) {
   }
 }
 
+/**
+ * Verify webhook signature using HMAC-SHA256
+ * @param {object} payload - Webhook payload
+ * @param {string} signature - Signature from header
+ * @returns {boolean} - True if signature is valid
+ */
 function verifyWebhookSignature(payload, signature) {
-  // Implement webhook signature verification
-  // Use your Brevo webhook secret
-  return true; // Simplified for demo
+  try {
+    // Validate required parameters
+    const secret = process.env.BREVO_WEBHOOK_SECRET;
+    
+    if (!secret) {
+      console.error('❌ BREVO_WEBHOOK_SECRET environment variable is not set');
+      return false;
+    }
+    
+    if (!signature) {
+      console.error('❌ No signature provided in webhook request');
+      return false;
+    }
+    
+    // Generate HMAC-SHA256 signature
+    const payloadString = typeof payload === 'string' ? payload : JSON.stringify(payload);
+    const hmac = crypto.createHmac('sha256', secret);
+    hmac.update(payloadString);
+    const expectedSignature = hmac.digest('hex');
+    
+    // Use timing-safe comparison to prevent timing attacks
+    const signatureBuffer = Buffer.from(signature);
+    const expectedBuffer = Buffer.from(expectedSignature);
+    
+    // Ensure buffers are the same length before comparing
+    if (signatureBuffer.length !== expectedBuffer.length) {
+      console.error('❌ Webhook signature length mismatch');
+      return false;
+    }
+    
+    const isValid = crypto.timingSafeEqual(signatureBuffer, expectedBuffer);
+    
+    if (!isValid) {
+      console.error('❌ Webhook signature verification failed');
+    }
+    
+    return isValid;
+  } catch (error) {
+    console.error('❌ Webhook signature verification error:', error.message);
+    return false;
+  }
 }
 
 export default brevoService;
