@@ -130,6 +130,9 @@ export default async function handler(req, res) {
     BIRTH_COUNTRY: birthCountry,
 
     // Core “mini reading” segments
+    // Preferred (consistent) attribute name:
+    CELTIC_MOON_SIGN: body.celticMoon || '',
+    // Backward-compatibility (safe to remove once Brevo is migrated):
     CELTIC_TREE: body.celticMoon || '',
     LIFE_PATH: body.lifePath ?? '',
     SOUL_URGE: body.soulUrge ?? '',

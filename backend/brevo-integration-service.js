@@ -127,6 +127,9 @@ class BrevoIntegrationService {
       SOUL_URGE: profileData.soul_urge_number,
       
       // Celtic Moon Data
+      // Preferred (consistent) attribute name:
+      CELTIC_MOON_SIGN: profileData.celtic_tree_sign,
+      // Backward-compatibility (safe to remove once Brevo is migrated):
       CELTIC_TREE: profileData.celtic_tree_sign,
       LUNAR_PHASE: profileData.lunar_phase,
       
@@ -473,7 +476,7 @@ class BrevoIntegrationService {
         name: `Celtic ${treeSign} - AnuLunar`,
         categoryName: 'Celtic Moon',
         conditions: {
-          CELTIC_TREE: {
+          CELTIC_MOON_SIGN: {
             type: 'string',
             operator: 'equals',
             value: treeSign
