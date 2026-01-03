@@ -5,12 +5,14 @@ import CosmicBlueprintReport from '../components/CosmicBlueprintReport'
 import { generateCosmicBlueprint } from '../utils/cosmicBlueprint'
 import { useAuth } from '../hooks/useAuth'
 import { supabase } from '../lib/supabase'
+import OnboardingQuiz, { clearOnboardingQuiz, loadOnboardingQuiz } from '../components/quiz/OnboardingQuiz'
 
 const Home = () => {
   const { user } = useAuth()
   const [blueprint, setBlueprint] = useState(null)
   const [loading, setLoading] = useState(false)
   const [guestReportGenerated, setGuestReportGenerated] = useState(false)
+  const [quizSession, setQuizSession] = useState(() => loadOnboardingQuiz())
 
   const handleGenerateBlueprint = async (birthData) => {
     setLoading(true)
@@ -76,6 +78,16 @@ const Home = () => {
 
   const handleNewReport = () => {
     setBlueprint(null)
+  }
+
+  // Quiz is the intended opener experience.
+  // After completion, we proceed to the birth-data form (prefilled where possible).
+  if (!quizSession) {
+    return (
+      <div className="min-h-screen">
+        <OnboardingQuiz onComplete={(payload) => setQuizSession(payload)} />
+      </div>
+    )
   }
 
   if (blueprint) {
@@ -175,6 +187,20 @@ const Home = () => {
 
       {/* Form Section */}
       <div className="py-8 px-4">
+        <div className="max-w-2xl mx-auto mb-6 flex items-center justify-between gap-3">
+          <p className="text-sm text-gray-300">
+            Quiz completed — you can continue with your blueprint, or restart the quiz.
+          </p>
+          <button
+            className="btn-secondary"
+            onClick={() => {
+              clearOnboardingQuiz()
+              setQuizSession(null)
+            }}
+          >
+            Restart quiz
+          </button>
+        </div>
         {!user && guestReportGenerated ? (
           <div className="max-w-2xl mx-auto card text-center">
             <h2 className="text-2xl font-semibold text-cosmic-300 mb-4">
@@ -188,7 +214,14 @@ const Home = () => {
             </Link>
           </div>
         ) : (
-          <BirthDataForm onSubmit={handleGenerateBlueprint} loading={loading} />
+          <BirthDataForm
+            onSubmit={handleGenerateBlueprint}
+            loading={loading}
+            initialValues={{
+              birthDate: quizSession?.responses?.birth_date || '',
+              birthPlace: quizSession?.responses?.birth_location || ''
+            }}
+          />
         )}
       </div>
 

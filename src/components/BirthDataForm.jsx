@@ -1,15 +1,27 @@
-import { useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { validateBirthData } from '../utils/cosmicBlueprint'
 
-const BirthDataForm = ({ onSubmit, loading = false }) => {
-  const [formData, setFormData] = useState({
-    firstName: '',
-    lastName: '',
-    birthDate: '',
-    birthTime: '',
-    birthPlace: ''
-  })
+const BirthDataForm = ({ onSubmit, loading = false, initialValues = null }) => {
+  const initial = useMemo(
+    () => ({
+      firstName: '',
+      lastName: '',
+      birthDate: '',
+      birthTime: '',
+      birthPlace: '',
+      ...(initialValues || {})
+    }),
+    [initialValues]
+  )
+
+  const [formData, setFormData] = useState(initial)
   const [errors, setErrors] = useState({})
+
+  useEffect(() => {
+    // If initialValues arrive after mount, merge them in without clobbering user edits.
+    if (!initialValues) return
+    setFormData(prev => ({ ...initial, ...prev }))
+  }, [initialValues, initial])
 
   const handleChange = (e) => {
     const { name, value } = e.target
