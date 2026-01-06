@@ -76,12 +76,24 @@ CREATE TABLE IF NOT EXISTS points_history (
   created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
 );
 
+-- Client Analytics Events (for funnel visibility; supports anonymous sessions)
+CREATE TABLE IF NOT EXISTS client_analytics_events (
+  id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+  user_id UUID REFERENCES auth.users(id) ON DELETE SET NULL,
+  session_id TEXT NOT NULL,
+  event_name TEXT NOT NULL,
+  properties JSONB DEFAULT '{}'::jsonb,
+  created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
+);
+
 -- Indexes for better performance
 CREATE INDEX IF NOT EXISTS idx_cosmic_reports_user_id ON cosmic_reports(user_id);
 CREATE INDEX IF NOT EXISTS idx_cosmic_reports_created_at ON cosmic_reports(created_at DESC);
 CREATE INDEX IF NOT EXISTS idx_practitioners_specialty ON practitioners(specialty);
 CREATE INDEX IF NOT EXISTS idx_bookings_user_id ON bookings(user_id);
 CREATE INDEX IF NOT EXISTS idx_bookings_practitioner_id ON bookings(practitioner_id);
+CREATE INDEX IF NOT EXISTS idx_client_analytics_events_created_at ON client_analytics_events(created_at DESC);
+CREATE INDEX IF NOT EXISTS idx_client_analytics_events_session_id ON client_analytics_events(session_id);
 
 -- Row Level Security (RLS) Policies
 
@@ -92,6 +104,7 @@ ALTER TABLE practitioners ENABLE ROW LEVEL SECURITY;
 ALTER TABLE bookings ENABLE ROW LEVEL SECURITY;
 ALTER TABLE reviews ENABLE ROW LEVEL SECURITY;
 ALTER TABLE points_history ENABLE ROW LEVEL SECURITY;
+ALTER TABLE client_analytics_events ENABLE ROW LEVEL SECURITY;
 
 -- User Profiles Policies
 CREATE POLICY "Users can view their own profile"
@@ -122,6 +135,13 @@ CREATE POLICY "Users can update their own reports"
 CREATE POLICY "Users can delete their own reports"
   ON cosmic_reports FOR DELETE
   USING (auth.uid() = user_id);
+
+-- Client Analytics Events Policies
+-- Allow anonymous + authenticated inserts so we can measure funnel drop-offs.
+-- (No SELECT policy is defined; reads stay locked down by default.)
+CREATE POLICY "Anyone can insert analytics events"
+  ON client_analytics_events FOR INSERT
+  WITH CHECK (true);
 
 -- Practitioners Policies (publicly viewable)
 CREATE POLICY "Anyone can view practitioners"

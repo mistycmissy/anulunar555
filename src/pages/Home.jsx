@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import BirthDataForm from '../components/BirthDataForm'
 import CosmicBlueprintReport from '../components/CosmicBlueprintReport'
 import { generateCosmicBlueprint } from '../utils/cosmicBlueprint'
+import { trackEvent } from '../utils/analytics'
 import { useAuth } from '../hooks/useAuth'
 import { supabase } from '../lib/supabase'
 
@@ -15,6 +16,10 @@ const Home = () => {
   const handleGenerateBlueprint = async (birthData) => {
     setLoading(true)
     try {
+      await trackEvent('blueprint_generate_started', {
+        is_logged_in: Boolean(user)
+      })
+
       // Generate the cosmic blueprint
       const generatedBlueprint = generateCosmicBlueprint(birthData)
       setBlueprint(generatedBlueprint)
@@ -25,9 +30,20 @@ const Home = () => {
       } else {
         // Mark that guest has generated their free report
         setGuestReportGenerated(true)
+        await trackEvent('guest_free_report_used', {
+          source: 'home'
+        })
       }
+
+      await trackEvent('blueprint_generated', {
+        is_logged_in: Boolean(user),
+        life_path: generatedBlueprint?.numerology?.lifePath?.number
+      })
     } catch (error) {
       console.error('Error generating blueprint:', error)
+      await trackEvent('blueprint_generate_failed', {
+        message: error?.message
+      })
       alert('An error occurred while generating your blueprint. Please try again.')
     } finally {
       setLoading(false)
@@ -48,8 +64,14 @@ const Home = () => {
         ])
 
       if (error) throw error
+      await trackEvent('blueprint_saved', {
+        source: 'home'
+      })
     } catch (error) {
       console.error('Error saving report:', error)
+      await trackEvent('blueprint_save_failed', {
+        message: error?.message
+      })
     }
   }
 

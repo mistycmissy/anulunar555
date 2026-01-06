@@ -2,12 +2,14 @@ import { useState, useEffect, useCallback } from 'react'
 import { Link } from 'react-router-dom'
 import { useAuth } from '../hooks/useAuth'
 import { supabase } from '../lib/supabase'
+import { getDailyMicroInsight, getWeeklyTheme, getMoonPhase } from '../utils/dailyGuidance'
 
 const Dashboard = () => {
   const { user } = useAuth()
   const [reports, setReports] = useState([])
   const [stats, setStats] = useState({ totalReports: 0, points: 0 })
   const [loading, setLoading] = useState(true)
+  const [copied, setCopied] = useState(false)
 
   const loadDashboardData = useCallback(async () => {
     try {
@@ -61,6 +63,29 @@ const Dashboard = () => {
     )
   }
 
+  const latestReport = reports?.[0]?.report_data
+  const firstName = user?.user_metadata?.first_name
+  const celticMoonSign = latestReport?.celticMoonSign?.sign
+  const sunSign = latestReport?.astrology?.sunSign
+  const lifePath = latestReport?.numerology?.lifePath?.number
+
+  const todayMessage = getDailyMicroInsight(
+    { firstName, celticMoonSign, sunSign, lifePath },
+    new Date()
+  )
+  const { phaseName, theme } = getWeeklyTheme({ celticMoonSign }, new Date())
+  const { lunarDay } = getMoonPhase(new Date())
+
+  const handleCopy = async () => {
+    try {
+      await navigator.clipboard.writeText(todayMessage)
+      setCopied(true)
+      window.setTimeout(() => setCopied(false), 1500)
+    } catch {
+      // ignore
+    }
+  }
+
   return (
     <div className="min-h-screen py-8 px-4">
       <div className="container mx-auto max-w-6xl">
@@ -76,6 +101,27 @@ const Dashboard = () => {
             <Link to="/" className="btn-primary">
               ✨ Generate New Blueprint
             </Link>
+          </div>
+        </div>
+
+        {/* Daily Guidance */}
+        <div className="card mb-8">
+          <div className="flex items-start justify-between gap-4 flex-wrap">
+            <div className="min-w-[240px]">
+              <div className="text-sm font-semibold text-gray-300">Today’s guidance</div>
+              <div className="text-xs text-gray-500 mt-1">
+                {phaseName} • Lunar Day {lunarDay} • Weekly theme: {theme}
+              </div>
+            </div>
+            <button onClick={handleCopy} className="btn-secondary text-sm py-2 px-4">
+              {copied ? 'Copied' : 'Copy'}
+            </button>
+          </div>
+          <div className="mt-4 text-lg text-gray-200 leading-relaxed">
+            {todayMessage}
+          </div>
+          <div className="mt-3 text-xs text-gray-500">
+            Short beats daily. Deep reports live in your blueprints.
           </div>
         </div>
 
