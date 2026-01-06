@@ -23,6 +23,9 @@ const Navbar = () => {
             <Link to="/" className="text-gray-300 hover:text-cosmic-300 transition-colors">
               Home
             </Link>
+            <Link to="/today" className="text-gray-300 hover:text-cosmic-300 transition-colors">
+              Today
+            </Link>
             {user ? (
               <>
                 <Link to="/dashboard" className="text-gray-300 hover:text-cosmic-300 transition-colors">
