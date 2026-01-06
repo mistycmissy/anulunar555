@@ -31,6 +31,8 @@ export default function Today() {
   const [copied, setCopied] = useState(false)
   const [latestBlueprint, setLatestBlueprint] = useState(null)
   const [loadingBlueprint, setLoadingBlueprint] = useState(false)
+  const [ephemerisMessage, setEphemerisMessage] = useState(null)
+  const [ephemerisAspect, setEphemerisAspect] = useState(null)
 
   const now = useMemo(() => new Date(), [])
   const celticMoonSign = latestBlueprint?.celticMoonSign?.sign
@@ -86,6 +88,41 @@ export default function Today() {
     load()
   }, [user?.id])
 
+  useEffect(() => {
+    const loadEphemeris = async () => {
+      if (!user?.id) {
+        setEphemerisMessage(null)
+        setEphemerisAspect(null)
+        return
+      }
+
+      try {
+        const { data } = await supabase.auth.getSession()
+        const token = data?.session?.access_token
+        if (!token) return
+
+        const r = await fetch('/api/today-guidance', {
+          method: 'GET',
+          headers: { Authorization: `Bearer ${token}` }
+        })
+
+        if (!r.ok) return
+        const payload = await r.json()
+        if (payload?.mode === 'swiss_ephemeris' && payload?.message) {
+          setEphemerisMessage(payload.message)
+          setEphemerisAspect(payload.aspect || null)
+        } else {
+          setEphemerisMessage(null)
+          setEphemerisAspect(null)
+        }
+      } catch {
+        // ignore
+      }
+    }
+
+    loadEphemeris()
+  }, [user?.id])
+
   const handleCopy = async () => {
     try {
       await navigator.clipboard.writeText(message)
@@ -122,8 +159,15 @@ export default function Today() {
           </div>
 
           <div className="mt-6 text-xl text-gray-100 leading-relaxed">
-            {message}
+            {ephemerisMessage || message}
           </div>
+
+          {ephemerisAspect && (
+            <div className="mt-3 text-xs text-gray-500">
+              Swiss Ephemeris: {ephemerisAspect.transitPlanet} {ephemerisAspect.aspectName}{' '}
+              {ephemerisAspect.natalPlanet}
+            </div>
+          )}
 
           <div className="mt-8 border-t border-white/10 pt-6">
             <div className="text-sm font-semibold text-gray-300">
