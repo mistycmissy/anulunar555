@@ -52,16 +52,34 @@ const Home = () => {
 
   const saveReportToDatabase = async (reportData) => {
     try {
-      const { error } = await supabase
-        .from('cosmic_reports')
-        .insert([
+      // Best-effort: ensure a `profiles` row exists for the authed user.
+      // The larger Supabase schema uses `profiles` + `spiritual_reports`.
+      await supabase.from('profiles').upsert(
+        [
           {
-            user_id: user.id,
-            birth_data: reportData.personalInfo,
-            report_data: reportData,
-            created_at: new Date().toISOString()
+            id: user.id,
+            email: user.email,
+            first_name: reportData?.personalInfo?.name?.split(' ')?.[0] || user?.user_metadata?.first_name || null,
+            last_name:
+              reportData?.personalInfo?.name?.split(' ')?.slice(1)?.join(' ') ||
+              user?.user_metadata?.last_name ||
+              null
           }
-        ])
+        ],
+        { onConflict: 'id' }
+      )
+
+      const { error } = await supabase.from('spiritual_reports').insert([
+        {
+          profile_id: user.id,
+          report_type: 'complete_spiritual_intelligence',
+          report_tier: 'crystal_clarity',
+          sacred_price: 0,
+          generation_status: 'completed',
+          synthesized_content: reportData,
+          generated_at: new Date().toISOString()
+        }
+      ])
 
       if (error) throw error
       await trackEvent('blueprint_saved', {

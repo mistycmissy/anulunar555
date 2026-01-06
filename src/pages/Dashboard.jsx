@@ -13,35 +13,21 @@ const Dashboard = () => {
 
   const loadDashboardData = useCallback(async () => {
     try {
-      // Load user reports
+      // Load user reports (larger schema)
       const { data: reportsData, error: reportsError } = await supabase
-        .from('cosmic_reports')
+        .from('spiritual_reports')
         .select('*')
-        .eq('user_id', user.id)
+        .eq('profile_id', user.id)
         .order('created_at', { ascending: false })
 
       if (reportsError) throw reportsError
 
       setReports(reportsData || [])
 
-      // Load user profile/stats
-      const { data: profileData, error: profileError } = await supabase
-        .from('user_profiles')
-        .select('points')
-        .eq('user_id', user.id)
-        .single()
-
-      if (!profileError && profileData) {
-        setStats({
-          totalReports: reportsData?.length || 0,
-          points: profileData.points || 0
-        })
-      } else {
-        setStats({
-          totalReports: reportsData?.length || 0,
-          points: 100 // Default welcome points
-        })
-      }
+      setStats({
+        totalReports: reportsData?.length || 0,
+        points: 0
+      })
     } catch (error) {
       console.error('Error loading dashboard:', error)
     } finally {
@@ -63,7 +49,7 @@ const Dashboard = () => {
     )
   }
 
-  const latestReport = reports?.[0]?.report_data
+  const latestReport = reports?.[0]?.synthesized_content || reports?.[0]?.report_data
   const firstName = user?.user_metadata?.first_name
   const celticMoonSign = latestReport?.celticMoonSign?.sign
   const sunSign = latestReport?.astrology?.sunSign

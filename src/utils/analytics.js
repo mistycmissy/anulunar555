@@ -1,6 +1,15 @@
 import { supabase, isSupabaseConfigured } from '../lib/supabase'
 
 const SESSION_KEY = 'anulunar.sessionId.v1'
+const TABLE_KEY = 'anulunar.analyticsTable.v1'
+
+const DEFAULT_CANDIDATE_TABLES = [
+  // Newer/repo schema
+  'client_analytics_events',
+  // Common fallbacks
+  'analytics_events',
+  'events'
+]
 
 const randomId = () => {
   if (typeof crypto !== 'undefined' && typeof crypto.randomUUID === 'function') {
@@ -21,6 +30,28 @@ export const getSessionId = () => {
   }
 }
 
+const getPreferredTable = () => {
+  const fromEnv = import.meta?.env?.VITE_ANALYTICS_TABLE
+  if (fromEnv && typeof fromEnv === 'string') return fromEnv
+
+  try {
+    const cached = localStorage.getItem(TABLE_KEY)
+    if (cached) return cached
+  } catch {
+    // ignore
+  }
+
+  return null
+}
+
+const cachePreferredTable = (table) => {
+  try {
+    localStorage.setItem(TABLE_KEY, table)
+  } catch {
+    // ignore
+  }
+}
+
 export const trackEvent = async (eventName, properties = {}) => {
   const payload = {
     event_name: eventName,
@@ -38,7 +69,18 @@ export const trackEvent = async (eventName, properties = {}) => {
   }
 
   try {
-    await supabase.from('client_analytics_events').insert([payload])
+    const preferred = getPreferredTable()
+    const candidates = preferred
+      ? [preferred, ...DEFAULT_CANDIDATE_TABLES.filter((t) => t !== preferred)]
+      : DEFAULT_CANDIDATE_TABLES
+
+    for (const table of candidates) {
+      const { error } = await supabase.from(table).insert([payload])
+      if (!error) {
+        cachePreferredTable(table)
+        return
+      }
+    }
   } catch {
     // Never block UX on analytics.
   }
