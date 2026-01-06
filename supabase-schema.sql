@@ -76,6 +76,17 @@ CREATE TABLE IF NOT EXISTS points_history (
   created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
 );
 
+-- Leads (public capture via server endpoint; keep table protected with RLS)
+CREATE TABLE IF NOT EXISTS leads (
+  id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+  email TEXT UNIQUE NOT NULL,
+  first_name TEXT,
+  source TEXT DEFAULT 'unknown',
+  metadata JSONB DEFAULT '{}'::jsonb,
+  created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
+  updated_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
+);
+
 -- Client Analytics Events (for funnel visibility; supports anonymous sessions)
 CREATE TABLE IF NOT EXISTS client_analytics_events (
   id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
@@ -104,6 +115,7 @@ ALTER TABLE practitioners ENABLE ROW LEVEL SECURITY;
 ALTER TABLE bookings ENABLE ROW LEVEL SECURITY;
 ALTER TABLE reviews ENABLE ROW LEVEL SECURITY;
 ALTER TABLE points_history ENABLE ROW LEVEL SECURITY;
+ALTER TABLE leads ENABLE ROW LEVEL SECURITY;
 ALTER TABLE client_analytics_events ENABLE ROW LEVEL SECURITY;
 
 -- User Profiles Policies
@@ -142,6 +154,9 @@ CREATE POLICY "Users can delete their own reports"
 CREATE POLICY "Anyone can insert analytics events"
   ON client_analytics_events FOR INSERT
   WITH CHECK (true);
+
+-- NOTE: No policies for `leads` by default.
+-- Leads should be inserted via the server-side `/api/leads` endpoint using service role.
 
 -- Practitioners Policies (publicly viewable)
 CREATE POLICY "Anyone can view practitioners"

@@ -23,6 +23,8 @@ const safeSave = (value) => {
   }
 }
 
+const apiBase = import.meta.env.VITE_API_BASE_URL || ''
+
 export default function EssenceFirstQuiz({ onUnlocked }) {
   const [step, setStep] = useState(1)
   const [data, setData] = useState({
@@ -93,6 +95,28 @@ export default function EssenceFirstQuiz({ onUnlocked }) {
     if (!canNext()) return
     setData((prev) => ({ ...prev, unlocked: true }))
     await trackEvent('essence_quiz_email_unlocked', { has_email: true })
+
+    // Public lead capture (server-side insert; no RLS changes required)
+    try {
+      await fetch(`${apiBase}/api/leads`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          email: data.email,
+          firstName: data.firstName,
+          source: 'essence_quiz',
+          metadata: {
+            currentSeason: data.currentSeason,
+            todayNeed: data.todayNeed
+          }
+        })
+      })
+      await trackEvent('lead_captured', { source: 'essence_quiz' })
+    } catch {
+      // Never block UX on lead capture.
+      await trackEvent('lead_capture_failed', { source: 'essence_quiz' })
+    }
+
     if (typeof onUnlocked === 'function') onUnlocked({ email: data.email, firstName: data.firstName })
   }
 
