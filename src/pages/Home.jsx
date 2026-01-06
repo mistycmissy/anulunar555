@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import BirthDataForm from '../components/BirthDataForm'
 import CosmicBlueprintReport from '../components/CosmicBlueprintReport'
+import EssenceFirstQuiz from '../components/quiz/EssenceFirstQuiz'
 import { generateCosmicBlueprint } from '../utils/cosmicBlueprint'
 import { trackEvent } from '../utils/analytics'
 import { useAuth } from '../hooks/useAuth'
@@ -12,6 +13,7 @@ const Home = () => {
   const [blueprint, setBlueprint] = useState(null)
   const [loading, setLoading] = useState(false)
   const [guestReportGenerated, setGuestReportGenerated] = useState(false)
+  const [unlocked, setUnlocked] = useState(false)
 
   const handleGenerateBlueprint = async (birthData) => {
     setLoading(true)
@@ -227,6 +229,13 @@ const Home = () => {
               Create Free Account
             </Link>
           </div>
+        ) : !user && !unlocked ? (
+          <EssenceFirstQuiz
+            onUnlocked={async ({ email, firstName }) => {
+              setUnlocked(true)
+              await trackEvent('essence_quiz_unlocked', { has_email: Boolean(email), first_name: firstName })
+            }}
+          />
         ) : (
           <BirthDataForm onSubmit={handleGenerateBlueprint} loading={loading} />
         )}
