@@ -62,7 +62,6 @@ export const trackEvent = async (eventName, properties = {}) => {
   if (!isSupabaseConfigured) {
     // Keep this visible in dev without failing user flows.
     if (import.meta?.env?.DEV) {
-      // eslint-disable-next-line no-console
       console.debug('[analytics]', payload)
     }
     return

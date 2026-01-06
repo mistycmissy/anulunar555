@@ -7,7 +7,8 @@
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "detect:analytics-table": "node scripts/detect-analytics-table.mjs"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.84.0",
