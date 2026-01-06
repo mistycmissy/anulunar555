@@ -1,6 +1,7 @@
-import { useMemo, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useAuth } from '../hooks/useAuth'
+import { supabase } from '../lib/supabase'
 import { trackEvent } from '../utils/analytics'
 import { getDailyMicroInsight, getMoonPhase, getWeeklyTheme } from '../utils/dailyGuidance'
 
@@ -28,15 +29,62 @@ export default function Today() {
   const { user } = useAuth()
   const [frequency, setFrequency] = useState(getStoredFrequency)
   const [copied, setCopied] = useState(false)
+  const [latestBlueprint, setLatestBlueprint] = useState(null)
+  const [loadingBlueprint, setLoadingBlueprint] = useState(false)
 
   const now = useMemo(() => new Date(), [])
-  const { phaseName } = getWeeklyTheme({}, now)
+  const celticMoonSign = latestBlueprint?.celticMoonSign?.sign
+  const sunSign = latestBlueprint?.astrology?.sunSign
+  const lifePath = latestBlueprint?.numerology?.lifePath?.number
+
+  const { phaseName, theme } = getWeeklyTheme({ celticMoonSign }, now)
   const { lunarDay } = getMoonPhase(now)
-  const { theme } = getWeeklyTheme({}, now)
 
   const message = useMemo(() => {
-    return getDailyMicroInsight({ firstName: user?.user_metadata?.first_name }, now)
-  }, [now, user?.user_metadata?.first_name])
+    return getDailyMicroInsight(
+      {
+        firstName: user?.user_metadata?.first_name,
+        celticMoonSign,
+        sunSign,
+        lifePath
+      },
+      now
+    )
+  }, [now, user?.user_metadata?.first_name, celticMoonSign, sunSign, lifePath])
+
+  useEffect(() => {
+    const load = async () => {
+      if (!user?.id) {
+        setLatestBlueprint(null)
+        return
+      }
+
+      setLoadingBlueprint(true)
+      try {
+        const { data, error } = await supabase
+          .from('spiritual_reports')
+          .select('synthesized_content, report_data, created_at')
+          .eq('profile_id', user.id)
+          .order('created_at', { ascending: false })
+          .limit(1)
+          .maybeSingle()
+
+        if (error) throw error
+
+        const content = data?.synthesized_content || data?.report_data || null
+        setLatestBlueprint(content)
+
+        await trackEvent('today_viewed', { has_blueprint: Boolean(content) })
+      } catch (e) {
+        setLatestBlueprint(null)
+        await trackEvent('today_view_failed', { message: e?.message })
+      } finally {
+        setLoadingBlueprint(false)
+      }
+    }
+
+    load()
+  }, [user?.id])
 
   const handleCopy = async () => {
     try {
@@ -109,6 +157,16 @@ export default function Today() {
                   Create a free account
                 </Link>{' '}
                 so we can tie “Today” to your saved blueprint.
+              </div>
+            )}
+
+            {user && !loadingBlueprint && !latestBlueprint && (
+              <div className="mt-6 text-sm text-gray-400">
+                To personalize “Today” to your chart, generate your first blueprint on{' '}
+                <Link className="text-cosmic-300 hover:text-cosmic-200" to="/">
+                  Home
+                </Link>
+                .
               </div>
             )}
           </div>
