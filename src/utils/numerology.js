@@ -1,11 +1,14 @@
 // Numerology Calculator - Life Path, Expression, Soul Urge, etc.
 
+const MASTER_NUMBERS = new Set([11, 22, 33])
+
 const reduceToSingleDigit = (num) => {
-  // Master numbers: 11, 22, 33
-  if (num === 11 || num === 22 || num === 33) return num
-  
-  while (num > 9) {
-    num = num.toString().split('').reduce((sum, digit) => sum + parseInt(digit), 0)
+  // Master numbers: 11, 22, 33 (preserved during reduction)
+  while (num > 9 && !MASTER_NUMBERS.has(num)) {
+    num = num
+      .toString()
+      .split('')
+      .reduce((sum, digit) => sum + parseInt(digit, 10), 0)
   }
   return num
 }
@@ -17,10 +20,26 @@ const letterValues = {
 }
 
 export const calculateLifePath = (birthDate) => {
-  const date = new Date(birthDate)
-  const day = date.getDate()
-  const month = date.getMonth() + 1
-  const year = date.getFullYear()
+  // Prefer parsing YYYY-MM-DD directly to avoid timezone shifts.
+  let day
+  let month
+  let year
+
+  if (typeof birthDate === 'string') {
+    const match = birthDate.match(/^(\d{4})-(\d{2})-(\d{2})$/)
+    if (match) {
+      year = parseInt(match[1], 10)
+      month = parseInt(match[2], 10)
+      day = parseInt(match[3], 10)
+    }
+  }
+
+  if (!day || !month || !year) {
+    const date = new Date(birthDate)
+    day = date.getDate()
+    month = date.getMonth() + 1
+    year = date.getFullYear()
+  }
 
   const daySum = reduceToSingleDigit(day)
   const monthSum = reduceToSingleDigit(month)

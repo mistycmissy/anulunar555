@@ -2,7 +2,9 @@ import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import BirthDataForm from '../components/BirthDataForm'
 import CosmicBlueprintReport from '../components/CosmicBlueprintReport'
+import EssenceFirstQuiz from '../components/quiz/EssenceFirstQuiz'
 import { generateCosmicBlueprint } from '../utils/cosmicBlueprint'
+import { trackEvent } from '../utils/analytics'
 import { useAuth } from '../hooks/useAuth'
 import { supabase } from '../lib/supabase'
 
@@ -11,10 +13,15 @@ const Home = () => {
   const [blueprint, setBlueprint] = useState(null)
   const [loading, setLoading] = useState(false)
   const [guestReportGenerated, setGuestReportGenerated] = useState(false)
+  const [unlocked, setUnlocked] = useState(false)
 
   const handleGenerateBlueprint = async (birthData) => {
     setLoading(true)
     try {
+      await trackEvent('blueprint_generate_started', {
+        is_logged_in: Boolean(user)
+      })
+
       // Generate the cosmic blueprint
       const generatedBlueprint = generateCosmicBlueprint(birthData)
       setBlueprint(generatedBlueprint)
@@ -25,9 +32,20 @@ const Home = () => {
       } else {
         // Mark that guest has generated their free report
         setGuestReportGenerated(true)
+        await trackEvent('guest_free_report_used', {
+          source: 'home'
+        })
       }
+
+      await trackEvent('blueprint_generated', {
+        is_logged_in: Boolean(user),
+        life_path: generatedBlueprint?.numerology?.lifePath?.number
+      })
     } catch (error) {
       console.error('Error generating blueprint:', error)
+      await trackEvent('blueprint_generate_failed', {
+        message: error?.message
+      })
       alert('An error occurred while generating your blueprint. Please try again.')
     } finally {
       setLoading(false)
@@ -36,20 +54,44 @@ const Home = () => {
 
   const saveReportToDatabase = async (reportData) => {
     try {
-      const { error } = await supabase
-        .from('cosmic_reports')
-        .insert([
+      // Best-effort: ensure a `profiles` row exists for the authed user.
+      // The larger Supabase schema uses `profiles` + `spiritual_reports`.
+      await supabase.from('profiles').upsert(
+        [
           {
-            user_id: user.id,
-            birth_data: reportData.personalInfo,
-            report_data: reportData,
-            created_at: new Date().toISOString()
+            id: user.id,
+            email: user.email,
+            first_name: reportData?.personalInfo?.name?.split(' ')?.[0] || user?.user_metadata?.first_name || null,
+            last_name:
+              reportData?.personalInfo?.name?.split(' ')?.slice(1)?.join(' ') ||
+              user?.user_metadata?.last_name ||
+              null
           }
-        ])
+        ],
+        { onConflict: 'id' }
+      )
+
+      const { error } = await supabase.from('spiritual_reports').insert([
+        {
+          profile_id: user.id,
+          report_type: 'complete_spiritual_intelligence',
+          report_tier: 'crystal_clarity',
+          sacred_price: 0,
+          generation_status: 'completed',
+          synthesized_content: reportData,
+          generated_at: new Date().toISOString()
+        }
+      ])
 
       if (error) throw error
+      await trackEvent('blueprint_saved', {
+        source: 'home'
+      })
     } catch (error) {
       console.error('Error saving report:', error)
+      await trackEvent('blueprint_save_failed', {
+        message: error?.message
+      })
     }
   }
 
@@ -187,6 +229,13 @@ const Home = () => {
               Create Free Account
             </Link>
           </div>
+        ) : !user && !unlocked ? (
+          <EssenceFirstQuiz
+            onUnlocked={async ({ email, firstName }) => {
+              setUnlocked(true)
+              await trackEvent('essence_quiz_unlocked', { has_email: Boolean(email), first_name: firstName })
+            }}
+          />
         ) : (
           <BirthDataForm onSubmit={handleGenerateBlueprint} loading={loading} />
         )}
