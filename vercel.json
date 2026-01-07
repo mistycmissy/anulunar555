@@ -9,6 +9,7 @@
     "VITE_SUPABASE_ANON_KEY": "@supabase_anon_key",
     "VITE_ANALYTICS_TABLE": "analytics_events",
     "SUPABASE_URL": "@supabase_url",
+    "SUPABASE_ANON_KEY": "@supabase_anon_key",
     "SUPABASE_SERVICE_ROLE_KEY": "@supabase_service_role_key",
     "SWISS_EPHEMERIS_URL": "@swiss_ephemeris_url",
     "SWISS_EPHEMERIS_API_KEY": "@swiss_ephemeris_api_key"
