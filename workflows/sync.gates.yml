@@ -1,0 +1,26 @@
+name: Sync AnuLunar Gates to Supabase
+
+on:
+  push:
+    paths:
+      - 'AnuLunar_Complete_64_Gates_FILLED.csv' # Triggers only when the CSV changes
+
+jobs:
+  update-db:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+
+      - name: Install Dependencies
+        run: pip install psycopg2-binary
+
+      - name: Generate and Execute SQL
+        env:
+          SUPABASE_DB_URL: ${{ secrets.SUPABASE_DB_URL }}
+        run: python sync_script.py
