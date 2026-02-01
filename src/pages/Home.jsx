@@ -54,9 +54,9 @@ const Home = () => {
 
   const saveReportToDatabase = async (reportData) => {
     try {
-      // Best-effort: ensure a `profiles` row exists for the authed user.
+      // Ensure a `profiles` row exists for the authed user.
       // The larger Supabase schema uses `profiles` + `spiritual_reports`.
-      await supabase.from('profiles').upsert(
+      const { error: profileError } = await supabase.from('profiles').upsert(
         [
           {
             id: user.id,
@@ -70,6 +70,11 @@ const Home = () => {
         ],
         { onConflict: 'id' }
       )
+
+      if (profileError) {
+        console.error('Error upserting profile:', profileError)
+        throw profileError
+      }
 
       const { error } = await supabase.from('spiritual_reports').insert([
         {
