@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#16051f">
+  <title>Mystic Missy’s Magick Eight Ball</title>
+  <style>
+    :root { color-scheme: dark; --pink:#ff4fd8; --gold:#ffd76a; --violet:#7d4dff; --ink:#09030f; }
+    * { box-sizing: border-box; }
+    body { margin:0; min-height:100vh; display:grid; place-items:center; padding:24px; font-family:Georgia, 'Times New Roman', serif; color:#fff; background:radial-gradient(circle at 50% 15%, #3a1153 0, #16051f 38%, #07020b 75%); overflow-x:hidden; }
+    body::before { content:""; position:fixed; inset:0; pointer-events:none; opacity:.35; background-image:radial-gradient(#fff 1px, transparent 1px); background-size:43px 43px; }
+    main { width:min(760px, 100%); text-align:center; position:relative; z-index:1; }
+    h1 { margin:0; font-size:clamp(2rem, 6vw, 4.5rem); line-height:.95; text-shadow:0 0 24px #ff4fd888; }
+    .subtitle { color:var(--gold); letter-spacing:.16em; text-transform:uppercase; font:700 .78rem/1.5 Arial,sans-serif; margin:16px 0 26px; }
+    .prompt { font-family:Arial,sans-serif; color:#eadff0; margin:0 auto 18px; max-width:560px; }
+    .ball-wrap { display:grid; place-items:center; }
+    .ball { width:min(74vw, 410px); aspect-ratio:1; border-radius:50%; border:0; cursor:pointer; position:relative; background:radial-gradient(circle at 32% 24%, #4b4050 0 3%, #17131b 18%, #050507 58%, #000 76%); box-shadow:inset -30px -45px 80px #000, inset 25px 18px 48px #ffffff18, 0 28px 70px #000b, 0 0 60px #7d4dff42; transition:transform .2s ease, filter .2s ease; }
+    .ball:hover { transform:scale(1.015); filter:brightness(1.08); }
+    .ball:focus-visible { outline:3px solid var(--gold); outline-offset:8px; }
+    .window { position:absolute; inset:25%; display:grid; place-items:center; padding:18%; clip-path:polygon(50% 0, 100% 86%, 0 86%); background:radial-gradient(circle, #4c24d8 0, #170759 62%, #090224 100%); filter:drop-shadow(0 0 18px #8a64ff); }
+    .answer { width:165%; transform:translateY(8%); color:#fff; font:bold clamp(.68rem, 2vw, 1rem)/1.25 Arial,sans-serif; text-transform:uppercase; text-shadow:0 0 8px #fff, 0 0 18px #b7a6ff; }
+    .eight { position:absolute; inset:23%; display:grid; place-items:center; border-radius:50%; background:#f3eff8; color:#111; font:bold clamp(4rem, 15vw, 8rem)/1 Arial,sans-serif; box-shadow:0 0 22px #fff7; }
+    .ball.has-answer .eight { display:none; }
+    .ball.shaking { animation:shake .7s cubic-bezier(.36,.07,.19,.97) both; }
+    @keyframes shake { 10%,90%{transform:translateX(-2px) rotate(-1deg)} 20%,80%{transform:translateX(5px) rotate(2deg)} 30%,50%,70%{transform:translateX(-8px) rotate(-3deg)} 40%,60%{transform:translateX(8px) rotate(3deg)} }
+    .controls { display:flex; flex-wrap:wrap; justify-content:center; gap:10px; margin-top:22px; }
+    button.secondary { border:1px solid #ffffff2b; border-radius:999px; padding:11px 18px; color:#fff; background:#ffffff10; cursor:pointer; font-weight:700; }
+    button.secondary:hover { background:#ffffff1d; }
+    .status { min-height:22px; margin:14px 0 0; font: .82rem/1.4 Arial,sans-serif; color:#cdbfd5; }
+    details { margin:18px auto 0; max-width:620px; text-align:left; border:1px solid #ffffff19; border-radius:16px; padding:14px 18px; background:#ffffff09; font-family:Arial,sans-serif; }
+    summary { cursor:pointer; font-weight:700; color:var(--gold); }
+    small { display:block; margin-top:22px; color:#a999b3; font-family:Arial,sans-serif; }
+    @media (prefers-reduced-motion:reduce) { *,*::before,*::after { animation-duration:.01ms!important; transition-duration:.01ms!important; } }
+  </style>
+</head>
+<body>
+<main>
+  <h1>Mystic Missy’s<br>Magick Eight Ball</h1>
+  <div class="subtitle">Eternal Cosmic Oracle Tool</div>
+  <p class="prompt">Think of a clear yes-or-no question. Tap the ball, breathe, and receive what arrives.</p>
+  <div class="ball-wrap">
+    <button class="ball" id="ball" aria-label="Shake the Magick Eight Ball">
+      <span class="eight" aria-hidden="true">8</span>
+      <span class="window"><span class="answer" id="answer">Ask your question</span></span>
+    </button>
+  </div>
+  <div class="controls">
+    <button class="secondary" id="shakeButton">Shake the Ball</button>
+    <button class="secondary" id="updateButton">Check for Cosmic Updates</button>
+  </div>
+  <p class="status" id="status" role="status" aria-live="polite"></p>
+  <details>
+    <summary>How message updates work</summary>
+    <p>Your oracle always keeps an offline set of answers. When internet is available, it checks Mystic Missy’s official message library on GitHub and saves the newest version on this device. You can also check manually using the update button.</p>
+  </details>
+  <small>For reflection and entertainment. Your intuition and real-world judgment still get the final vote.</small>
+</main>
+<script>
+(() => {
+  'use strict';
+  const REMOTE_MESSAGES_URL = 'https://raw.githubusercontent.com/mistycmissy/anulunar555/main/magic-eight-ball/messages.json';
+  const CACHE_KEY = 'mysticMissyEightBallMessagePack';
+  const CHECKED_KEY = 'mysticMissyEightBallLastChecked';
+  const DAY_MS = 86400000;
+  const fallbackPack = {
+    version: '1.0.0', updatedAt: '2026-07-16',
+    messages: [
+      'The stars are aligned. Move forward boldly.',
+      'Yes, beloved. The Universe is saying yes with you.',
+      'Cosmic green light. Proceed with joy.',
+      'The frequency supports this. Trust it.',
+      'Not yet. The soil is still preparing.',
+      'The answer is no for now. Protect your energy.',
+      'The Universe is redirecting you toward something better.',
+      'Ask again after the next full moon.',
+      'The answer is still forming. Check in with your body.',
+      'The stars are winking. More information is coming.',
+      'The answer lives in your heart. Quiet the noise and listen.',
+      'The red flags are not decorative bunting.',
+      'You already know the answer. You are simply shopping for a different one.',
+      'The cosmos is buffering. Please enjoy this brief existential intermission.'
+    ]
+  };
+  const ball = document.getElementById('ball');
+  const answer = document.getElementById('answer');
+  const status = document.getElementById('status');
+  const shakeButton = document.getElementById('shakeButton');
+  const updateButton = document.getElementById('updateButton');
+  let pack = loadCachedPack() || fallbackPack;
+  let lastIndex = -1;
+  function isValidPack(value) { return value && typeof value.version === 'string' && Array.isArray(value.messages) && value.messages.length > 0 && value.messages.every(m => typeof m === 'string' && m.trim()); }
+  function loadCachedPack() { try { const parsed = JSON.parse(localStorage.getItem(CACHE_KEY)); return isValidPack(parsed) ? parsed : null; } catch { return null; } }
+  function savePack(value) { try { localStorage.setItem(CACHE_KEY, JSON.stringify(value)); } catch { /* private browsing may block storage */ } }
+  function chooseIndex() { if (pack.messages.length === 1) return 0; let index; do { index = Math.floor(Math.random() * pack.messages.length); } while (index === lastIndex); return index; }
+  function shake() {
+    if (ball.classList.contains('shaking')) return;
+    ball.classList.remove('has-answer');
+    answer.textContent = 'The cosmos is listening…';
+    void ball.offsetWidth;
+    ball.classList.add('shaking');
+    window.setTimeout(() => {
+      lastIndex = chooseIndex();
+      answer.textContent = pack.messages[lastIndex];
+      ball.classList.add('has-answer');
+      ball.classList.remove('shaking');
+    }, 720);
+  }
+  async function checkForUpdates({ manual = false } = {}) {
+    if (!navigator.onLine) { if (manual) status.textContent = 'You are offline. Your saved cosmic answers are still ready.'; return; }
+    if (!manual) { const lastChecked = Number(localStorage.getItem(CHECKED_KEY) || 0); if (Date.now() - lastChecked < DAY_MS) return; }
+    updateButton.disabled = true;
+    status.textContent = 'Checking the cosmic message library…';
+    try {
+      const response = await fetch(`${REMOTE_MESSAGES_URL}?t=${Date.now()}`, { cache: 'no-store' });
+      if (!response.ok) throw new Error(`Update request failed: ${response.status}`);
+      const incoming = await response.json();
+      if (!isValidPack(incoming)) throw new Error('The update file is not valid.');
+      const changed = incoming.version !== pack.version || incoming.messages.length !== pack.messages.length;
+      pack = incoming; savePack(pack); localStorage.setItem(CHECKED_KEY, String(Date.now()));
+      status.textContent = changed ? `Cosmic update received: version ${pack.version} with ${pack.messages.length} answers.` : `Your oracle is current: version ${pack.version} with ${pack.messages.length} answers.`;
+    } catch (error) {
+      console.error(error);
+      status.textContent = 'The update portal could not be reached. Your saved answers still work perfectly.';
+    } finally { updateButton.disabled = false; }
+  }
+  ball.addEventListener('click', shake);
+  shakeButton.addEventListener('click', shake);
+  updateButton.addEventListener('click', () => checkForUpdates({ manual: true }));
+  document.addEventListener('keydown', event => { if (event.code === 'Space' && document.activeElement === document.body) { event.preventDefault(); shake(); } });
+  status.textContent = `Oracle version ${pack.version} • ${pack.messages.length} answers available`;
+  checkForUpdates();
+})();
+</script>
+</body>
+</html>
