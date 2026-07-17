@@ -7,7 +7,8 @@
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "detect:analytics-table": "node scripts/detect-analytics-table.mjs"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.84.0",
@@ -29,6 +30,7 @@
     "globals": "^16.5.0",
     "postcss": "^8.5.6",
     "tailwindcss": "^4.1.17",
+    "typescript": "^5.9.3",
     "vite": "^7.2.4"
   }
 }

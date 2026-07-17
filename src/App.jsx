@@ -3,8 +3,11 @@ import { AuthProvider } from './contexts/AuthContext'
 import { useAuth } from './hooks/useAuth'
 import Navbar from './components/Navbar'
 import Home from './pages/Home'
+import Today from './pages/Today'
 import SignIn from './pages/SignIn'
 import SignUp from './pages/SignUp'
+import SoleyraLogin from './pages/SoleyraLogin'
+import SoleyraSignup from './pages/SoleyraSignup'
 import Dashboard from './pages/Dashboard'
 import Marketplace from './pages/Marketplace'
 
@@ -31,8 +34,11 @@ function App() {
           <Navbar />
           <Routes>
             <Route path="/" element={<Home />} />
+            <Route path="/today" element={<Today />} />
             <Route path="/signin" element={<SignIn />} />
             <Route path="/signup" element={<SignUp />} />
+            <Route path="/soleyra/login" element={<SoleyraLogin />} />
+            <Route path="/soleyra/signup" element={<SoleyraSignup />} />
             <Route
               path="/dashboard"
               element={

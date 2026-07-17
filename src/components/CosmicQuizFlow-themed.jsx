@@ -12,9 +12,10 @@ const CosmicQuizFlow = () => {
     G:7,P:7,Y:7,H:8,Q:8,Z:8,I:9,R:9
   };
   const vowels = ['A','E','I','O','U'];
+  const masterNumbers = [11, 22, 33];
 
   const reduceToSingle = (num) => {
-    while (num > 9 && ![11,22,33].includes(num)) {
+    while (num > 9 && !masterNumbers.includes(num)) {
       num = String(num).split('').reduce((a,b)=>a+Number(b),0);
     }
     return num;
@@ -33,8 +34,10 @@ const CosmicQuizFlow = () => {
   };
 
   const calculateLifePath = (date) => {
-    const [y,m,d] = date.split('-').map(Number);
-    return reduceToSingle(y+m+d);
+    if (!date) return null;
+    const [y, m, d] = date.split('-').map(Number);
+    if (![y, m, d].every(Number.isFinite)) return null;
+    return reduceToSingle(reduceToSingle(y) + reduceToSingle(m) + reduceToSingle(d));
   };
 
   const nextStep = () => {

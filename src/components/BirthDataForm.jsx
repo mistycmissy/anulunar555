@@ -1,5 +1,7 @@
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { validateBirthData } from '../utils/cosmicBlueprint'
+
+const STORAGE_KEY = 'anulunar.birthDataForm.v1'
 
 const BirthDataForm = ({ onSubmit, loading = false }) => {
   const [formData, setFormData] = useState({
@@ -10,6 +12,32 @@ const BirthDataForm = ({ onSubmit, loading = false }) => {
     birthPlace: ''
   })
   const [errors, setErrors] = useState({})
+  const hasHydratedRef = useRef(false)
+
+  useEffect(() => {
+    try {
+      const raw = localStorage.getItem(STORAGE_KEY)
+      if (raw) {
+        const parsed = JSON.parse(raw)
+        if (parsed && typeof parsed === 'object') {
+          setFormData((prev) => ({ ...prev, ...parsed }))
+        }
+      }
+    } catch {
+      // ignore corrupt storage
+    } finally {
+      hasHydratedRef.current = true
+    }
+  }, [])
+
+  useEffect(() => {
+    if (!hasHydratedRef.current) return
+    try {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(formData))
+    } catch {
+      // ignore quota/blocked storage
+    }
+  }, [formData])
 
   const handleChange = (e) => {
     const { name, value } = e.target
@@ -30,6 +58,11 @@ const BirthDataForm = ({ onSubmit, loading = false }) => {
     }
 
     onSubmit(formData)
+    try {
+      localStorage.removeItem(STORAGE_KEY)
+    } catch {
+      // ignore
+    }
   }
 
   return (

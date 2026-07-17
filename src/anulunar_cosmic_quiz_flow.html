@@ -609,8 +609,10 @@
 
     function calculateLifePath(dateStr) {
       const [year, month, day] = dateStr.split('-').map(Number);
-      const sum = year + month + day;
-      return reduceToSingle(sum);
+      const yearSum = reduceToSingle(year);
+      const monthSum = reduceToSingle(month);
+      const daySum = reduceToSingle(day);
+      return reduceToSingle(yearSum + monthSum + daySum);
     }
 
     function updateProgress() {
